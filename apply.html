@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Xander Rode-Bramanis">
+    <meta name="keywords" content="job application, employment, careers, volunteering">
+    <meta name="description" content="a job application page for a not-for-profit organisation">
+    <title>Job Application Page</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        .applyh1 {
+        letter-spacing: 0.03em;
+    }
+    </style>
+</head>
+
+<body class="apply-page">
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- This is the heading for the job application page. -->
+<header class="header-main">
+<nav aria-label="Primary">
+    <a href="index.html" class="nav_logo">
+        <img src="styles/images/grp_3.png"
+             alt="Melbourne Youth Support Network home"
+             title="Melbourne Youth Support Network">
+    </a>
+
+    <ul class="nav_links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="apply.html" aria-current="page">Apply</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+</header>
+<main id="main-content" class="apply-main">
+
+    <div class="apply_intro_box">
+
+        <h1 class="applyh1">Job Application</h1>
+
+        <p>Complete the form below to apply for one of our available positions.
+        Please ensure all required information is entered correctly before submitting your application.</p> 
+</div>
+
+<!-- This is the form for the job application page. -->
+<form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
+
+<!-- Job Reference Number fieldset. -->
+<fieldset>
+    <legend>Job Code</legend>
+
+    <div id="reference_number_form">
+
+        <label for="job_reference_number">Job Reference Number:</label>
+        <input type="text" id="job_reference_number" name="job_reference_number" 
+        placeholder="ABC123" pattern="[A-Za-z0-9]{6}" required>
+    </div>
+</fieldset>
+
+<!-- Personal Details Fieldset-->
+
+<!-- First Name. -->
+<fieldset>
+    <legend>Personal Details</legend>
+
+    <div id="personal_details_form"> 
+        
+        <div class="details">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" autocomplete="given-name" placeholder="John" 
+            pattern="[A-Za-z]{1,20}" maxlength="20" required>
+        </div>
+
+<!-- Last Name. -->
+        <div class="details">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" autocomplete="family-name" placeholder="Doe" 
+            pattern="[A-Za-z]{1,20}" maxlength="20" required>
+        </div>
+
+<!-- Date of Birth. -->
+        <div class="details">
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="text" id="date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy" 
+            pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}" required>
+        </div>
+    </div>
+</fieldset>
+
+<!-- Gender fieldset. -->
+<fieldset>
+    <legend>Gender</legend>
+
+    <div id="gender_form">
+
+        <div class="gender">
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+        </div>
+
+        <div class="gender">
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+        </div>
+
+        <div class="gender">
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>
+
+        <div class="gender">
+            <input type="radio" id="prefer_not_to_say" name="gender" value="prefer_not_to_say">
+            <label for="prefer_not_to_say">Prefer not to say</label>
+        </div>
+    </div>
+</fieldset>
+
+<!-- Address fieldset. -->
+<fieldset>
+    <legend>Address</legend>
+
+    <div id="address_form">
+
+    <div class="address">
+        <label for="street_address">Street Address:</label>
+        <input type="text" id="street_address" name="street_address" autocomplete="address-line1" 
+        placeholder="123 Main St" pattern=".{1,40}" maxlength="40" required>
+    </div>
+  
+    <div class="address">
+        <label for="suburb">Suburb/Town:</label>
+        <input type="text" id="suburb" name="suburb" autocomplete="address-level2" placeholder="Anytown"
+        pattern=".{1,40}" maxlength="40" required>
+    </div>
+
+    <div class="address">
+        <label for="state">State:</label>
+            <select id="state" name="state" autocomplete="address-level1" required>
+                <option value="">Select a state</option>
+                <option value="victoria">VIC</option>
+                <option value="new_south_wales">NSW</option>            
+                <option value="queensland">QLD</option>
+                <option value="northern_territory">NT</option>
+                <option value="western_australia">WA</option>
+                <option value="south_australia">SA</option>
+                <option value="tasmania">TAS</option>
+                <option value="australian_capital_territory">ACT</option>
+            </select>
+    </div>
+  
+    <div class="address">
+        <label for="postcode">Postcode:</label>
+        <input type="text" id="postcode" name="postcode" autocomplete="postal-code" placeholder="3034" 
+        pattern="[0-9]{4}" required>
+    </div>
+</div>
+</fieldset>
+
+<!-- Contact Details fieldset. -->
+<fieldset>
+    <legend>Contact Details</legend>
+
+    <div id="contact_form">
+
+        <div class="contact">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="your.email@example.com"
+            required>
+        </div>
+
+        <div class="contact">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="0412345678"
+            pattern="[0-9]{8,12}" required>
+        </div>
+    </div>
+</fieldset>
+
+<!-- Skills fieldset. -->
+<fieldset>
+    <legend>Skills</legend>
+
+<div id="skills_form">
+
+    <div class="skills">
+        <input type="checkbox" id="communication" name="skills[]" value="communication">
+        <label for="communication">Communication</label>
+    </div>
+
+    <div class="skills">
+        <input type="checkbox" id="teamwork" name="skills[]" value="teamwork">
+        <label for="teamwork">Teamwork</label>
+    </div>
+
+    <div class="skills">
+        <input type="checkbox" id="leadership" name="skills[]" value="leadership">
+        <label for="leadership">Leadership</label>
+    </div>
+
+    <div class="skills">
+        <input type="checkbox" id="technical" name="skills[]" value="technical">
+        <label for="technical">Technical</label>
+    </div>
+
+    <div class="skills">
+        <input type="checkbox" id="problem-solving" name="skills[]" value="problem-solving">
+        <label for="problem-solving">Problem Solving</label>
+    </div>
+
+    <div class="skills">
+        <input type="checkbox" id="time-management" name="skills[]" value="time-management">
+        <label for="time-management">Time Management</label>
+    </div>
+
+    <div class="other_skills">
+        <label for="other_skills">Other Skills:</label>
+	    <textarea id="other_skills" name="other_skills" rows="5" cols="40" 
+        placeholder="Write other skills here..."></textarea>
+    </div>
+</div>
+</fieldset>
+
+<!-- Submit and Reset buttons. -->
+
+<div class="form_buttons">
+    <input type="submit" value="Apply" style="font-size: 20px;">
+    <input type="reset" value="Reset Form" style="font-size: 20px;">
+</div>
+
+</form>
+
+</main>
+
+<!-- Footer with links to Jira project, GitHub repository, and email contact. -->
+<footer>
+    <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
+        <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
+    <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
+        <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
+    <a href="mailto:info@mysn.org.au">
+        <img src="styles/images/email_logo.jpg" alt="">Email Us</a>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,1203 @@
+/*
+filename: [style.css]
+author: [Group03]
+created: [01/09/2026]
+last modified: [09/09/2026]
+description: [styles.html CSS file]
+*/
+
+/* =========================
+   SHARED STYLES
+   ========================= */
+
+/* Body */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: #eaf2ff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/* Navigation */
+
+nav {
+    width: 100%;
+    min-height: 80px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #09427e;
+    border-bottom: 2px solid #7fdbff;
+}
+
+.nav_logo img {
+    display: block;
+    height: 55px;
+    width: auto;
+}
+
+.nav_links {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav_links a {
+    display: block;
+    width: 100px;
+    padding: 26px 0;
+    text-align: center;
+    color: #7fdbff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav_links a:hover,
+.nav_links a:focus {
+    background-color: white;
+    color: #09427e;
+    border-bottom-color: #09427e;
+}
+
+.nav_links a[aria-current="page"] {
+    border-bottom-color: #7fdbff;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 2px solid #7fdbff;
+    background-color: #09427e;
+}
+
+footer a {
+    color: #7fdbff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer link icons - white chip keeps each logo legible on the dark footer */
+footer a img {
+    height: 22px;
+    width: auto;
+    padding: 4px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    transition: transform 0.15s ease;
+}
+
+/* on hover / keyboard focus the icon grows and wiggles continuously */
+@keyframes footer-icon-shake {
+    0%, 100% { transform: scale(1.4) rotate(-8deg); }
+    50%      { transform: scale(1.4) rotate(8deg); }
+}
+
+footer a:hover img,
+footer a:focus img {
+    transform: scale(1.4);
+    animation: footer-icon-shake 0.3s ease-in-out infinite;
+}
+
+/* respect users who prefer reduced motion - keep the grow, drop the shake */
+@media (prefers-reduced-motion: reduce) {
+    footer a:hover img,
+    footer a:focus img {
+        animation: none;
+    }
+}
+
+/* Skip to main */
+
+.skip-link {
+    /* Always a fixed layer, moved off the top of the screen until focused.
+       This way it drops into the viewport the instant it receives focus,
+       no matter how far down the page has been scrolled. */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+
+    padding: 10px 15px;
+    background-color: white;
+    color: #09427e;
+    border: 2px solid #7fdbff;
+    border-radius: 5px;
+
+    transform: translateY(-200%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* Tables shared between index and about page 
+    Aligns table text to centre and adds padding
+    Creates table borders
+    Sets table heading to dark blue, and every second row to a lighter blue for easier visibility
+*/
+th,
+td {
+    text-align: center;
+    padding: 5px;
+    margin: 0px;
+}
+
+table,
+th,
+td {
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+table {
+    background-color: white;
+    max-width: 80%;
+    margin-bottom: 10px;
+}
+thead{
+        background-color: #3b82f6;
+    }
+
+
+/* =========================
+   Index PAGE
+   ========================= */
+
+/* Class to add rounded border and background to elements */
+.content-background-and-border{
+    background-color: #eaf2ff;
+    border: 2px solid;
+    border-radius: 16px;
+    width: 95%;
+    max-width: 1600px;
+    
+}
+/*  Styling for index company logo and heading
+    Add a border and background to the logo and heading
+    Sets the width to be consistent with other elements
+    Centers the element within the webpage
+ */
+#index_banner {
+    background-color: #eaf2ff;
+    border: 2px solid;
+    border-radius: 0 0 2rem 2rem;
+    border-top: none;
+    width: 95%;
+    max-width: 1600px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    
+}
+
+#company_logo{
+    width:95%;
+    display: block;
+    margin: 0 auto;
+}
+/* Fixes width of logo text overlay class for the index page specifically */
+#index_logo_text_overlay{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: clamp(1rem, 2.5vw, 3rem);
+    color: #09427e;
+    margin: 0 0 1rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 16px;
+    border: 1px solid #3b82f6;
+    white-space: nowrap;
+    text-align: center;
+    
+}
+/* Sets a repeating background image for index.html - copied directly from apply-page class */
+.index-page {
+    background-image: url("images/Lightblue.jpeg");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+}
+/* Set main element of index.html to use flexbox column display, aligning items in the center of the page */
+#index-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Flexbox styling for index description element
+    Sets column direction so heading is centered above the container containing text and visual content
+    Sets the text to bold for easier readability
+    Sets a margin to space element from the one above it
+*/
+#index-description {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25em 1.5em;
+    margin-top: 10px;
+    align-items: center;
+    font-weight: bold;
+}
+/*  Styling for index description text  
+        Slightly increase font size
+        Add spacing between each paragraph vertically        
+*/
+#index-description p{
+    margin: 4px 0 0 0;
+    font-size: 1.1em;
+}
+
+/*  Styling for description and visual content
+        Align text and image container in center
+        Set width of image and maintain aspect ratio
+        Set min width of image to avoid it becoming too small when zooming
+*/
+
+#description-image-text{
+    display: flex;
+    align-items: center;
+}
+
+#description-image-text img{
+    width: 40%;
+    min-width: 30%;
+    height: auto;
+    margin-left: 10px;
+    border: 2px solid;
+    border-radius: 6px;
+}
+/*  Styling for company slogan container
+       Align text in center and make it larger
+       Add a rounded border
+       Add space between container and text below 
+*/
+.company-slogan{
+    display: block;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid;
+    padding: 6px 30px;
+    border-radius: 6px;
+
+}
+/* Set program schedule div to use flexbox colum display and add margin between it and element above */
+#programSchedule-layout{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#programSchedule-layout h2{
+    margin-bottom: 10px;
+}
+
+#programSchedule{
+    width: 95%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-size: smaller;
+    margin: 0 auto 10px auto;
+
+}
+
+/* Acknowledgment of country styling
+    Set display to flexbox to allow for image to the left of text.
+    Add margin between it and element above
+    Set size of image to suitable size and add margin between image and text
+*/
+
+#acknowledgment-of-country{
+    display: flex;
+    margin-top: 10px;
+    text-align: center;
+}
+#acknowledgment-of-country img{
+    margin: auto auto;
+    max-height: 180px;
+    margin-right: 10px;
+    border-radius: 16px;
+}
+
+
+
+
+
+
+
+/* =========================
+   JOBS PAGE
+   ========================= */
+
+/* Jobs Background */
+
+.jobs-page {
+    min-height: 10;
+
+    /*
+       Background photo for the Jobs page (file: images/Job_page_background.jpg,
+       a resized/compressed copy).
+       Image: "Silhouette of a group of young people at a railing" by Emir Bozkurt, Pexels.
+       https://www.pexels.com/photo/15639173/
+       Pexels Licence - attribution not required; credited per the assessment brief.
+       A translucent light wash is layered over the photo so body text and
+       the job cards keep enough contrast (accessibility guideline).
+    */
+    background-color: #eef3fb;
+    background-image:
+        linear-gradient(rgba(238, 243, 251, 0.55), rgba(238, 243, 251, 0.72)),
+        url("images/Job_page_background.jpg");
+    background-repeat: no-repeat, no-repeat;
+    background-position: center top, center top;
+    background-size: cover, cover;
+    background-attachment: fixed, fixed;
+}
+
+/* Page title - align its left edge with the intro text and the job cards below */
+.jobs-page h1 {
+    margin: 1em 2.2rem 0.5em;
+}
+
+/* Intro panel - page summary + closing date in one box, sitting at the top
+   of the left column so it lines up with the job cards below it */
+.jobs-intro {
+    margin-bottom: 1.5em;
+    padding: 1.25em 1.5em;
+    background-color: #f3fcffde;
+    border: 1px solid #3b82f6;
+    border-left: 5px solid #09427e;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.jobs-intro p {
+    margin: 0 0 0.6em;
+}
+
+.jobs-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.lead {
+    font-size: 1.05em;
+}
+
+/* Jobs Layout - two columns: the job list on the left, the aside on the right */
+
+.jobs-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2em;
+    margin: 1em 2.2rem 2em;
+}
+
+.job-listings {
+    flex: 1 1 60%;
+    min-width: 280px;
+}
+
+/* Job Cards */
+
+.job-listings section {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+    padding: 1.25em 1.5em;
+    /* pale blue-white, slightly translucent so the background photo stays
+       faintly visible through the card. The crumpled-paper texture is
+       added by ::before below. */
+    background-color: #f3fcffde;
+    border: 1px solid #3b82f6;
+    border-left: 5px solid #09427e;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.job-listings section:last-child {
+    margin-bottom: 0;
+}
+
+.job-listings h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #09427e;
+}
+
+.job-listings h3 {
+    margin-bottom: 0.3em;
+    padding-bottom: 0.2em;
+    font-size: 1.05em;
+    color: #09427e;
+    border-bottom: 1px solid #d7e7ff;
+}
+
+/* definition list holding reference number / salary / reporting line */
+.job-meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.25em 1em;
+    margin: 0 0 1em;
+    padding: 0.75em 1em;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 4px;
+}
+
+.job-meta dt {
+    font-weight: bold;
+    color: #09427e;
+}
+
+.job-meta dd {
+    margin: 0;
+}
+
+.job-listings ol,
+.job-listings ul {
+    margin-top: 0;
+    padding-left: 1.4em;
+}
+
+.job-listings li {
+    margin-bottom: 0.25em;
+}
+
+/* Aside */
+
+aside {
+    flex: 0 0 260px;
+    width: 260px;
+    margin: 0.25em 0 0;
+    padding: 1.25em;
+    position: sticky;
+    top: 1em;
+    overflow: hidden;
+    /* matches the job cards; texture added by ::before below */
+    background-color: #f3fcffde;
+    border: 1px solid #6495ed;
+    border-top: 5px solid #09427e;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+aside h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #09427e;
+}
+
+aside h3 {
+    margin-bottom: 0.3em;
+    font-size: 1em;
+    color: #09427e;
+}
+
+aside ul,
+aside ol {
+    margin: 0 0 1em;
+    padding-left: 1.3em;
+}
+
+aside a {
+    color: #09427e;
+    font-weight: bold;
+}
+
+.inclusive {
+    margin-bottom: 0;
+    padding-top: 0.75em;
+    font-size: 0.95em;
+    border-top: 1px solid black;
+}
+
+/* Crumpled-paper texture for the job cards and the aside.
+   A photo (images/crumpled-paper.jpg, a resized/compressed copy) sits in a
+   ::before layer, lightened with a cream veil so only the creases show as
+   soft shading. Adjust with `opacity`. Falls back to the plain card
+   background if the image is missing.
+
+   Image: "White crumpled paper" by Tim Mossholder, Pexels.
+   https://www.pexels.com/photo/white-crumpled-paper-11605087/
+   Pexels Licence - attribution not required; credited per the assessment brief. */
+
+.job-listings section::before,
+aside::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* A cream veil is baked over the paper photo so the texture stays light;
+       only the creases show through as soft shading.
+       No filter / mix-blend-mode here on purpose - those force the browser to
+       re-composite this layer on every scroll frame and made the page lag. */
+    background-image:
+        linear-gradient(rgba(252, 250, 245, 0.55), rgba(252, 250, 245, 0.55)),
+        url("images/crumpled-paper.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+/* vary the crop per card so they don't look identical */
+.job-listings section:nth-child(2)::before {
+    background-position: right top;
+}
+
+.job-listings section:nth-child(3)::before {
+    background-position: left bottom;
+}
+
+/* keep the actual content above the texture layer */
+.job-listings section>*,
+aside>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   APPLY PAGE
+   ========================= */
+
+
+.apply-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.apply-page {
+    background-image: url("images/Lightblue.jpeg");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+}
+
+/* Heading */
+
+.header-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.apply_intro_box {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto 25px;
+    padding: 20px;
+    background-color: white;
+    color: #09427e;
+    border: 2px solid #6495ed;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* The Page Heading */
+.apply_intro_box h1 {
+    margin: 0 0 10px;
+    font-size: clamp(3rem, 7vw, 4rem);
+}
+
+/* The Page Description */
+
+.apply_intro_box p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: clamp(0.95rem, 2vw, 1.15rem)
+}
+
+/* Fieldsets */
+
+fieldset {
+    padding: 20px;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    border: 2px solid #6495ed;
+    border-radius: 20px;
+    background-color: white;
+    color: #09427e;
+}
+
+legend {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #09427e;
+    border: 2px solid #6495ed;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding: 8px 15px;
+    background-color: white;
+}
+
+
+/* Form Layout */
+
+/* Input, Select, and Textarea Styles */
+
+input,
+select,
+textarea {
+    border: 1.5px solid #d7e7ff;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+/* Input, Select, and Textarea Hover Styles */
+
+fieldset input:hover,
+fieldset textarea:hover,
+fieldset select:hover {
+    background-color: #EAF3FF;
+}
+
+/* For Accessibility: Focus Styles for Input, Select, and Textarea */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #6495ed;
+    outline-offset: 2px;
+}
+
+/* Job type Styles */
+
+#reference_number_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Name and Date of Birth Styles */
+
+#personal_details_form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 80px;
+    row-gap: 15px;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 100px 170px;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Gender Styles */
+
+#gender_form {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Address Styles */
+
+#address_form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 15px;
+}
+
+.address {
+    display: grid;
+    grid-template-columns: 110px 180px;
+    align-items: center;
+    gap: 10px;
+}
+
+.address input,
+.address select {
+    width: 180px;
+    box-sizing: border-box;
+}
+
+/* Contact Details Styles */
+
+#contact_form {
+    display: flex;
+    gap: 75px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.contact input {
+    width: 180px;
+}
+
+/* Skills Styles */
+
+#skills_form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* Skills Checkboxes Styles */
+
+.skills {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Other Skills Styles */
+
+.other_skills {
+    grid-column: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+/* Buttons */
+
+.form_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.form_buttons input {
+    width: 150px;
+    padding: 8px;
+    font-size: 1.1em;
+    border: 2px solid #6495ed;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.form_buttons input:hover {
+    background-color: #EAF3FF;
+    border-color: #09427e;
+}
+
+/* =========================
+   ABOUT PAGE
+   ========================= */
+
+/* formatting group photo/banner */
+.banner_text{
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* image in banner */
+.banner_text img{
+     border-radius: 2rem 2rem 2rem 2rem;
+     width: 50%;
+     height: auto;
+}
+
+/* text overlay in banner image */
+.text_overlay{
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    /* anchored to the bottom of the photo so the hover text grows upward
+       and the box stays within the image border */
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 1vw;
+    color: #09427e;
+    margin: 0;
+    padding: 1rem;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 2rem 2rem 2rem 2rem;
+    border: 1px solid #3b82f6;
+    width: 20%;
+    text-align: center;
+}
+
+/* hover text on image */
+figure:hover figcaption::after{
+    content: "We are pretty cool! Maybe even the best group ever!";
+    color: darkred;
+    display: block;
+}
+
+/* formatting table */
+tbody tr:nth-child(odd){
+    background-color: #7fdbffB0;
+}
+
+/* table layout */
+.table_layout{
+    margin: 0 auto;
+    padding-left: 1rem;
+    overflow-wrap: break-word;
+}
+
+/* table caption */
+caption{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* seperate caption */
+section{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+    padding: 1.25em 1.5em;
+    background-color: #f3fcffde;
+    border: 1px solid #3b82f6;
+    border-left: 5px solid #09427e;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* definition list term descriptions in about page */
+.group_contributions dd{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 1rem;
+    overflow-wrap: anywhere;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 4px;
+    border: 1px solid #3b82f6;
+    min-width: 0;
+}
+/* definition list text wrapping */
+.group_contributions dd ol,
+.group_contributions dd li {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+/* padding for nested list */
+.group_contributions dd ol{
+    padding: 1rem 1rem;
+}
+
+/* definition list term in about page */
+.group_contributions dt{
+    font-size: 1.1rem;
+}
+
+/* heading in about page */
+.about_layout h2{
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #09427e;
+}
+
+/* course details in about page */
+.course_details{
+    font-weight: bold;
+    margin: 0 0 1em;
+    padding: 0.75em 1em;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 4px;
+    border: 1px solid #3b82f6;
+}
+
+/* nested list in course details */
+.course_details li ul li{
+    font-weight: normal;
+    margin: 0;
+}
+
+/* intro in about page */
+.about_intro{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.25em 1em;
+    margin: 0 0 1em;
+    padding: 0.75em 1em;
+    background-color: rgba(234, 242, 255, 0.62);
+    border-radius: 4px;
+    text-align: center;
+    grid-template-columns: auto;
+    font-size: 1.5rem;
+}
+
+/* main in about page */
+.main_about{
+    margin: 2%;
+}
+
+/* =========================
+   RESPONSIVE STYLES
+   ========================= */
+
+
+@media (max-width: 700px) {
+
+    /* fixed backgrounds are unreliable / janky on many mobile browsers */
+    body {
+        background-attachment: scroll, scroll;
+    }
+
+
+    nav {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 20px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav_logo img {
+        height: 45px;
+    }
+
+    .nav_links {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav_links a {
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+
+    .jobs-layout {
+        flex-direction: column;
+        margin: 1em 1rem 2em;
+    }
+
+    .job-listings,
+    aside {
+        flex: 1 1 auto;
+        width: auto;
+    }
+
+    aside {
+        position: static;
+    }
+
+    h1,
+    main>p,
+    .jobs-page h1 {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+      /* Apply Page */
+
+    .apply-page {
+        background-size: 100% auto;
+        background-position: center top;
+        background-repeat: repeat-y;
+        background-attachment: scroll;
+    }
+
+    .apply-main {
+        width: 100%;
+    }
+
+    /* Header shrinks with screen */
+    .apply_intro_box {
+        width: 95%;
+        max-width: 900px;
+        margin: 0 auto 20px;
+        padding: 15px;
+    }
+
+    .apply_intro_box h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    /* Make form itself responsive */
+    .apply-main form {
+        width: 95%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Fieldsets fill responsive form */
+    fieldset {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    /* Personal details */
+    #personal_details_form {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 15px;
+    }
+
+    .details {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .details input {
+        width: 100%;
+    }
+
+    /* Gender */
+    #gender_form {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Address */
+    #address_form {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 15px;
+    }
+
+    .address {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .address input,
+    .address select {
+        width: 100%;
+    }
+
+    /* Contact */
+    #contact_form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .contact input {
+        width: 100%;
+    }
+
+    /* Skills */
+    #skills_form {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .other_skills {
+        grid-column: 1 / 3;
+    }
+
+    .other_skills textarea {
+        width: 100%;
+    }
+
+    #acknowledgment-of-country{
+        flex-direction: column;
+        
+    }
+    #acknowledgment-of-country img{
+        margin: auto auto;
+    }
+
+    #description-image-text{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #description-image-text img{
+        width: 90%;
+        margin:auto auto;
+    }
+    /*  Make table font size smaller on small screens   */
+    #programSchedule{
+        font-size: x-small;
+    }
+    /*  Make company slogan smaller on small screens */
+    .company-slogan{
+        font-size: small;
+    }
+
+}
+
+/* Small phones: single-column job metadata */
+@media (max-width: 480px) {
+
+    .job-meta {
+        grid-template-columns: 1fr;
+        gap: 0.1em 0;
+    }
+
+    .job-meta dd {
+        margin-bottom: 0.4em;
+    }
+
+     #skills_form {
+        grid-template-columns: 1fr;
+    }
+
+    .other_skills {
+        grid-column: 1;
+    }
+
+    .form_buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}

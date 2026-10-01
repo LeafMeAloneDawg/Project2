@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mohammad Aquib">
+    <meta name="keywords" content="jobs, careers, community services, youth support, volunteering, employment, Melbourne">
+    <meta name="description" content="Current job vacancies at Melbourne Youth Support Network, a not-for-profit community and social services organisation.">
+    <title>Job Vacancies | Melbourne Youth Support Network</title>
+
+    <!--
+        Acknowledgement of GenAI use:
+        The initial page scaffold and boilerplate were drafted with the
+        assistance of GenAI, then reviewed, edited and completed by
+        Mohammad Aquib. All job content is fictional and written for the
+        COS10026 project scenario (Group 3, G03 - Community and Social Services).
+    -->
+
+    <!-- All the main styling for this page lives in the shared
+         styles.css (see its "JOBS PAGE" section) -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!--
+        Embedded CSS example (page-specific, deliberately small):
+        styles the six-character job reference number as a distinct "chip".
+        Only jobs.html uses it, so it is not in the shared stylesheet.
+    -->
+    <style>
+        .job-ref {
+            display: inline-block;
+            padding: 0.15em 0.5em;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #09427e;
+            background-color: #eaf2ff;
+            border: 1px solid #6495ed;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="jobs-page">
+
+    <!-- Accessibility: lets keyboard / screen-reader users jump past the nav -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Common navigation menu - kept identical across every page for consistency -->
+    <nav aria-label="Primary">
+        <a href="index.html" class="nav_logo">
+            <img src="styles/images/grp_3.png"
+                 alt="Melbourne Youth Support Network home"
+                 title="Melbourne Youth Support Network">
+        </a>
+        <ul class="nav_links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html" aria-current="page">Jobs</a></li>
+            <li><a href="apply.html">Apply</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- tabindex="-1" lets the skip link move keyboard focus here on activation -->
+    <main id="main-content" tabindex="-1">
+        <h1>Job Vacancies</h1>
+
+        <div class="jobs-layout">
+
+            <div class="job-listings">
+
+                <!-- Intro panel: page summary and the application closing date,
+                     kept in one box above the job cards -->
+                <div class="jobs-intro">
+                    <p class="lead">
+                        Melbourne Youth Support Network is growing our team of youth workers,
+                        volunteer coordinators and community support staff. Explore our current
+                        opportunities below &mdash; each role lists the responsibilities,
+                        requirements and how to apply.
+                    </p>
+                    <!-- Inline CSS: a one-off emphasis on a single, time-sensitive line -->
+                    <p style="color: #09427e; font-weight: bold;">
+                        Applications for all roles close Friday 25 September 2026.
+                    </p>
+                </div>
+
+                <!-- ============ Job 1 ============ -->
+                <section aria-labelledby="job-csw">
+                    <h2 id="job-csw">Community Support Worker</h2>
+
+                    <dl class="job-meta">
+                        <dt>Reference number</dt>
+                        <dd><span class="job-ref">CSW214</span></dd>
+                        <dt>Salary</dt>
+                        <dd>$68,000 &ndash; $74,000 per annum (pro rata for part-time)</dd>
+                        <dt>Reports to</dt>
+                        <dd>Community Programs Manager</dd>
+                    </dl>
+
+                    <p>
+                        Provide direct, practical support to young people and families
+                        accessing our community programs, helping them connect with
+                        local services and build long-term wellbeing.
+                    </p>
+
+                    <h3>Key responsibilities</h3>
+                    <ol>
+                        <li>Complete intake interviews and assess each client's needs.</li>
+                        <li>Develop and review individual support plans with clients.</li>
+                        <li>Coordinate referrals to housing, health and education services.</li>
+                        <li>Maintain accurate, confidential case notes and records.</li>
+                        <li>Attend weekly team case-review meetings.</li>
+                    </ol>
+
+                    <h3>Essential requirements</h3>
+                    <ul>
+                        <li>Diploma of Community Services or a related qualification.</li>
+                        <li>Current Working with Children Check and National Police Check.</li>
+                        <li>At least one year of experience in a frontline support role.</li>
+                        <li>Current Victorian driver's licence.</li>
+                    </ul>
+
+                    <h3>Preferable requirements</h3>
+                    <ul>
+                        <li>Experience supporting culturally and linguistically diverse communities.</li>
+                        <li>Current First Aid and CPR certificate.</li>
+                        <li>Knowledge of Melbourne's youth and family service system.</li>
+                    </ul>
+                </section>
+
+                <!-- ============ Job 2 ============ -->
+                <section aria-labelledby="job-vec">
+                    <h2 id="job-vec">Volunteer Engagement Coordinator</h2>
+
+                    <dl class="job-meta">
+                        <dt>Reference number</dt>
+                        <dd><span class="job-ref">VEC091</span></dd>
+                        <dt>Salary</dt>
+                        <dd>$72,000 &ndash; $80,000 per annum</dd>
+                        <dt>Reports to</dt>
+                        <dd>Operations Manager</dd>
+                    </dl>
+
+                    <p>
+                        Recruit, train and support our volunteer network so that
+                        volunteers are well matched to programs and feel valued in
+                        their contribution to the community.
+                    </p>
+
+                    <h3>Key responsibilities</h3>
+                    <ol>
+                        <li>Recruit and onboard new volunteers across all programs.</li>
+                        <li>Plan and deliver regular volunteer induction and training sessions.</li>
+                        <li>Build volunteer rosters for community events and outreach.</li>
+                        <li>Check in with volunteers and resolve issues as they arise.</li>
+                        <li>Organise volunteer recognition and appreciation events.</li>
+                    </ol>
+
+                    <h3>Essential requirements</h3>
+                    <ul>
+                        <li>Experience coordinating volunteers, teams or community groups.</li>
+                        <li>Strong written and verbal communication skills.</li>
+                        <li>Current Working with Children Check.</li>
+                        <li>Confident using rostering or database software.</li>
+                    </ul>
+
+                    <h3>Preferable requirements</h3>
+                    <ul>
+                        <li>Qualification in community development, human resources or event management.</li>
+                        <li>Experience with volunteer-management platforms such as Better Impact.</li>
+                        <li>Availability for occasional evening and weekend events.</li>
+                    </ul>
+                </section>
+
+                <!-- ============ Job 3 ============ -->
+                <section aria-labelledby="job-yow">
+                    <h2 id="job-yow">Youth Outreach Worker</h2>
+
+                    <dl class="job-meta">
+                        <dt>Reference number</dt>
+                        <dd><span class="job-ref">YOW338</span></dd>
+                        <dt>Salary</dt>
+                        <dd>$65,000 &ndash; $70,000 per annum (pro rata for part-time)</dd>
+                        <dt>Reports to</dt>
+                        <dd>Youth Services Team Leader</dd>
+                    </dl>
+
+                    <p>
+                        Work alongside young people aged 12&ndash;25 in their own
+                        communities, running outreach activities and mentoring that
+                        build confidence, connection and trust.
+                    </p>
+
+                    <h3>Key responsibilities</h3>
+                    <ol>
+                        <li>Deliver after-school, school-holiday and drop-in youth programs.</li>
+                        <li>Build trusted relationships with young people and their families.</li>
+                        <li>Recognise early signs of disengagement and respond appropriately.</li>
+                        <li>Refer young people to specialist support services when needed.</li>
+                        <li>Record session attendance and program outcomes.</li>
+                    </ol>
+
+                    <h3>Essential requirements</h3>
+                    <ul>
+                        <li>Certificate IV in Youth Work or a related qualification.</li>
+                        <li>Current Working with Children Check and National Police Check.</li>
+                        <li>Availability for after-school, evening and some weekend shifts.</li>
+                        <li>Current Victorian driver's licence.</li>
+                    </ul>
+
+                    <h3>Preferable requirements</h3>
+                    <ul>
+                        <li>Lived experience of, or a strong connection to, the local community.</li>
+                        <li>Experience facilitating group activities or workshops.</li>
+                        <li>Training in Youth Mental Health First Aid.</li>
+                    </ul>
+                </section>
+
+            </div><!-- /.job-listings -->
+
+            <!--
+                Meaningful aside: content genuinely related to the vacancies but
+                not part of any single job description. styles.css (JOBS PAGE
+                section) positions it beside the job list - the page-specific
+                CSS requirement for jobs.html.
+            -->
+            <aside aria-labelledby="working-here">
+                <h2 id="working-here">Working at MYSN</h2>
+                <p>
+                    We are a not-for-profit, so our people stay because the work
+                    matters. In return we offer:
+                </p>
+                <ul>
+                    <li>Flexible and hybrid working arrangements</li>
+                    <li>Salary packaging that increases your take-home pay</li>
+                    <li>An annual professional-development budget</li>
+                    <li>Additional paid leave over the end-of-year shutdown</li>
+                    <li>Regular clinical supervision and a free employee assistance program</li>
+                </ul>
+
+                <h3>How to apply</h3>
+                <ol>
+                    <li>Note the six-character reference number for the role you want.</li>
+                    <li>Open the <a href="apply.html">Apply</a> page and complete the form.</li>
+                    <li>Enter the reference number and respond to the listed requirements.</li>
+                    <li>Submit your application before the closing date shown above.</li>
+                </ol>
+
+                <p class="inclusive">
+                    Melbourne Youth Support Network is an inclusive employer. We
+                    welcome applications from people of all backgrounds and abilities,
+                    and we strongly encourage Aboriginal and Torres Strait Islander
+                    people to apply.
+                </p>
+            </aside>
+
+        </div><!-- /.jobs-layout -->
+    </main>
+
+    <!-- Footer - consistent with the other pages -->
+    <footer>
+        <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
+            <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
+        <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
+            <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
+        <a href="mailto:info@mysn.org.au">
+            <img src="styles/images/email_logo.jpg" alt="">Email Us</a>
+    </footer>
+
+</body>
+</html>
+ 
