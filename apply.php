@@ -22,7 +22,9 @@
 
 <!-- This is the heading for the job application page. -->
 <header class="header-main">
+    <?php include 'header.inc'; ?>
 <nav aria-label="Primary">
+    <?php include 'nav.inc'; ?>
     <a href="index.html" class="nav_logo">
         <img src="styles/images/grp_3.png"
              alt="Melbourne Youth Support Network home"
@@ -37,6 +39,7 @@
     </ul>
 </nav>
 </header>
+
 <main id="main-content" class="apply-main">
 
     <div class="apply_intro_box">
@@ -238,6 +241,7 @@
 
 <!-- Footer with links to Jira project, GitHub repository, and email contact. -->
 <footer>
+    <?php include 'footer.inc'; ?>
     <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
         <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
     <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
