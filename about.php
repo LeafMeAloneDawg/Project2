@@ -22,8 +22,10 @@
 
 <body>
 <!-- navigation bar -->
+<header>
 <nav aria-label="Primary">
-    <a href="index.html" class="nav_logo">
+    <?php include 'nav.inc'; ?>
+    <!-- <a href="index.html" class="nav_logo">
         <img src="styles/images/grp_3.png"
              alt="Melbourne Youth Support Network home"
              title="Melbourne Youth Support Network">
@@ -34,8 +36,9 @@
         <li><a href="jobs.html">Jobs</a></li>
         <li><a href="apply.html">Apply</a></li>
         <li><a href="about.html" aria-current="page">About</a></li>
-    </ul>
-    </nav>
+    </ul> -->
+</nav>
+</header>
 
 <main class="main_about">
 
@@ -219,12 +222,13 @@
 
 <!-- footer -->
 <footer>
-        <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
+    <?php include 'footer.inc'; ?>
+        <!-- <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
             <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
         <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
             <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
         <a href="mailto:info@mysn.org.au">
-            <img src="styles/images/email_logo.jpg" alt="">Email Us</a>
+            <img src="styles/images/email_logo.jpg" alt="">Email Us</a> -->
 </footer>
 </body>
 </html>
