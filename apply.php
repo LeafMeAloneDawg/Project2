@@ -48,7 +48,7 @@
 </div>
 
 <!-- This is the form for the job application page. -->
-<form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
+<form action="process_eoi.php" method="post">
 
 <!-- Job Reference Number fieldset. -->
 <fieldset>
