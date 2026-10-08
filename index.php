@@ -146,7 +146,9 @@
     </main>
 
     <!-- Footer - consistent with the other pages -->
-    <?php include ("footer.inc"); ?>
+     <footer>
+        <?php include ("footer.inc"); ?>
+    </footer>
 </body>
 
 </html>
