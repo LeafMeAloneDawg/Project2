@@ -21,9 +21,9 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- This is the heading for the job application page. -->
-<header class="header-main">
-<nav aria-label="Primary">
-    <a href="index.html" class="nav_logo">
+<nav>
+    <?php include ("nav.inc"); ?>
+    <!-- <a href="index.html" class="nav_logo">
         <img src="styles/images/grp_3.png"
              alt="Melbourne Youth Support Network home"
              title="Melbourne Youth Support Network">
@@ -34,9 +34,8 @@
         <li><a href="jobs.html">Jobs</a></li>
         <li><a href="apply.html" aria-current="page">Apply</a></li>
         <li><a href="about.php">About</a></li>
-    </ul>
+    </ul> -->
 </nav>
-</header>
 
 <main id="main-content" class="apply-main">
 

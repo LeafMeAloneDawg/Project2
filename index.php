@@ -18,8 +18,9 @@
 
 <body class="index-page">
 
-    
+<nav>
     <?php include ("nav.inc"); ?>
+</nav>
      <!-- Company logo / banner with text on top -->
         <div id="index_banner">
                 <img src="styles/images/grp_3.png" id="company_logo" alt="Company Logo">

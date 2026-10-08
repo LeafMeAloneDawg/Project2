@@ -45,8 +45,9 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Common navigation menu - kept identical across every page for consistency -->
-    <nav aria-label="Primary">
-        <a href="index.html" class="nav_logo">
+    <nav>
+            <?php include ("nav.inc"); ?>
+        <!-- <a href="index.html" class="nav_logo">
             <img src="styles/images/grp_3.png"
                  alt="Melbourne Youth Support Network home"
                  title="Melbourne Youth Support Network">
@@ -56,7 +57,7 @@
             <li><a href="jobs.html" aria-current="page">Jobs</a></li>
             <li><a href="apply.html">Apply</a></li>
             <li><a href="about.php">About</a></li>
-        </ul>
+        </ul> -->
     </nav>
 
     <!-- tabindex="-1" lets the skip link move keyboard focus here on activation -->

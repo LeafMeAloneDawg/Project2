@@ -21,9 +21,8 @@
 
 <body>
 <!-- navigation bar -->
-<header>
-<nav aria-label="Primary">
-    <?php include 'nav.inc'; ?>
+<nav>
+    <?php include ("nav.inc"); ?>
     <!-- <a href="index.html" class="nav_logo">
         <img src="styles/images/grp_3.png"
              alt="Melbourne Youth Support Network home"
@@ -37,7 +36,6 @@
         <li><a href="about.html" aria-current="page">About</a></li>
     </ul> -->
 </nav>
-</header>
 
 <main class="main_about">
 
