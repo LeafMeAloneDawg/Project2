@@ -48,4 +48,21 @@ if (!$table_result) {
     die("<p>Unable to create the EOI table.</p>");
 }
 
+# Get and clean form data #
+$job_reference_number = clean_input($_POST["job_reference_number"] ?? "");
+$first_name = clean_input($_POST["first_name"] ?? "");
+$last_name = clean_input($_POST["last_name"] ?? "");
+$date_of_birth = clean_input($_POST["date_of_birth"] ?? "");
+$gender = clean_input($_POST["gender"] ?? "");
+$street_address = clean_input($_POST["street_address"] ?? "");
+$suburb = clean_input($_POST["suburb"] ?? "");
+$state = clean_input($_POST["state"] ?? "");
+$postcode = clean_input($_POST["postcode"] ?? "");
+$email = clean_input($_POST["email"] ?? "");
+$phone = clean_input($_POST["phone"] ?? "");
+$other_skills = clean_input($_POST["other_skills"] ?? "");
+
+# Store validation errors #
+$errors = array();
+
 ?>
