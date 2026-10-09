@@ -258,6 +258,14 @@ if (count($errors) > 0) {
     exit();
 }
 
+# Convert date from dd/mm/yyyy into MySQL yyyy-mm-dd format #
+$date_parts = explode("/", $date_of_birth);
+
+$database_date =
+    $date_parts[2] . "-"
+    . $date_parts[1] . "-"
+    . $date_parts[0];
 
 
+    
 ?>
