@@ -221,6 +221,43 @@ if (count($errors) > 0) {
             <?php include("nav.inc"); ?>
         </nav>
 
+         <main class="apply-main">
 
-        
+            <div class="apply_intro_box">
+
+                <h1>Application Error</h1>
+
+                <p>Please fix the following problems:</p>
+
+                <ul>
+
+                    <?php
+                    foreach ($errors as $error) {
+                        echo "<li>$error</li>";
+                    }
+                    ?>
+
+                </ul>
+
+                <p><a href="apply.php">Return to the application form</a></p>
+
+            </div>
+
+        </main>
+
+        <footer>
+            <?php include("footer.inc"); ?>
+        </footer>
+
+    </body>
+    </html>
+
+    <?php
+
+    mysqli_close($dbconn);
+    exit();
+}
+
+
+
 ?>
