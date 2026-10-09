@@ -201,7 +201,7 @@ if (isset($_POST["skills"]) && is_array($_POST["skills"])) {
     $skills = implode(", ", $selected_skills);
 }
 
-// If there are errors, show them and stop
+# If there are errors, show them and stop #
 if (count($errors) > 0) {
     ?>
 
