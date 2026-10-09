@@ -281,6 +281,41 @@ $phone = mysqli_real_escape_string($dbconn, $phone);
 $skills = mysqli_real_escape_string($dbconn, $skills);
 $other_skills = mysqli_real_escape_string($dbconn, $other_skills);
 
+# Add application to the eoi table #
+$insert_query = "INSERT INTO eoi (
+    job_reference_number,
+    first_name,
+    last_name,
+    date_of_birth,
+    gender,
+    street_address,
+    suburb,
+    state,
+    postcode,
+    email,
+    phone,
+    skills,
+    other_skills
+)
+
+VALUES (
+    '$job_reference_number',
+    '$first_name',
+    '$last_name',
+    '$database_date',
+    '$gender',
+    '$street_address',
+    '$suburb',
+    '$state',
+    '$postcode',
+    '$email',
+    '$phone',
+    '$skills',
+    '$other_skills'
+)";
+
+$insert_result = mysqli_query($dbconn, $insert_query);
+
 
 
 ?>
