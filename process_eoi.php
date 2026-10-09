@@ -91,6 +91,36 @@ if (empty($last_name)) {
     $errors[] = "Last name must contain letters only and be no more than 20 characters.";
 }
 
+# Validate date of birth #
+if (empty($date_of_birth)) {
+    $errors[] = "Date of birth is required.";
+} elseif (!preg_match("/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/", $date_of_birth)) {
+    $errors[] = "Date of birth must be entered as dd/mm/yyyy.";
+} else {
+    $date_parts = explode("/", $date_of_birth);
+
+    $day = $date_parts[0];
+    $month = $date_parts[1];
+    $year = $date_parts[2];
+
+    if (!checkdate($month, $day, $year)) {
+        $errors[] = "Please enter a valid date of birth.";
+    }
+}
+
+# Validate gender #
+$valid_genders = array(
+    "male",
+    "female",
+    "other",
+    "prefer_not_to_say"
+);
+
+if (empty($gender)) {
+    $errors[] = "Gender is required.";
+} elseif (!in_array($gender, $valid_genders)) {
+    $errors[] = "Please select a valid gender.";
+}
 
 
 ?>
