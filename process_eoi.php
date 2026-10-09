@@ -168,13 +168,39 @@ if (empty($email)) {
     $errors[] = "Please enter a valid email address.";
 }
 
-
 # Validate phone number #
 if (empty($phone)) {
     $errors[] = "Phone number is required.";
 } elseif (!preg_match("/^[0-9]{8,12}$/", $phone)) {
     $errors[] = "Phone number must contain between 8 and 12 numbers.";
 }
+
+# Validate & process skills #
+$skills = "";
+
+$valid_skills = array(
+    "communication",
+    "teamwork",
+    "leadership",
+    "technical",
+    "problem-solving",
+    "time-management"
+);
+
+if (isset($_POST["skills"]) && is_array($_POST["skills"])) {
+    $selected_skills = array();
+
+    foreach ($_POST["skills"] as $skill) {
+        $skill = clean_input($skill);
+
+        if (in_array($skill, $valid_skills)) {
+            $selected_skills[] = $skill;
+        }
+    }
+
+    $skills = implode(", ", $selected_skills);
+}
+
 
 
 ?>
