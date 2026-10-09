@@ -161,6 +161,20 @@ if (empty($postcode)) {
     $errors[] = "Postcode must contain exactly 4 numbers.";
 }
 
+# Validate email #
+if (empty($email)) {
+    $errors[] = "Email is required.";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Please enter a valid email address.";
+}
+
+
+# Validate phone number #
+if (empty($phone)) {
+    $errors[] = "Phone number is required.";
+} elseif (!preg_match("/^[0-9]{8,12}$/", $phone)) {
+    $errors[] = "Phone number must contain between 8 and 12 numbers.";
+}
 
 
 ?>
