@@ -122,5 +122,45 @@ if (empty($gender)) {
     $errors[] = "Please select a valid gender.";
 }
 
+# Validate street address #
+if (empty($street_address)) {
+    $errors[] = "Street address is required.";
+} elseif (strlen($street_address) > 40) {
+    $errors[] = "Street address must not be more than 40 characters.";
+}
+
+# Validate suburb #
+if (empty($suburb)) {
+    $errors[] = "Suburb or town is required.";
+} elseif (strlen($suburb) > 40) {
+    $errors[] = "Suburb or town must not be more than 40 characters.";
+}
+
+# Validate state #
+$valid_states = array(
+    "victoria",
+    "new_south_wales",
+    "queensland",
+    "northern_territory",
+    "western_australia",
+    "south_australia",
+    "tasmania",
+    "australian_capital_territory"
+);
+
+if (empty($state)) {
+    $errors[] = "State is required.";
+} elseif (!in_array($state, $valid_states)) {
+    $errors[] = "Please select a valid state.";
+}
+
+# Validate postcode #
+if (empty($postcode)) {
+    $errors[] = "Postcode is required.";
+} elseif (!preg_match("/^[0-9]{4}$/", $postcode)) {
+    $errors[] = "Postcode must contain exactly 4 numbers.";
+}
+
+
 
 ?>
