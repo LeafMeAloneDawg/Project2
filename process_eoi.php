@@ -201,6 +201,26 @@ if (isset($_POST["skills"]) && is_array($_POST["skills"])) {
     $skills = implode(", ", $selected_skills);
 }
 
+// If there are errors, show them and stop
+if (count($errors) > 0) {
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Application Error</title>
+        <link rel="stylesheet" href="styles/styles.css">
+    </head>
+
+    <body class="apply-page">
+
+        <nav>
+            <?php include("nav.inc"); ?>
+        </nav>
 
 
+        
 ?>
