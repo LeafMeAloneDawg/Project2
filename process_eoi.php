@@ -347,7 +347,27 @@ mysqli_close($dbconn);
         <?php include("nav.inc"); ?>
     </nav>
 
+    <main class="apply-main">
+        <div class="apply_intro_box">
 
+            <h1>Application Submitted</h1>
 
+            <p>Your application has been submitted successfully.</p>
 
-?>
+            <p>
+                Your EOI number is:
+                <strong><?php echo $eoi_number; ?></strong>
+            </p>
+
+            <p>Please keep this number for your records.</p>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <?php include("footer.inc"); ?>
+    </footer>
+
+</body>
+</html>
