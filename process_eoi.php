@@ -62,7 +62,35 @@ $email = clean_input($_POST["email"] ?? "");
 $phone = clean_input($_POST["phone"] ?? "");
 $other_skills = clean_input($_POST["other_skills"] ?? "");
 
+
+#             #
+# Validations #
+#             #
+
 # Store validation errors #
 $errors = array();
+
+# Validate job reference number #
+if (empty($job_reference_number)) {
+    $errors[] = "Job reference number is required.";
+} elseif (!preg_match("/^[A-Za-z0-9]{6}$/", $job_reference_number)) {
+    $errors[] = "Job reference number must be exactly 6 letters or numbers.";
+}
+
+# Validate first name #
+if (empty($first_name)) {
+    $errors[] = "First name is required.";
+} elseif (!preg_match("/^[A-Za-z]{1,20}$/", $first_name)) {
+    $errors[] = "First name must contain letters only and be no more than 20 characters.";
+}
+
+# Validate last name #
+if (empty($last_name)) {
+    $errors[] = "Last name is required.";
+} elseif (!preg_match("/^[A-Za-z]{1,20}$/", $last_name)) {
+    $errors[] = "Last name must contain letters only and be no more than 20 characters.";
+}
+
+
 
 ?>
