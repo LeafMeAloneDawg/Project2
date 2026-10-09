@@ -266,6 +266,21 @@ $database_date =
     . $date_parts[1] . "-"
     . $date_parts[0];
 
+# Make data values safe for the SQL query #
+$job_reference_number = mysqli_real_escape_string($dbconn, $job_reference_number);
+$first_name = mysqli_real_escape_string($dbconn, $first_name);
+$last_name = mysqli_real_escape_string($dbconn, $last_name);
+$database_date = mysqli_real_escape_string($dbconn, $database_date);
+$gender = mysqli_real_escape_string($dbconn, $gender);
+$street_address = mysqli_real_escape_string($dbconn, $street_address);
+$suburb = mysqli_real_escape_string($dbconn, $suburb);
+$state = mysqli_real_escape_string($dbconn, $state);
+$postcode = mysqli_real_escape_string($dbconn, $postcode);
+$email = mysqli_real_escape_string($dbconn, $email);
+$phone = mysqli_real_escape_string($dbconn, $phone);
+$skills = mysqli_real_escape_string($dbconn, $skills);
+$other_skills = mysqli_real_escape_string($dbconn, $other_skills);
 
-    
+
+
 ?>
