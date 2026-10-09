@@ -316,6 +316,19 @@ VALUES (
 
 $insert_result = mysqli_query($dbconn, $insert_query);
 
+# Check whether application was saved #
+if ($insert_result) {
+    $eoi_number = mysqli_insert_id($dbconn);
+
+} else {
+    die("<p>There was an error submitting your application.</p>");
+}
+
+mysqli_close($dbconn);
+
+?>
+
+
 
 
 ?>
