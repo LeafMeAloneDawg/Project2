@@ -43,6 +43,10 @@
         mysqli_query($dbconn, $sqlUpdateQuery);
         $sqlQuery = "SELECT * FROM eoi";
     }
+    elseif(isset($_GET['sortField'])){
+        $sortField = $_GET['sortField'];
+        $sqlQuery = "SELECT * FROM eoi ORDER BY `$sortField` ASC";
+    }
     //Default query - display all EOIs
     else{$sqlQuery = "SELECT * FROM eoi";}
     $result = mysqli_query($dbconn, $sqlQuery);
@@ -102,6 +106,29 @@
             <input type="radio" name="status" id="final" value="Final">
             <input type="submit" value="Update Value">
             </span>
+        </form>
+
+        <!-- Form to select field to sort EOI table by -->
+        <h2>Sort by field</h2>
+        <form method="GET" action="manage.php">
+            <label for="sortField">Sort entries by:</label>
+            <select name="sortField" id="sortField">
+                <option value="EOInumber">EOI ID</option>
+                <option value="job_reference_number">Job Reference Number</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="date_of_birth">DOB</option>
+                <option value="gender">Gender</option>
+                <option value="street_address">Street Address</option>
+                <option value="suburb">Suburb</option>
+                <option value="state">State</option>
+                <option value="postcode">Postcode</option>
+                <option value="email">Email Address</option>
+                <option value="phone">Phone Number</option>
+                <option value="skills">Skills</option>
+                <option value="other_skills">Other Skills</option>
+            </select>
+            <input type="submit" value="Sort list">
         </form>
 
 
