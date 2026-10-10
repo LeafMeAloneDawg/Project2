@@ -1,0 +1,108 @@
+INSERT INTO `eoi`
+(`EOInumber`, `job_reference_number`, `first_name`, `last_name`,
+ `date_of_birth`, `gender`, `street_address`, `suburb`, `state`,
+ `postcode`, `email`, `phone`, `skills`, `other_skills`, `status`)
+VALUES
+-- Group 1: WEB123
+(NULL, 'WEB123', 'Noah', 'Anderson', '2001-04-12', 'Male',
+ '12 Collins Street', 'Melbourne', 'VIC', '3000',
+ 'noah.anderson@example.com', '0433000001',
+ 'Communication, Teamwork, Technical', '', 'New'),
+
+(NULL, 'WEB123', 'Grace', 'Thompson', '2000-08-23', 'Female',
+ '25 Victoria Street', 'Richmond', 'VIC', '3121',
+ 'grace.thompson@example.com', '0433000002',
+ 'Leadership, Problem Solving', '', 'New'),
+
+(NULL, 'WEB123', 'Ethan', 'Martin', '2002-01-17', 'Male',
+ '8 Albert Street', 'Brunswick', 'VIC', '3056',
+ 'ethan.martin@example.com', '0433000003',
+ 'Teamwork, Time Management, Communication', '', 'New'),
+
+(NULL, 'WEB123', 'Chloe', 'Robinson', '1999-11-05', 'Female',
+ '31 High Street', 'Northcote', 'VIC', '3070',
+ 'chloe.robinson@example.com', '0433000004',
+ 'Technical, Problem Solving, Leadership', '', 'New'),
+
+(NULL, 'WEB123', 'Liam', 'Scott', '2001-06-28', 'Male',
+ '14 Bell Street', 'Preston', 'VIC', '3072',
+ 'liam.scott@example.com', '0433000005',
+ 'Communication, Time Management', '', 'New'),
+
+-- Group 2: CWS123
+(NULL, 'CWS123', 'Sophie', 'Green', '2000-03-14', 'Female',
+ '17 Sydney Road', 'Coburg', 'VIC', '3058',
+ 'sophie.green@example.com', '0433000006',
+ 'Teamwork, Leadership, Communication', '', 'New'),
+
+(NULL, 'CWS123', 'James', 'Baker', '1998-09-19', 'Male',
+ '42 Lygon Street', 'Carlton', 'VIC', '3053',
+ 'james.baker@example.com', '0433000007',
+ 'Technical, Problem Solving, Time Management', '', 'New'),
+
+(NULL, 'CWS123', 'Ava', 'Adams', '2002-12-02', 'Female',
+ '6 Chapel Street', 'Prahran', 'VIC', '3181',
+ 'ava.adams@example.com', '0433000008',
+ 'Communication, Leadership', '', 'New'),
+
+(NULL, 'CWS123', 'Benjamin', 'Nelson', '2001-07-21', 'Male',
+ '19 Station Street', 'Box Hill', 'VIC', '3128',
+ 'benjamin.nelson@example.com', '0433000009',
+ 'Teamwork, Technical, Problem Solving', '', 'New'),
+
+(NULL, 'CWS123', 'Zoe', 'Carter', '1999-05-30', 'Female',
+ '33 Douglas Parade', 'Williamstown', 'VIC', '3016',
+ 'zoe.carter@example.com', '0433000010',
+ 'Time Management, Communication, Teamwork', '', 'New'),
+
+-- Group 3: BAC656
+(NULL, 'BAC656', 'Alexander', 'Mitchell', '2000-02-08', 'Male',
+ '21 Whitehorse Road', 'Box Hill', 'VIC', '3128',
+ 'alexander.mitchell@example.com', '0433000011',
+ 'Leadership, Technical, Communication', '', 'New'),
+
+(NULL, 'BAC656', 'Lily', 'Perez', '2002-10-16', 'Female',
+ '15 Lonsdale Street', 'Melbourne', 'VIC', '3000',
+ 'lily.perez@example.com', '0433000012',
+ 'Problem Solving, Teamwork', '', 'New'),
+
+(NULL, 'BAC656', 'Daniel', 'Roberts', '1998-04-25', 'Male',
+ '9 Nicholson Street', 'Fitzroy', 'VIC', '3065',
+ 'daniel.roberts@example.com', '0433000013',
+ 'Communication, Time Management, Technical', '', 'New'),
+
+(NULL, 'BAC656', 'Maya', 'Turner', '2001-08-11', 'Female',
+ '27 Sydney Road', 'Brunswick', 'VIC', '3056',
+ 'maya.turner@example.com', '0433000014',
+ 'Leadership, Teamwork, Problem Solving', '', 'New'),
+
+(NULL, 'BAC656', 'Samuel', 'Phillips', '2000-12-20', 'Male',
+ '4 Bell Street', 'Preston', 'VIC', '3072',
+ 'samuel.phillips@example.com', '0433000015',
+ 'Technical, Communication', '', 'New'),
+
+-- Group 4: BAW123
+(NULL, 'BAW123', 'Ruby', 'Campbell', '1999-01-27', 'Female',
+ '18 High Street', 'Northcote', 'VIC', '3070',
+ 'ruby.campbell@example.com', '0433000016',
+ 'Teamwork, Communication, Time Management', '', 'New'),
+
+(NULL, 'BAW123', 'Matthew', 'Parker', '2001-09-03', 'Male',
+ '36 Victoria Street', 'Richmond', 'VIC', '3121',
+ 'matthew.parker@example.com', '0433000017',
+ 'Technical, Leadership, Problem Solving', '', 'New'),
+
+(NULL, 'BAW123', 'Isla', 'Evans', '2002-05-09', 'Female',
+ '11 Chapel Street', 'Prahran', 'VIC', '3181',
+ 'isla.evans@example.com', '0433000018',
+ 'Communication, Leadership, Teamwork', '', 'New'),
+
+(NULL, 'BAW123', 'Thomas', 'Edwards', '1998-07-15', 'Male',
+ '23 Albert Street', 'Brunswick', 'VIC', '3056',
+ 'thomas.edwards@example.com', '0433000019',
+ 'Problem Solving, Technical, Time Management', '', 'New'),
+
+(NULL, 'BAW123', 'Amelia', 'Collins', '2000-11-24', 'Female',
+ '7 Station Street', 'Box Hill', 'VIC', '3128',
+ 'amelia.collins@example.com', '0433000020',
+ 'Communication, Teamwork, Leadership, Time Management', '', 'New');
