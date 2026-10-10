@@ -1,10 +1,8 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$pwd = "";
-
-# Do not change the database name unless you have changed it in your MySQL server
+$host = getenv('DB_HOST') ?: "127.0.0.1";
+$user = getenv('DB_USER') ?: "root";
+$pwd = getenv('DB_PASSWORD') ?: "";
 $sql_db = "project2_db";
 
 ?>
