@@ -43,7 +43,8 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
     $sqlQuery = "SELECT * FROM eoi";
 } elseif (isset($_GET['sortField'])) {
     $sortField = $_GET['sortField'];
-    $sqlQuery = "SELECT * FROM eoi ORDER BY `$sortField` ASC";
+    $sortOrder = $_GET['sortOrder'];
+    $sqlQuery = "SELECT * FROM eoi ORDER BY `$sortField` $sortOrder";
 }
 //Default query - display all EOIs
 else {
@@ -130,6 +131,10 @@ $result = mysqli_query($dbconn, $sqlQuery);
             <option value="phone">Phone Number</option>
             <option value="skills">Skills</option>
             <option value="other_skills">Other Skills</option>
+        </select>
+        <select name="sortOrder" id="sortOrder">
+            <option value="ASC">Ascending order</option>
+            <option value="DESC">Descending order</option>
         </select>
         <input type="submit" value="Sort list">
     </form>
