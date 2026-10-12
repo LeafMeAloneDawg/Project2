@@ -672,6 +672,7 @@ legend {
     border-radius: 10px 10px 0 0;
     padding: 8px 15px;
     background-color: white;
+    font-weight: bold;
 }
 
 
@@ -980,6 +981,18 @@ section{
 .main_about{
     margin: 2%;
 }
+
+/* =========================
+   MANAGE EOI PAGE STYLES - M.C
+   ========================= */
+
+   #managePage fieldset input[type="text"] {
+    border: 3px solid #d7e7ff;
+    background-color: rgb(241, 238, 238);
+   }
+   #managePage input[type="submit"]{
+    padding:6px;
+   }
 
 /* =========================
    RESPONSIVE STYLES

@@ -65,104 +65,120 @@ $result = mysqli_query($dbconn, $sqlQuery);
 </head>
 
 <body>
-    <h1>Expression of interest managment</h1>
+    <main id="managePage">
+        <h1>Job application management page</h1>
 
-    <!-- Button to list all EOIs -->
-    <h2>Search By:</h2>
-    <form action="manage.php">
-        <label>Show all EOIs:</label>
-        <input type="submit" value="Show All">
-    </form>
+        <!-- Button to list all EOIs -->
+        <fieldset>
+            <form action="manage.php">
+                <label>Show all EOIs:</label>
+                <input type="submit" value="Show All">
+            </form>
+        </fieldset>
+        <h2>Search By:</h2>
 
-    <!-- Form to search by job reference -->
-    <form method="GET" action="manage.php">
-        <label for="jobReferenceSearch">Job reference:</label>
-        <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
-        <input type="submit" value="Search">
-    </form>
-    <!-- Form to search by first/last name or both -->
-    <form>
-        <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName">
-        <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName">
-        <input type="submit" value="Search">
-    </form>
+        <!-- Form to search by job reference -->
+        <fieldset class="managementFieldset">
+            <legend>Search By:</legend>
+            <form method="GET" action="manage.php">
+                <label for="jobReferenceSearch">Job reference:</label>
+                <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
+                <input type="submit" value="Search" >
+            </form>
+            <!-- Form to search by first/last name or both -->
+            <form>
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" id="firstName">
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" id="lastName">
+                <input type="submit" value="Search" >
+            </form>
+        </fieldset>
 
-    <!-- Form to delete EOI given job reference -->
-    <h2>Delete EOI by job reference</h2>
-    <form method="POST" action="manage.php">
-        <label for="deleteJobReference">Job Reference:</label>
-        <input type="text" id="deleteJobReference" name="deleteJobReference">
-        <input type="submit" value="Delete">
-    </form>
+        <!-- Form to delete EOI given job reference -->
+        <h2>Delete EOI by job reference</h2>
+        <fieldset>
+            <legend>Delete EOI</legend>
+            <form method="POST" action="manage.php">
+                <label for="deleteJobReference">Job Reference:</label>
+                <input type="text" id="deleteJobReference" name="deleteJobReference" required>
+                <input type="submit" value="Delete" >
+            </form>
+        </fieldset>
 
-    <!-- Form to change EOI status -->
-    <h2>Change EOI status</h2>
-    <form method="POST" action="manage.php">
-        <label for="EOIUpdateStatusID">EOI ID:</label>
-        <input type="text" id="EOIUpdateStatusID" name="EOIUpdateStatusID" required>
-        <label for="status">Updated Status:</label>
-        <select size = 1 name="status" id="status">
-            <option value="New">New</option>
-            <option value="Current">Current</option>
-            <option value="Final">Final</option>
-        </select>
+        <!-- Form to change EOI status -->
+        <h2>Change EOI status</h2>
+        <fieldset>
+            <legend>Change EOI status:</legend>
+        <form method="POST" action="manage.php">
+            <label for="EOIUpdateStatusID">EOI ID:</label>
+            <input type="text" id="EOIUpdateStatusID" name="EOIUpdateStatusID" required>
+            <label for="status">Updated Status:</label>
+            <select size=1 name="status" id="status">
+                <option value="New">New</option>
+                <option value="Current">Current</option>
+                <option value="Final">Final</option>
+            </select>
 
-        <input type="submit" value="Update Value">
-    </form>
+            <input type="submit" value="Update Value" >
+        </form>
+        </fieldset>
+        <!-- Form to select field to sort EOI table by -->
+        <h2>Sort by field</h2>
 
-    <!-- Form to select field to sort EOI table by -->
-    <h2>Sort by field</h2>
-    <form method="GET" action="manage.php">
-        <label for="sortField">Sort entries by:</label>
-        <select size = 1 name="sortField" id="sortField">
-            <option value="EOInumber">EOI ID</option>
-            <option value="job_reference_number">Job Reference Number</option>
-            <option value="first_name">First Name</option>
-            <option value="last_name">Last Name</option>
-            <option value="date_of_birth">DOB</option>
-            <option value="gender">Gender</option>
-            <option value="street_address">Street Address</option>
-            <option value="suburb">Suburb</option>
-            <option value="state">State</option>
-            <option value="postcode">Postcode</option>
-            <option value="email">Email Address</option>
-            <option value="phone">Phone Number</option>
-            <option value="skills">Skills</option>
-            <option value="other_skills">Other Skills</option>
-        </select>
-        <select size = 1 name="sortOrder" id="sortOrder">
-            <option value="ASC">Ascending order</option>
-            <option value="DESC">Descending order</option>
-        </select>
-        <input type="submit" value="Sort list">
-    </form>
+        <fieldset>
+            <legend>Sort By:</legend>
+        <form method="GET" action="manage.php">
+            <label for="sortField">Sort entries by:</label>
+            <select size=1 name="sortField" id="sortField">
+                <option value="EOInumber">EOI ID</option>
+                <option value="job_reference_number">Job Reference Number</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="date_of_birth">DOB</option>
+                <option value="gender">Gender</option>
+                <option value="street_address">Street Address</option>
+                <option value="suburb">Suburb</option>
+                <option value="state">State</option>
+                <option value="postcode">Postcode</option>
+                <option value="email">Email Address</option>
+                <option value="phone">Phone Number</option>
+                <option value="skills">Skills</option>
+                <option value="other_skills">Other Skills</option>
+            </select>
+            <select size=1 name="sortOrder" id="sortOrder">
+                <option value="ASC">Ascending order</option>
+                <option value="DESC">Descending order</option>
+            </select>
+            <input type="submit" value="Sort list" >
+        </form>
+        </fieldset>
 
 
 
-    <?php
-    if ($result) {
-        echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['EOInumber'] . "</td>";
-            echo "<td>" . $row['job_reference_number'] . "</td>";
-            echo "<td>" . $row['first_name'] . "</td>";
-            echo "<td>" . $row['last_name'] . "</td>";
-            echo "<td>" . $row['date_of_birth'] . "</td>";
-            echo "<td>" . $row['gender'] . "</td>";
-            echo "<td>" . $row['street_address'] . " " . $row['suburb'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['phone'] . "</td>";
-            echo "<td>" . $row['skills'] . "</td>";
-            echo "<td>" . $row['other_skills'] . "</td>";
-            echo "<td>" . $row['status'] . "</td>";
-            echo "</tr>";
+        <?php
+        if ($result) {
+            echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['EOInumber'] . "</td>";
+                echo "<td>" . $row['job_reference_number'] . "</td>";
+                echo "<td>" . $row['first_name'] . "</td>";
+                echo "<td>" . $row['last_name'] . "</td>";
+                echo "<td>" . $row['date_of_birth'] . "</td>";
+                echo "<td>" . $row['gender'] . "</td>";
+                echo "<td>" . $row['street_address'] . " " . $row['suburb'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
+                echo "<td>" . $row['email'] . "</td>";
+                echo "<td>" . $row['phone'] . "</td>";
+                echo "<td>" . $row['skills'] . "</td>";
+                echo "<td>" . $row['other_skills'] . "</td>";
+                echo "<td>" . $row['status'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
         }
-        echo "</table>";
-    }
-    ?>
+        ?>
+    </main>
 </body>
 
 </html>
