@@ -52,7 +52,7 @@ else {
 }
 $result = mysqli_query($dbconn, $sqlQuery);
 ?>
-<html>
+<html lang="en">
 
 <head>
     <title>Management</title>
@@ -100,10 +100,10 @@ $result = mysqli_query($dbconn, $sqlQuery);
     <!-- Form to change EOI status -->
     <h2>Change EOI status</h2>
     <form method="POST" action="manage.php">
-        <label for="EOI_ID">EOI ID:</label>
+        <label for="EOIUpdateStatusID">EOI ID:</label>
         <input type="text" id="EOIUpdateStatusID" name="EOIUpdateStatusID" required>
         <label for="status">Updated Status:</label>
-        <select name="status" id="status" required>
+        <select size = 1 name="status" id="status">
             <option value="New">New</option>
             <option value="Current">Current</option>
             <option value="Final">Final</option>
@@ -116,7 +116,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
     <h2>Sort by field</h2>
     <form method="GET" action="manage.php">
         <label for="sortField">Sort entries by:</label>
-        <select name="sortField" id="sortField">
+        <select size = 1 name="sortField" id="sortField">
             <option value="EOInumber">EOI ID</option>
             <option value="job_reference_number">Job Reference Number</option>
             <option value="first_name">First Name</option>
@@ -132,7 +132,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
             <option value="skills">Skills</option>
             <option value="other_skills">Other Skills</option>
         </select>
-        <select name="sortOrder" id="sortOrder">
+        <select size = 1 name="sortOrder" id="sortOrder">
             <option value="ASC">Ascending order</option>
             <option value="DESC">Descending order</option>
         </select>
@@ -143,7 +143,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
 
     <?php
     if ($result) {
-        echo "<table> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th>";
+        echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $row['EOInumber'] . "</td>";
@@ -160,6 +160,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
             echo "<td>" . $row['status'] . "</td>";
             echo "</tr>";
         }
+        echo "</table>";
     }
     ?>
 </body>
