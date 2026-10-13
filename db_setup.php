@@ -38,7 +38,6 @@ $create_jobs_query = "CREATE TABLE IF NOT EXISTS jobs (
 if (!mysqli_query($dbconn, $create_jobs_query)) {
     die("<p>Unable to create the jobs table.</p>");
 }
-
 # Only add the starting jobs when the table is empty #
 $count_result = mysqli_query($dbconn, "SELECT COUNT(*) AS total FROM jobs");
 $count_row = mysqli_fetch_assoc($count_result);
@@ -70,6 +69,31 @@ if ($count_row['total'] == 0) {
                 'Experience supporting culturally and linguistically diverse communities.',
                 'Current First Aid and CPR certificate.',
                 'Knowledge of Melbourne\'s youth and family service system.'
+            ]
+              ],
+        [
+            'ref' => 'VEC091',
+            'title' => 'Volunteer Engagement Coordinator',
+            'description' => 'Recruit, train and support our volunteer network so that volunteers are well matched to programs and feel valued in their contribution to the community.',
+            'salary' => '$72,000 – $80,000 per annum',
+            'reports_to' => 'Operations Manager',
+            'responsibilities' => [
+                'Recruit and onboard new volunteers across all programs.',
+                'Plan and deliver regular volunteer induction and training sessions.',
+                'Build volunteer rosters for community events and outreach.',
+                'Check in with volunteers and resolve issues as they arise.',
+                'Organise volunteer recognition and appreciation events.'
+            ],
+            'essential' => [
+                'Experience coordinating volunteers, teams or community groups.',
+                'Strong written and verbal communication skills.',
+                'Current Working with Children Check.',
+                'Confident using rostering or database software.'
+            ],
+            'preferable' => [
+                'Qualification in community development, human resources or event management.',
+                'Experience with volunteer-management platforms such as Better Impact.',
+                'Availability for occasional evening and weekend events.'
             ]
         ]
     ];
