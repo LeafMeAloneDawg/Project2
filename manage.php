@@ -177,6 +177,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
             }
             echo "</table>";
         }
+        mysqli_close($dbconn);
         ?>
     </main>
 </body>
