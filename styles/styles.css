@@ -993,6 +993,50 @@ section{
    #managePage input[type="submit"]{
     padding:6px;
    }
+   
+   /* =========================
+   JOB SEARCH + LOGIN PAGE
+   ========================= */
+
+/* Search bar on jobs.php */
+.job-search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0.75em 0 0.5em;
+}
+
+.job-search label {
+    font-weight: bold;
+    color: #09427e;
+}
+
+.job-search input[type="search"] {
+    flex: 1 1 200px;
+    min-width: 0;
+}
+
+.job-search input[type="submit"] {
+    padding: 8px 16px;
+    border: 2px solid #6495ed;
+    border-radius: 5px;
+    background-color: white;
+    color: #09427e;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.job-search input[type="submit"]:hover,
+.job-search input[type="submit"]:focus {
+    background-color: #EAF3FF;
+    border-color: #09427e;
+}
+
+/* "3 jobs found for ..." line under the search bar */
+.search-summary {
+    font-size: 0.95em;
+}
 
 /* =========================
    RESPONSIVE STYLES

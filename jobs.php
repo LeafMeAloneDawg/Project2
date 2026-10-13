@@ -125,8 +125,23 @@ $job_count = mysqli_num_rows($result);
                     </p>
                     <!-- Inline CSS: a one-off emphasis on a single, time-sensitive line -->
                     <p style="color: #09427e; font-weight: bold;">
-                        Applications for all roles close Friday 25 September 2026.
+                        Applications for all roles close Friday 25 October 2026.
                     </p>
+                    <!-- Search bar: sends the term to this page as ?search=... and the jobs are looked up in the database -->
+                    <form method="get" action="jobs.php" class="job-search" role="search">
+                        <label for="search">Search jobs</label>
+                        <input type="search" id="search" name="search" maxlength="100"
+                               placeholder="e.g. youth, volunteer, CSW214"
+                               value="<?php echo htmlspecialchars($search); ?>">
+                        <input type="submit" value="Search">
+                    </form>
+                    <?php if ($search !== ""): ?>
+                        <p class="search-summary" role="status">
+                            <?php echo $job_count; ?> job<?php echo $job_count == 1 ? "" : "s"; ?> found for
+                            &ldquo;<?php echo htmlspecialchars($search); ?>&rdquo;.
+                            <a href="jobs.php">Clear search</a>
+                        </p>
+                    <?php endif; ?>
                 </div>
 
                 <?php if ($job_count == 0 && $search === ""): ?>
