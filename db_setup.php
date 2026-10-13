@@ -7,7 +7,7 @@ last modified: 13/10/2026
 description: Creates the jobs and users tables if they do not exist yet and fills them
              with starting data. Included by jobs.php and login.php.
 
-GenAI acknowledgement: the structure of this file
+GenAI acknowledgement: the structure of this file (prepared statements, password hashing)
 was drafted with the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
 */
 
@@ -38,6 +38,7 @@ $create_jobs_query = "CREATE TABLE IF NOT EXISTS jobs (
 if (!mysqli_query($dbconn, $create_jobs_query)) {
     die("<p>Unable to create the jobs table.</p>");
 }
+
 # Only add the starting jobs when the table is empty #
 $count_result = mysqli_query($dbconn, "SELECT COUNT(*) AS total FROM jobs");
 $count_row = mysqli_fetch_assoc($count_result);
@@ -70,7 +71,7 @@ if ($count_row['total'] == 0) {
                 'Current First Aid and CPR certificate.',
                 'Knowledge of Melbourne\'s youth and family service system.'
             ]
-              ],
+        ],
         [
             'ref' => 'VEC091',
             'title' => 'Volunteer Engagement Coordinator',
@@ -95,7 +96,7 @@ if ($count_row['total'] == 0) {
                 'Experience with volunteer-management platforms such as Better Impact.',
                 'Availability for occasional evening and weekend events.'
             ]
-        ]        ],
+        ],
         [
             'ref' => 'YOW338',
             'title' => 'Youth Outreach Worker',
@@ -122,4 +123,28 @@ if ($count_row['total'] == 0) {
             ]
         ]
     ];
+
+    # Prepared statement: the values are sent separately from the SQL, so apostrophes in the text are safe #
+    $insert_job = mysqli_prepare($dbconn, "INSERT INTO jobs
+        (job_reference_number, title, short_description, salary, reports_to,
+         responsibilities, essential_requirements, preferable_requirements)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+    mysqli_stmt_bind_param($insert_job, "ssssssss",
+        $ref, $title, $description, $salary, $reports_to,
+        $responsibilities, $essential, $preferable);
+
+    foreach ($starting_jobs as $job) {
+        $ref = $job['ref'];
+        $title = $job['title'];
+        $description = $job['description'];
+        $salary = $job['salary'];
+        $reports_to = $job['reports_to'];
+        $responsibilities = implode("\n", $job['responsibilities']);   # one item per line #
+        $essential = implode("\n", $job['essential']);
+        $preferable = implode("\n", $job['preferable']);
+        mysqli_stmt_execute($insert_job);
+    }
+
+    mysqli_stmt_close($insert_job);
 }
