@@ -148,3 +148,36 @@ if ($count_row['total'] == 0) {
 
     mysqli_stmt_close($insert_job);
 }
+
+#              #
+# users table  #
+#              #
+
+# Only a HASH of each password is stored, never the password itself #
+$create_users_query = "CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+) DEFAULT CHARSET=utf8mb4";
+
+if (!mysqli_query($dbconn, $create_users_query)) {
+    die("<p>Unable to create the users table.</p>");
+}
+
+# Make sure the marker's admin account exists (username: admin, password: admin) #
+$admin_username = "admin";
+$find_admin = mysqli_prepare($dbconn, "SELECT user_id FROM users WHERE username = ?");
+mysqli_stmt_bind_param($find_admin, "s", $admin_username);
+mysqli_stmt_execute($find_admin);
+mysqli_stmt_store_result($find_admin);
+$admin_exists = mysqli_stmt_num_rows($find_admin) > 0;
+mysqli_stmt_close($find_admin);
+
+if (!$admin_exists) {
+    # password_hash() adds a random salt and uses a slow algorithm, so the stored value is safe to keep #
+    $admin_hash = password_hash("admin", PASSWORD_DEFAULT);
+    $insert_admin = mysqli_prepare($dbconn, "INSERT INTO users (username, password_hash) VALUES (?, ?)");
+    mysqli_stmt_bind_param($insert_admin, "ss", $admin_username, $admin_hash);
+    mysqli_stmt_execute($insert_admin);
+    mysqli_stmt_close($insert_admin);
+}
