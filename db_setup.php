@@ -95,6 +95,31 @@ if ($count_row['total'] == 0) {
                 'Experience with volunteer-management platforms such as Better Impact.',
                 'Availability for occasional evening and weekend events.'
             ]
+        ]        ],
+        [
+            'ref' => 'YOW338',
+            'title' => 'Youth Outreach Worker',
+            'description' => 'Work alongside young people aged 12–25 in their own communities, running outreach activities and mentoring that build confidence, connection and trust.',
+            'salary' => '$65,000 – $70,000 per annum (pro rata for part-time)',
+            'reports_to' => 'Youth Services Team Leader',
+            'responsibilities' => [
+                'Deliver after-school, school-holiday and drop-in youth programs.',
+                'Build trusted relationships with young people and their families.',
+                'Recognise early signs of disengagement and respond appropriately.',
+                'Refer young people to specialist support services when needed.',
+                'Record session attendance and program outcomes.'
+            ],
+            'essential' => [
+                'Certificate IV in Youth Work or a related qualification.',
+                'Current Working with Children Check and National Police Check.',
+                'Availability for after-school, evening and some weekend shifts.',
+                'Current Victorian driver\'s licence.'
+            ],
+            'preferable' => [
+                'Lived experience of, or a strong connection to, the local community.',
+                'Experience facilitating group activities or workshops.',
+                'Training in Youth Mental Health First Aid.'
+            ]
         ]
     ];
 }
