@@ -1,3 +1,49 @@
+<?php
+/*
+GenAI acknowledgement: the database query, search and loop code in this file was drafted
+with the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
+*/
+
+# Connects to the database and creates/fills the jobs and users tables if needed #
+require_once("db_setup.php");
+
+# Turns text with one item per line into <li> items. Each line is escaped before it is printed #
+function print_list_items($text) {
+    foreach (explode("\n", $text) as $line) {
+        $line = trim($line);
+        if ($line !== "") {
+            echo "<li>" . htmlspecialchars($line) . "</li>\n";
+        }
+    }
+}
+
+# Search term from the search bar (GET, so the results page can be bookmarked or shared) #
+$search = trim($_GET['search'] ?? "");
+if (strlen($search) > 100) {
+    $search = substr($search, 0, 100);   # keep the search term to a sensible length #
+}
+
+$columns = "job_reference_number, title, short_description, salary, reports_to,
+            responsibilities, essential_requirements, preferable_requirements";
+
+if ($search !== "") {
+    # % and _ are wildcards in LIKE, so escape them to treat them as ordinary characters #
+    $like = "%" . addcslashes($search, "%_\\") . "%";
+
+    # Prepared statement: the search text is never pasted into the SQL, which stops SQL injection #
+    $stmt = mysqli_prepare($dbconn, "SELECT $columns FROM jobs
+        WHERE title LIKE ? OR job_reference_number LIKE ? OR short_description LIKE ?
+           OR responsibilities LIKE ? OR essential_requirements LIKE ? OR preferable_requirements LIKE ?
+        ORDER BY title");
+    mysqli_stmt_bind_param($stmt, "ssssss", $like, $like, $like, $like, $like, $like);
+} else {
+    $stmt = mysqli_prepare($dbconn, "SELECT $columns FROM jobs ORDER BY title");
+}
+
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$job_count = mysqli_num_rows($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +69,7 @@
     <!--
         Embedded CSS example (page-specific, deliberately small):
         styles the six-character job reference number as a distinct "chip".
-        Only jobs.html uses it, so it is not in the shared stylesheet.
+        Only jobs.php uses it, so it is not in the shared stylesheet.
     -->
     <style>
         .job-ref {
@@ -83,137 +129,43 @@
                     </p>
                 </div>
 
-                <!-- ============ Job 1 ============ -->
-                <section aria-labelledby="job-csw">
-                    <h2 id="job-csw">Community Support Worker</h2>
+                <?php if ($job_count == 0 && $search === ""): ?>
+                    <p>There are no vacancies at the moment. Please check back soon.</p>
+                <?php endif; ?>
 
-                    <dl class="job-meta">
-                        <dt>Reference number</dt>
-                        <dd><span class="job-ref">CSW214</span></dd>
-                        <dt>Salary</dt>
-                        <dd>$68,000 &ndash; $74,000 per annum (pro rata for part-time)</dd>
-                        <dt>Reports to</dt>
-                        <dd>Community Programs Manager</dd>
-                    </dl>
+                <!-- One card per row in the jobs table -->
+                <?php while ($job = mysqli_fetch_assoc($result)): ?>
+                    <?php $job_id = "job-" . strtolower(htmlspecialchars($job['job_reference_number'])); ?>
+                    <section aria-labelledby="<?php echo $job_id; ?>">
+                        <h2 id="<?php echo $job_id; ?>"><?php echo htmlspecialchars($job['title']); ?></h2>
 
-                    <p>
-                        Provide direct, practical support to young people and families
-                        accessing our community programs, helping them connect with
-                        local services and build long-term wellbeing.
-                    </p>
+                        <dl class="job-meta">
+                            <dt>Reference number</dt>
+                            <dd><span class="job-ref"><?php echo htmlspecialchars($job['job_reference_number']); ?></span></dd>
+                            <dt>Salary</dt>
+                            <dd><?php echo htmlspecialchars($job['salary']); ?></dd>
+                            <dt>Reports to</dt>
+                            <dd><?php echo htmlspecialchars($job['reports_to']); ?></dd>
+                        </dl>
 
-                    <h3>Key responsibilities</h3>
-                    <ol>
-                        <li>Complete intake interviews and assess each client's needs.</li>
-                        <li>Develop and review individual support plans with clients.</li>
-                        <li>Coordinate referrals to housing, health and education services.</li>
-                        <li>Maintain accurate, confidential case notes and records.</li>
-                        <li>Attend weekly team case-review meetings.</li>
-                    </ol>
+                        <p><?php echo htmlspecialchars($job['short_description']); ?></p>
 
-                    <h3>Essential requirements</h3>
-                    <ul>
-                        <li>Diploma of Community Services or a related qualification.</li>
-                        <li>Current Working with Children Check and National Police Check.</li>
-                        <li>At least one year of experience in a frontline support role.</li>
-                        <li>Current Victorian driver's licence.</li>
-                    </ul>
+                        <h3>Key responsibilities</h3>
+                        <ol>
+                            <?php print_list_items($job['responsibilities']); ?>
+                        </ol>
 
-                    <h3>Preferable requirements</h3>
-                    <ul>
-                        <li>Experience supporting culturally and linguistically diverse communities.</li>
-                        <li>Current First Aid and CPR certificate.</li>
-                        <li>Knowledge of Melbourne's youth and family service system.</li>
-                    </ul>
-                </section>
+                        <h3>Essential requirements</h3>
+                        <ul>
+                            <?php print_list_items($job['essential_requirements']); ?>
+                        </ul>
 
-                <!-- ============ Job 2 ============ -->
-                <section aria-labelledby="job-vec">
-                    <h2 id="job-vec">Volunteer Engagement Coordinator</h2>
-
-                    <dl class="job-meta">
-                        <dt>Reference number</dt>
-                        <dd><span class="job-ref">VEC091</span></dd>
-                        <dt>Salary</dt>
-                        <dd>$72,000 &ndash; $80,000 per annum</dd>
-                        <dt>Reports to</dt>
-                        <dd>Operations Manager</dd>
-                    </dl>
-
-                    <p>
-                        Recruit, train and support our volunteer network so that
-                        volunteers are well matched to programs and feel valued in
-                        their contribution to the community.
-                    </p>
-
-                    <h3>Key responsibilities</h3>
-                    <ol>
-                        <li>Recruit and onboard new volunteers across all programs.</li>
-                        <li>Plan and deliver regular volunteer induction and training sessions.</li>
-                        <li>Build volunteer rosters for community events and outreach.</li>
-                        <li>Check in with volunteers and resolve issues as they arise.</li>
-                        <li>Organise volunteer recognition and appreciation events.</li>
-                    </ol>
-
-                    <h3>Essential requirements</h3>
-                    <ul>
-                        <li>Experience coordinating volunteers, teams or community groups.</li>
-                        <li>Strong written and verbal communication skills.</li>
-                        <li>Current Working with Children Check.</li>
-                        <li>Confident using rostering or database software.</li>
-                    </ul>
-
-                    <h3>Preferable requirements</h3>
-                    <ul>
-                        <li>Qualification in community development, human resources or event management.</li>
-                        <li>Experience with volunteer-management platforms such as Better Impact.</li>
-                        <li>Availability for occasional evening and weekend events.</li>
-                    </ul>
-                </section>
-
-                <!-- ============ Job 3 ============ -->
-                <section aria-labelledby="job-yow">
-                    <h2 id="job-yow">Youth Outreach Worker</h2>
-
-                    <dl class="job-meta">
-                        <dt>Reference number</dt>
-                        <dd><span class="job-ref">YOW338</span></dd>
-                        <dt>Salary</dt>
-                        <dd>$65,000 &ndash; $70,000 per annum (pro rata for part-time)</dd>
-                        <dt>Reports to</dt>
-                        <dd>Youth Services Team Leader</dd>
-                    </dl>
-
-                    <p>
-                        Work alongside young people aged 12&ndash;25 in their own
-                        communities, running outreach activities and mentoring that
-                        build confidence, connection and trust.
-                    </p>
-
-                    <h3>Key responsibilities</h3>
-                    <ol>
-                        <li>Deliver after-school, school-holiday and drop-in youth programs.</li>
-                        <li>Build trusted relationships with young people and their families.</li>
-                        <li>Recognise early signs of disengagement and respond appropriately.</li>
-                        <li>Refer young people to specialist support services when needed.</li>
-                        <li>Record session attendance and program outcomes.</li>
-                    </ol>
-
-                    <h3>Essential requirements</h3>
-                    <ul>
-                        <li>Certificate IV in Youth Work or a related qualification.</li>
-                        <li>Current Working with Children Check and National Police Check.</li>
-                        <li>Availability for after-school, evening and some weekend shifts.</li>
-                        <li>Current Victorian driver's licence.</li>
-                    </ul>
-
-                    <h3>Preferable requirements</h3>
-                    <ul>
-                        <li>Lived experience of, or a strong connection to, the local community.</li>
-                        <li>Experience facilitating group activities or workshops.</li>
-                        <li>Training in Youth Mental Health First Aid.</li>
-                    </ul>
-                </section>
+                        <h3>Preferable requirements</h3>
+                        <ul>
+                            <?php print_list_items($job['preferable_requirements']); ?>
+                        </ul>
+                    </section>
+                <?php endwhile; ?>
 
             </div><!-- /.job-listings -->
 
@@ -221,7 +173,7 @@
                 Meaningful aside: content genuinely related to the vacancies but
                 not part of any single job description. styles.css (JOBS PAGE
                 section) positions it beside the job list - the page-specific
-                CSS requirement for jobs.html.
+                CSS requirement for jobs.php.
             -->
             <aside aria-labelledby="working-here">
                 <h2 id="working-here">Working at MYSN</h2>
@@ -240,7 +192,7 @@
                 <h3>How to apply</h3>
                 <ol>
                     <li>Note the six-character reference number for the role you want.</li>
-                    <li>Open the <a href="apply.html">Apply</a> page and complete the form.</li>
+                    <li>Open the <a href="apply.php">Apply</a> page and complete the form.</li>
                     <li>Enter the reference number and respond to the listed requirements.</li>
                     <li>Submit your application before the closing date shown above.</li>
                 </ol>
@@ -269,4 +221,3 @@
 
 </body>
 </html>
- 
