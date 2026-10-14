@@ -3,10 +3,13 @@
 filename: auth_check.php
 author: Mohammad Aquib
 created: 13/10/2026
-last modified: 13/10/2026
+last modified: 14/10/2026
 description: Gate for protected pages. Put it on the very first line of manage.php:
              <?php require_once("auth_check.php"); ?>
              Visitors who are not logged in are sent to login.php.
+
+GenAI acknowledgement: the code in this file was drafted with the assistance of GenAI,
+then reviewed, tested and edited by Mohammad Aquib.
 */
 
 require_once("session_init.php");

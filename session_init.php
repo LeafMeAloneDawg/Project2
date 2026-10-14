@@ -3,9 +3,12 @@
 filename: session_init.php
 author: Mohammad Aquib
 created: 13/10/2026
-last modified: 13/10/2026
+last modified: 14/10/2026
 description: Starts the session with safer cookie settings. Include it at the very top of a
              page, BEFORE any HTML is sent, because starting a session sends a cookie header.
+
+GenAI acknowledgement: the code in this file was drafted with the assistance of GenAI,
+then reviewed, tested and edited by Mohammad Aquib.
 */
 
 if (session_status() === PHP_SESSION_NONE) {

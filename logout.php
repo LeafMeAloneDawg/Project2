@@ -3,8 +3,11 @@
 filename: logout.php
 author: Mohammad Aquib
 created: 13/10/2026
-last modified: 13/10/2026
+last modified: 14/10/2026
 description: Ends the HR manager's session and returns them to the login page.
+
+GenAI acknowledgement: the code in this file was drafted with the assistance of GenAI,
+then reviewed, tested and edited by Mohammad Aquib.
 */
 
 require_once("session_init.php");
