@@ -998,6 +998,10 @@ section{
    JOB SEARCH + LOGIN PAGE
    ========================= */
 
+/* Author: Mohammad Aquib. GenAI acknowledgement: the styles in this section (job search
+   bar, login form and form messages) were drafted with the assistance of GenAI, then
+   reviewed, tested and edited by Mohammad Aquib. */
+
 /* Search bar on jobs.php */
 .job-search {
     display: flex;
