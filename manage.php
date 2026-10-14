@@ -1,3 +1,4 @@
+<?php require_once("auth_check.php"); ?>
 <!DOCTYPE HTML>
 <?php
 require_once("db_connect.php");
@@ -67,6 +68,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
 <body>
     <main id="managePage">
         <h1>Job application management page</h1>
+        <p><a href="logout.php">Log out (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></p>
 
         <!-- Button to list all EOIs -->
         <fieldset>
