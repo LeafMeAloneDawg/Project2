@@ -1,48 +1,30 @@
 <?php
 /*
-GenAI acknowledgement: the database query, search and loop code in this file was drafted
-with the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
+filename: jobs.php
+author: Mohammad Aquib
+created: 13/10/2026
+last modified: 14/10/2026
+description: Job vacancies page. search.php gets the jobs from the database (all jobs, or
+             only the ones matching the search bar) and this page shows them.
+
+GenAI acknowledgement: the search, loop and list code used by this page was drafted with
+the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
 */
 
-# Connects to the database and creates/fills the jobs and users tables if needed #
-require_once("db_setup.php");
+# Gets the jobs to show: sets $search, $result and $job_count #
+require_once("search.php");
 
 # Turns text with one item per line into <li> items. Each line is escaped before it is printed #
 function print_list_items($text) {
-    foreach (explode("\n", $text) as $line) {
+    foreach (explode("
+", $text) as $line) {
         $line = trim($line);
         if ($line !== "") {
-            echo "<li>" . htmlspecialchars($line) . "</li>\n";
+            echo "<li>" . htmlspecialchars($line) . "</li>
+";
         }
     }
 }
-
-# Search term from the search bar (GET, so the results page can be bookmarked or shared) #
-$search = trim($_GET['search'] ?? "");
-if (strlen($search) > 100) {
-    $search = substr($search, 0, 100);   # keep the search term to a sensible length #
-}
-
-$columns = "job_reference_number, title, short_description, salary, reports_to,
-            responsibilities, essential_requirements, preferable_requirements";
-
-if ($search !== "") {
-    # % and _ are wildcards in LIKE, so escape them to treat them as ordinary characters #
-    $like = "%" . addcslashes($search, "%_\\") . "%";
-
-    # Prepared statement: the search text is never pasted into the SQL, which stops SQL injection #
-    $stmt = mysqli_prepare($dbconn, "SELECT $columns FROM jobs
-        WHERE title LIKE ? OR job_reference_number LIKE ? OR short_description LIKE ?
-           OR responsibilities LIKE ? OR essential_requirements LIKE ? OR preferable_requirements LIKE ?
-        ORDER BY title");
-    mysqli_stmt_bind_param($stmt, "ssssss", $like, $like, $like, $like, $like, $like);
-} else {
-    $stmt = mysqli_prepare($dbconn, "SELECT $columns FROM jobs ORDER BY title");
-}
-
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$job_count = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,18 +74,7 @@ $job_count = mysqli_num_rows($result);
 
     <!-- Common navigation menu - kept identical across every page for consistency -->
     <nav>
-            <?php include ("nav.inc"); ?>
-        <!-- <a href="index.html" class="nav_logo">
-            <img src="styles/images/grp_3.png"
-                 alt="Melbourne Youth Support Network home"
-                 title="Melbourne Youth Support Network">
-        </a>
-        <ul class="nav_links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="jobs.html" aria-current="page">Jobs</a></li>
-            <li><a href="apply.html">Apply</a></li>
-            <li><a href="about.php">About</a></li>
-        </ul> -->
+        <?php include ("nav.inc"); ?>
     </nav>
 
     <!-- tabindex="-1" lets the skip link move keyboard focus here on activation -->
@@ -114,7 +85,7 @@ $job_count = mysqli_num_rows($result);
 
             <div class="job-listings">
 
-                <!-- Intro panel: page summary and the application closing date,
+                <!-- Intro panel: page summary, closing date note and search bar,
                      kept in one box above the job cards -->
                 <div class="jobs-intro">
                     <p class="lead">
@@ -125,9 +96,9 @@ $job_count = mysqli_num_rows($result);
                     </p>
                     <!-- Inline CSS: a one-off emphasis on a single, time-sensitive line -->
                     <p style="color: #09427e; font-weight: bold;">
-                        Applications for all roles close Friday 25 October 2026.
+                        Each role lists its own closing date. Late applications cannot be considered.
                     </p>
-                    <!-- Search bar: sends the term to this page as ?search=... and the jobs are looked up in the database -->
+                    <!-- Search bar: sends the term back to this page as ?search=... and search.php looks the jobs up in the database -->
                     <form method="get" action="jobs.php" class="job-search" role="search">
                         <label for="search">Search jobs</label>
                         <input type="search" id="search" name="search" maxlength="100"
@@ -161,6 +132,9 @@ $job_count = mysqli_num_rows($result);
                             <dd><?php echo htmlspecialchars($job['salary']); ?></dd>
                             <dt>Reports to</dt>
                             <dd><?php echo htmlspecialchars($job['reports_to']); ?></dd>
+                            <dt>Applications close</dt>
+                            <?php # The database stores 2026-10-25; date() turns it into "Sunday 25 October 2026" # ?>
+                            <dd><time datetime="<?php echo htmlspecialchars($job['closing_date']); ?>"><?php echo date("l j F Y", strtotime($job['closing_date'])); ?></time></dd>
                         </dl>
 
                         <p><?php echo htmlspecialchars($job['short_description']); ?></p>
@@ -209,7 +183,7 @@ $job_count = mysqli_num_rows($result);
                     <li>Note the six-character reference number for the role you want.</li>
                     <li>Open the <a href="apply.php">Apply</a> page and complete the form.</li>
                     <li>Enter the reference number and respond to the listed requirements.</li>
-                    <li>Submit your application before the closing date shown above.</li>
+                    <li>Submit your application before the role's closing date.</li>
                 </ol>
 
                 <p class="inclusive">
@@ -226,12 +200,6 @@ $job_count = mysqli_num_rows($result);
     <!-- Footer - consistent with the other pages -->
     <footer>
         <?php include ("footer.inc"); ?>
-        <!-- <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
-            <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
-        <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
-            <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
-        <a href="mailto:info@mysn.org.au">
-            <img src="styles/images/email_logo.jpg" alt="">Email Us</a> -->
     </footer>
 
 </body>
