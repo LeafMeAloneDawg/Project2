@@ -5,3 +5,4 @@
         <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
     <a href="mailto:info@mysn.org.au">
         <img src="styles/images/email_logo.jpg" alt="">Email Us</a>
+    <a href="login.php">HR Login</a>
