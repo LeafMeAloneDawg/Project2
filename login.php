@@ -1,3 +1,30 @@
+<?php
+/*
+filename: login.php
+author: Mohammad Aquib
+created: 13/10/2026
+last modified: 13/10/2026
+description: Login page for HR managers. A successful login starts a session and sends the
+             user to manage.php.
+
+GenAI acknowledgement: the login logic in this file (password_verify, session handling,
+CSRF token) was drafted with the assistance of GenAI, then reviewed, tested and edited
+by Mohammad Aquib.
+*/
+
+require_once("session_init.php");
+require_once("db_setup.php");     # also gives us $dbconn and makes sure the users table exists #
+
+# Already logged in: no need to see the form again #
+if (isset($_SESSION['user_id'])) {
+    header("Location: manage.php");
+    exit();
+}
+
+$error = "";
+$notice = "";
+$username = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
