@@ -68,6 +68,8 @@ $result = mysqli_query($dbconn, $sqlQuery);
 <body>
     <main id="managePage">
         <h1>Job application management page</h1>
+        <!-- Login gate (line 1) and logout link added by Mohammad Aquib. GenAI acknowledgement:
+             drafted with the assistance of GenAI, then reviewed and tested by Mohammad Aquib. -->
         <p><a href="logout.php">Log out (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></p>
 
         <!-- Button to list all EOIs -->
