@@ -25,7 +25,7 @@
 
 </nav>
 
-<main id="main-content" class="apply-main">
+<main id="main-content" class="apply-main" tabindex="-1">
 
     <div class="apply_intro_box">
 

@@ -27,7 +27,7 @@
     <?php include ("nav.inc"); ?>
 </nav>
 
-<main class="main_about">
+<main class="main_about" id="main-content" tabindex="-1">
 
 <h1 class="about_h1" style="color: #09427e; ">About Us!</h1>
 
