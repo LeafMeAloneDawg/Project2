@@ -3,9 +3,9 @@
 filename: db_setup.php
 author: Mohammad Aquib
 created: 13/10/2026
-last modified: 13/10/2026
+last modified: 14/10/2026
 description: Creates the jobs and users tables if they do not exist yet and fills them
-             with starting data. Included by jobs.php and login.php.
+             with starting data. Included by search.php (for jobs.php) and login.php.
 
 GenAI acknowledgement: the structure of this file (prepared statements, password hashing)
 was drafted with the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
@@ -16,6 +16,16 @@ require_once("db_connect.php");
 
 # Use utf8mb4 so characters such as the en dash in the salaries are stored and read back correctly #
 mysqli_set_charset($dbconn, "utf8mb4");
+
+# Adds a column to a table that was created before the column existed (for example a teammate's #
+# database made with an older version of this file). Only ever called with fixed names written #
+# below, never with user input, so building the SQL from the parameters is safe here #
+function add_column_if_missing($dbconn, $table, $column, $definition) {
+    $check = mysqli_query($dbconn, "SHOW COLUMNS FROM $table LIKE '$column'");
+    if (mysqli_num_rows($check) == 0) {
+        mysqli_query($dbconn, "ALTER TABLE $table ADD $column $definition");
+    }
+}
 
 
 #              #
@@ -32,12 +42,20 @@ $create_jobs_query = "CREATE TABLE IF NOT EXISTS jobs (
     reports_to VARCHAR(100) NOT NULL,
     responsibilities TEXT NOT NULL,
     essential_requirements TEXT NOT NULL,
-    preferable_requirements TEXT NOT NULL
+    preferable_requirements TEXT NOT NULL,
+    closing_date DATE NOT NULL
 ) DEFAULT CHARSET=utf8mb4";
 
 if (!mysqli_query($dbconn, $create_jobs_query)) {
     die("<p>Unable to create the jobs table.</p>");
 }
+
+# Older jobs tables have no closing date yet: add it and give existing rows the Part 1 date #
+add_column_if_missing($dbconn, "jobs", "closing_date", "DATE NOT NULL DEFAULT '2026-10-25'");
+
+# Columns read by jobs.php and search.php, kept in one place so both pages stay the same #
+$job_columns = "job_reference_number, title, short_description, salary, reports_to,
+                responsibilities, essential_requirements, preferable_requirements, closing_date";
 
 # Only add the starting jobs when the table is empty #
 $count_result = mysqli_query($dbconn, "SELECT COUNT(*) AS total FROM jobs");
@@ -53,6 +71,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Provide direct, practical support to young people and families accessing our community programs, helping them connect with local services and build long-term wellbeing.',
             'salary' => '$68,000 – $74,000 per annum (pro rata for part-time)',
             'reports_to' => 'Community Programs Manager',
+            'closing_date' => '2026-10-25',
             'responsibilities' => [
                 'Complete intake interviews and assess each client\'s needs.',
                 'Develop and review individual support plans with clients.',
@@ -78,6 +97,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Recruit, train and support our volunteer network so that volunteers are well matched to programs and feel valued in their contribution to the community.',
             'salary' => '$72,000 – $80,000 per annum',
             'reports_to' => 'Operations Manager',
+            'closing_date' => '2026-10-25',
             'responsibilities' => [
                 'Recruit and onboard new volunteers across all programs.',
                 'Plan and deliver regular volunteer induction and training sessions.',
@@ -103,6 +123,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Work alongside young people aged 12–25 in their own communities, running outreach activities and mentoring that build confidence, connection and trust.',
             'salary' => '$65,000 – $70,000 per annum (pro rata for part-time)',
             'reports_to' => 'Youth Services Team Leader',
+            'closing_date' => '2026-10-25',
             'responsibilities' => [
                 'Deliver after-school, school-holiday and drop-in youth programs.',
                 'Build trusted relationships with young people and their families.',
@@ -127,12 +148,12 @@ if ($count_row['total'] == 0) {
     # Prepared statement: the values are sent separately from the SQL, so apostrophes in the text are safe #
     $insert_job = mysqli_prepare($dbconn, "INSERT INTO jobs
         (job_reference_number, title, short_description, salary, reports_to,
-         responsibilities, essential_requirements, preferable_requirements)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+         responsibilities, essential_requirements, preferable_requirements, closing_date)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    mysqli_stmt_bind_param($insert_job, "ssssssss",
+    mysqli_stmt_bind_param($insert_job, "sssssssss",
         $ref, $title, $description, $salary, $reports_to,
-        $responsibilities, $essential, $preferable);
+        $responsibilities, $essential, $preferable, $closing_date);
 
     foreach ($starting_jobs as $job) {
         $ref = $job['ref'];
@@ -143,6 +164,7 @@ if ($count_row['total'] == 0) {
         $responsibilities = implode("\n", $job['responsibilities']);   # one item per line #
         $essential = implode("\n", $job['essential']);
         $preferable = implode("\n", $job['preferable']);
+        $closing_date = $job['closing_date'];                         # YYYY-MM-DD, the DATE format #
         mysqli_stmt_execute($insert_job);
     }
 
@@ -153,16 +175,23 @@ if ($count_row['total'] == 0) {
 # users table  #
 #              #
 
-# Only a HASH of each password is stored, never the password itself #
+# Only a HASH of each password is stored, never the password itself. #
+# failed_attempts and locked_until let login.php lock an account after too many wrong passwords #
 $create_users_query = "CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARCHAR(255) NOT NULL,
+    failed_attempts INT NOT NULL DEFAULT 0,
+    locked_until DATETIME NULL DEFAULT NULL
 ) DEFAULT CHARSET=utf8mb4";
 
 if (!mysqli_query($dbconn, $create_users_query)) {
     die("<p>Unable to create the users table.</p>");
 }
+
+# Older users tables have no lockout columns yet: add them #
+add_column_if_missing($dbconn, "users", "failed_attempts", "INT NOT NULL DEFAULT 0");
+add_column_if_missing($dbconn, "users", "locked_until", "DATETIME NULL DEFAULT NULL");
 
 # Make sure the marker's admin account exists (username: admin, password: admin) #
 $admin_username = "admin";
