@@ -3,7 +3,7 @@
 filename: login.php
 author: Mohammad Aquib
 created: 13/10/2026
-last modified: 13/10/2026
+last modified: 14/10/2026
 description: Login page for HR managers. A successful login starts a session and sends the
              user to manage.php.
 
@@ -38,8 +38,8 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$max_attempts = 5;      # failed logins allowed ... #
-$lock_seconds = 60;     # ... before a short lockout #
+$max_attempts = 5;      # wrong passwords allowed for an account ... #
+$lock_seconds = 60;     # ... before that account is locked for this many seconds #
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -47,11 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"] ?? "";          # passwords are never trimmed or altered #
     $token = $_POST["csrf_token"] ?? "";
 
-    if (($_SESSION['lock_until'] ?? 0) > time()) {
-        $wait = $_SESSION['lock_until'] - time();
-        $error = "Too many failed attempts. Please try again in $wait seconds.";
-
-    } elseif (!hash_equals($_SESSION['csrf_token'], $token)) {
+    if (!hash_equals($_SESSION['csrf_token'], $token)) {
         $error = "Your session expired. Please try again.";
 
     } elseif ($username === "" || $password === "") {
@@ -61,15 +57,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Invalid username or password.";
 
     } else {
-        # Prepared statement: the username is never pasted into the SQL (stops SQL injection) #
-        $stmt = mysqli_prepare($dbconn, "SELECT user_id, username, password_hash FROM users WHERE username = ?");
+        # Prepared statement: the username is never pasted into the SQL (stops SQL injection). #
+        # lock_seconds_left is how long the account is still locked (NULL or 0 or less = not locked) #
+        $stmt = mysqli_prepare($dbconn, "SELECT user_id, username, password_hash,
+            TIMESTAMPDIFF(SECOND, NOW(), locked_until) AS lock_seconds_left
+            FROM users WHERE username = ?");
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $user = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
 
-        if ($user && password_verify($password, $user['password_hash'])) {
+        if ($user && $user['lock_seconds_left'] > 0) {
+            # Locked accounts are refused even with the right password, until the lock runs out #
+            $error = "Too many failed attempts. Please try again in {$user['lock_seconds_left']} seconds.";
+
+        } elseif ($user && password_verify($password, $user['password_hash'])) {
+            # Correct password: clear the failed attempt counter for this account #
+            $reset = mysqli_prepare($dbconn, "UPDATE users SET failed_attempts = 0, locked_until = NULL WHERE user_id = ?");
+            mysqli_stmt_bind_param($reset, "i", $user['user_id']);
+            mysqli_stmt_execute($reset);
+            mysqli_stmt_close($reset);
+
             # New session ID after login, so an ID known before login is useless (session fixation) #
             session_regenerate_id(true);
 
@@ -77,19 +86,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $user['username'];
             $_SESSION['last_activity'] = time();
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-            unset($_SESSION['attempts'], $_SESSION['lock_until']);
 
             header("Location: manage.php");
             exit();
-        }
 
-        # Same message whether the username or the password was wrong, so attackers learn nothing #
-        $error = "Invalid username or password.";
+        } else {
+            # Same message whether the username or the password was wrong, so attackers learn nothing #
+            $error = "Invalid username or password.";
 
-        $_SESSION['attempts'] = ($_SESSION['attempts'] ?? 0) + 1;
-        if ($_SESSION['attempts'] >= $max_attempts) {
-            $_SESSION['lock_until'] = time() + $lock_seconds;
-            $_SESSION['attempts'] = 0;
+            # Wrong password for a real account: count it in the database, not the session, so #
+            # deleting the session cookie does not reset the count #
+            if ($user) {
+                $count = mysqli_prepare($dbconn, "UPDATE users SET failed_attempts = failed_attempts + 1 WHERE user_id = ?");
+                mysqli_stmt_bind_param($count, "i", $user['user_id']);
+                mysqli_stmt_execute($count);
+                mysqli_stmt_close($count);
+
+                # Reached the limit: lock the account for $lock_seconds and start counting again #
+                $lock = mysqli_prepare($dbconn, "UPDATE users
+                    SET locked_until = NOW() + INTERVAL ? SECOND, failed_attempts = 0
+                    WHERE user_id = ? AND failed_attempts >= ?");
+                mysqli_stmt_bind_param($lock, "iii", $lock_seconds, $user['user_id'], $max_attempts);
+                mysqli_stmt_execute($lock);
+                mysqli_stmt_close($lock);
+            }
         }
     }
 }
