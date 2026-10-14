@@ -20,21 +20,10 @@
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- This is the heading for the job application page. -->
+<!-- navigation bar -->
 <nav>
     <?php include ("nav.inc"); ?>
-    <!-- <a href="index.html" class="nav_logo">
-        <img src="styles/images/grp_3.png"
-             alt="Melbourne Youth Support Network home"
-             title="Melbourne Youth Support Network">
-    </a>
 
-    <ul class="nav_links">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="jobs.html">Jobs</a></li>
-        <li><a href="apply.html" aria-current="page">Apply</a></li>
-        <li><a href="about.php">About</a></li>
-    </ul> -->
 </nav>
 
 <main id="main-content" class="apply-main">
@@ -239,12 +228,6 @@
 <!-- Footer with links to Jira project, GitHub repository, and email contact. -->
 <footer>
     <?php include ("footer.inc"); ?>
-    <!-- <a href="https://g03-appliedwebproject.atlassian.net/jira/software/projects/SCRUM/boards/1">
-        <img src="styles/images/atlassian_jira_logo_icon_170511.webp" alt="">Jira Project</a>
-    <a href="https://github.com/LeafMeAloneDawg/AppliedWebProject">
-        <img src="styles/images/github-logo.png" alt="">GitHub Link</a>
-    <a href="mailto:info@mysn.org.au">
-        <img src="styles/images/email_logo.jpg" alt="">Email Us</a> -->
 </footer>
 
 </body>

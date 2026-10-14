@@ -1,5 +1,5 @@
 <!-- navigation bar -->
-<nav aria-label="Primary">
+<nav>
     <a href="index.html" class="nav_logo">
         <img src="styles/images/grp_3.png" alt="Melbourne Youth Support Network Logo"
             title="Melbourne Youth Support Network">

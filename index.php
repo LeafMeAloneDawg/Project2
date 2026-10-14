@@ -18,6 +18,7 @@
 
 <body class="index-page">
 
+<!-- navigation bar -->
 <nav>
     <?php include ("nav.inc"); ?>
 </nav>
