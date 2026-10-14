@@ -17,7 +17,8 @@
 </head>
 
 <body class="index-page">
-
+<!-- header -->
+<?php include ("header.inc"); ?>
 <!-- navigation bar -->
 <nav>
     <?php include ("nav.inc"); ?>

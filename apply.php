@@ -19,7 +19,8 @@
 <body class="apply-page">
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
+<!-- header -->
+<?php include ("header.inc"); ?>
 <!-- navigation bar -->
 <nav>
     <?php include ("nav.inc"); ?>

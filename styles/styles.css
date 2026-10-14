@@ -28,6 +28,44 @@ body {
 
 }
 
+/* Header */
+.site-header {
+    width: 100%;
+    background-color: #09427e;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    border-bottom: 2px solid #7fdbff;
+    box-sizing: border-box;
+}
+
+.header-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.header-banner-text {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.header-banner-text q {
+    color: #7fdbff;
+    font-style: italic;
+}
+
+/* Responsive adjustment for mobile screens */
+@media (max-width: 700px) {
+    .site-header {
+        padding: 8px 12px;
+    }
+    .header-banner-text {
+        font-size: 0.8rem;
+    }
+}
+
 /* Navigation */
 
 nav {
@@ -1147,12 +1185,12 @@ section{
     }
 
     /* Header shrinks with screen */
-    .apply_intro_box {
+    /* .apply_intro_box {
         width: 95%;
         max-width: 900px;
         margin: 0 auto 20px;
         padding: 15px;
-    }
+    } */
 
     .apply_intro_box h1 {
         font-size: clamp(2rem, 10vw, 3rem);

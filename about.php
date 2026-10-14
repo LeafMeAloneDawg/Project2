@@ -20,6 +20,10 @@
 </head> 
 
 <body>
+    <!-- Accessibility: lets keyboard / screen-reader users jump past the nav -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- header -->
+    <?php include ("header.inc"); ?>
 <!-- navigation bar -->
 <nav>
     <?php include ("nav.inc"); ?>

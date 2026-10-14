@@ -71,7 +71,8 @@ function print_list_items($text) {
 
     <!-- Accessibility: lets keyboard / screen-reader users jump past the nav -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
+    <!-- header -->
+    <?php include ("header.inc"); ?>
     <!-- Common navigation menu - kept identical across every page for consistency -->
     <nav>
         <?php include ("nav.inc"); ?>
