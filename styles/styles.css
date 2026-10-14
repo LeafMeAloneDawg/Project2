@@ -651,12 +651,12 @@ aside>* {
 
 /* Heading */
 
-.header-main {
+/* .header-main {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .apply_intro_box {
     width: 95%;
