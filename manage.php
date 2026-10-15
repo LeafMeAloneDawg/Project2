@@ -82,11 +82,11 @@ $result = mysqli_query($dbconn, $sqlQuery);
     </style>
 </head>
 
-<body>
+<body class="apply-page">
     <nav>
         <?php include("nav.inc"); ?>
     </nav>
-    <main id="managePage">
+    <main id="managePage" class="apply-main">
         <h1>Job application management page</h1>
         <!-- Login gate (line 1) and logout link added by Mohammad Aquib. GenAI acknowledgement:
              drafted with the assistance of GenAI, then reviewed and tested by Mohammad Aquib. -->
@@ -99,7 +99,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
                 <input type="submit" value="Show All">
             </form>
         </fieldset>
-        <h2>Search By:</h2>
+       <!-- <h2>Search By:</h2> -->
 
         <!-- Form to search by job reference -->
         <fieldset class="managementFieldset">
@@ -120,7 +120,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
         </fieldset>
 
         <!-- Form to delete EOI given job reference -->
-        <h2>Delete EOI by job reference</h2>
+        <!-- <h2>Delete EOI by job reference</h2> -->
         <fieldset>
             <legend>Delete EOI</legend>
             <form method="POST" action="manage.php">
@@ -131,7 +131,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
         </fieldset>
 
         <!-- Form to change EOI status -->
-        <h2>Change EOI status</h2>
+        <!-- <h2>Change EOI status</h2> -->
         <fieldset>
             <legend>Change EOI status:</legend>
         <form method="POST" action="manage.php">
@@ -148,7 +148,7 @@ $result = mysqli_query($dbconn, $sqlQuery);
         </form>
         </fieldset>
         <!-- Form to select field to sort EOI table by -->
-        <h2>Sort by field</h2>
+        <!-- <h2>Sort by field</h2> -->
 
         <fieldset>
             <legend>Sort By:</legend>
