@@ -66,6 +66,9 @@ $result = mysqli_query($dbconn, $sqlQuery);
 </head>
 
 <body>
+    <nav>
+        <?php include("nav.inc"); ?>
+    </nav>
     <main id="managePage">
         <h1>Job application management page</h1>
         <!-- Login gate (line 1) and logout link added by Mohammad Aquib. GenAI acknowledgement:
@@ -184,6 +187,10 @@ $result = mysqli_query($dbconn, $sqlQuery);
         mysqli_close($dbconn);
         ?>
     </main>
+    <!-- Footer - consistent with the other pages -->
+     <footer>
+        <?php include ("footer.inc"); ?>
+    </footer>
 </body>
 
 </html>
