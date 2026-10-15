@@ -901,7 +901,8 @@ textarea:focus {
        and the box stays within the image border */
     transform: translateX(-50%);
     font-weight: bold;
-    font-size: 1vw;
+    /* clamp(MIN, PREFFERED, MAX */
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
     color: #09427e;
     margin: 0;
     padding: 1rem;
