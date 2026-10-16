@@ -1,5 +1,45 @@
+<?php
+// Database Connection 
+require_once "settings.php"; 
+$dbconn = @mysqli_connect($host,$user, $password,$sql_db);
+
+if (!$dbconn) {
+    die("<p>Database connection failed: " . mysqli_connect_error() . "</p>");
+}
+
+// Check if table exists already and create it if not 
+$create_table_query = "CREATE TABLE IF NOT EXISTS members (
+  `student_id` varchar(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `fun_fact_1` text NOT NULL,
+  `fun_fact_2` text NOT NULL,
+  `fun_fact_3` text NOT NULL,
+  `quote` text NOT NULL,
+  `quote_translated` text NOT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+
+mysqli_query($dbconn,$create_table_query);
+
+$create_contrib_table = "CREATE TABLE IF NOT EXISTS `member_contributions` (
+  `contribution_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(10) NOT NULL,
+  `project_part` varchar(25) NOT NULL,
+  `task_description` text NOT NULL,
+  PRIMARY KEY (`contribution_id`),
+  KEY `foreign_key_member` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+
+mysqli_query($dbconn,$create_contrib_table);
+
+// Fetch members data sorted by name
+$query = "SELECT * FROM members ORDER BY name ASC;";
+$result = mysqli_query($dbconn,$query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,10 +101,16 @@
             </li>
             <li>Members
                 <ul>
-                    <li>Aquib - StudentID:103839016</li>
-                    <li>Mason - StudentID:105641802</li>
-                    <li>Ryan - StudentID:106893099</li>
-                    <li>Xander - StudentID:103990515</li>
+                    <?php 
+                    // Dynamic member list
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($member = mysqli_fetch_assoc($result)) {
+                            echo "<li>" . htmlspecialchars($member['name']) . " - StudentID: " . htmlspecialchars($member['student_id']) . "</li>";
+                        }
+                        // Reset cursor to loop over data again for the tables
+                        mysqli_data_seek($result, 0); 
+                    }
+                    ?>
                 </ul>
             </li>  
         </ul>
@@ -75,56 +121,43 @@
     <h2> Group Contributions</h2>
 <!-- definition list of group contributions -->
     <dl class="group_contributions">
-        <dt><strong>Aquib</strong></dt>
-        <dd>
-            <ol>
-                <li>Job Page Html</li>
-                <li>Job Page CSS</li>
-                <li>Shared responsibility on Jira</li>
-                <li>Shared responsibility making regular commits to Github</li>
-                <li>Shared responsibility joining group meetings, in class and online</li>
-                <li>Shared responsibility communicating in timely manner to group chats</li>
-                <li>Shared responsibility combining CSS sheets into one style.css</li>
-            </ol>
-        </dd>
-        <dt><strong>Mason</strong></dt>
-        <dd>
-            <ol>
-                <li>Home Page Html</li>
-                <li>Home Page CSS</li>
-                <li>Shared responsibility on Jira</li>
-                <li>Shared responsibility making regular commits to Github</li>
-                <li>Shared responsibility joining group meetings, in class and online</li>
-                <li>Shared responsibility communicating in timely manner to group chats</li>
-                <li>Shared responsibility combining CSS sheets into one style.css</li>
-            </ol>
-        </dd>
-        <dt><strong>Ryan</strong></dt>
-        <dd>
-            <ol>
-                <li>About Page Html</li>
-                <li>About Page CSS</li>
-                <li>Shared responsibility on Jira</li>
-                <li>Shared responsibility making regular commits to Github</li>
-                <li>Shared responsibility joining group meetings, in class and online</li>
-                <li>Shared responsibility communicating in timely manner to group chats</li>
-                <li>Shared responsibility combining CSS sheets into one style.css</li>
-            </ol>
-        </dd>
-        <dt><strong>Xander</strong></dt>
-        <dd>
-            <ol>
-                <li>Apply Page Html</li>
-                <li>Apply Page CSS</li>
-                <li>Shared responsibility on Jira</li>
-                <li>Shared responsibility making regular commits to Github</li>
-                <li>Shared responsibility joining group meetings, in class and online</li>
-                <li>Shared responsibility communicating in timely manner to group chats</li>
-                <li>Shared responsibility combining CSS sheets into one style.css</li>
-            </ol>
-        </dd>
+        <?php
+        // Query contributions joined with members 
+        $contrib_query = "SELECT m.name, c.task_description 
+                          FROM member_contributions c 
+                          JOIN members m ON c.student_id = m.student_id 
+                          ORDER BY m.name ASC, c.contribution_id ASC;";
+        
+        $contrib_result = mysqli_query($dbconn, $contrib_query);
+
+        if ($contrib_result && mysqli_num_rows($contrib_result) > 0) {
+            $current_name = ""; // Tracks the name from the previous row
+
+            while ($row = mysqli_fetch_assoc($contrib_result)) {
+                // If the name changes, close the previous person's tags and start a new one
+                if ($row['name'] !== $current_name) {
+                    if ($current_name !== "") {
+                        echo "</ol></dd>"; // Close previous list/definition block
+                    }
+                    $current_name = $row['name'];
+                    echo "<dt><strong>" . htmlspecialchars($current_name) . "</strong></dt>";
+                    echo "<dd><ol>";
+                }
+                
+                // Print each task under the current member
+                echo "<li>" . htmlspecialchars($row['task_description']) . "</li>";
+            }
+    
+            // Close the tags for the very last person after the loop finishes
+            if ($current_name !== "") {
+                echo "</ol></dd>";
+            }
+        } else {
+            echo "<dt>No contributions found.</dt>";
+        }
+        ?>
     </dl> 
- </section>
+</section> 
   
 <section class="about_layout">
     <h2>Group Members</h2>
@@ -140,35 +173,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Aquib</td>
-                <td>Plays guitar.</td>
-                <td>Enjoys live rock/metal concerts.</td>
-                <td>Loves to collect band official merchandise.</td>
-            </tr>
-            <tr>
-                <td>Mason</td>
-                <td>My bedroom was a 1940s double-decker bus as a teen</td>
-                <td>I live with my best friend from year 7</td>
-                <td>I learnt to weld to fix my the love of my life (A 1984 Celica), blew her up three times and then sold it.</td>
-            </tr>
-            <tr>
-                <td>Ryan</td>
-                <td>Has a pet dog named Fuji.</td>
-                <td>Has an interest in old Toyotas.</td>
-                <td>Enjoys CAD design and 3d printing.</td>
-            </tr>
-            <tr>
-                <td> Xander</td>
-                <td>Lived in Thailand for a year.</td>
-                <td>Collects physical media.</td>
-                <td>Enjoys surfing.</td>
-            </tr>
-        </tbody>
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['fun_fact_1']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['fun_fact_2']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['fun_fact_3']) . "</td>";
+                        echo "</tr>";
+                    }
+                    // Reset internal pointer so we can re-read rows for table 2
+                    mysqli_data_seek($result, 0); 
+                } else {
+                    echo "<tr><td colspan='4'>No member records found.</td></tr>";
+                }
+                ?>
+            </tbody>
     </table>
-
     <br>
-
     <!-- table of member quotes -->
     <table class="table_layout">
         <caption>Our Favourite Quotes</caption>
@@ -180,31 +203,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Aquib</td>
-                <td>"কখনো হাল ছাড়বে না"</td>
-                <td>Never give up </td>
-            </tr>
-            <tr>
-                <td>Mason</td>
-                <td>"पेड़ मेरे पसंदीदा जानवर हैं।"</td>
-                <td>Trees are my favorite animal.</td>
-            </tr>  
-            <tr>
-                <td>Ryan</td>
-                <td>"胸を張って生きろ。己の弱さや不甲斐なさにどれだけ打ちのめされようと、心を燃やせ。"</td>
-                <td>Go ahead and live with your head held high! No matter how devastated you may be by your own weakness or uselessness, set your heart ablaze!</td>
-            </tr>
-            <tr>
-                <td>Xander</td>
-                <td>"ผมรักแม่ของผม"</td>
-                <td>I love my mum</td>
-            </tr>
-        </tbody>
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['quote']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['quote_translated']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    // Safety net for no records found
+                    echo "<tr><td colspan='3'>No quotes found.</td></tr>";
+                }
+                // Close DB connection after queries are finished
+                mysqli_close($dbconn);
+                ?>
+            </tbody>
     </table>
 </section>
-
-
 </main>
 
 <!-- footer -->
