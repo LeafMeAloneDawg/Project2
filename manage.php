@@ -87,70 +87,16 @@ $result = mysqli_query($dbconn, $sqlQuery);
         <?php include("nav.inc"); ?>
     </nav>
     <main id="managePage" class="apply-main">
+        <div class="apply_intro_box">
         <h1>Job application management page</h1>
+        </div>
         <!-- Login gate (line 1) and logout link added by Mohammad Aquib. GenAI acknowledgement:
              drafted with the assistance of GenAI, then reviewed and tested by Mohammad Aquib. -->
         <p><a href="logout.php">Log out (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></p>
 
         <!-- Button to list all EOIs -->
-        <fieldset>
-            <form action="manage.php">
-                <label>Show all EOIs:</label>
-                <input type="submit" value="Show All">
-            </form>
-        </fieldset>
-       <!-- <h2>Search By:</h2> -->
-
-        <!-- Form to search by job reference -->
-        <fieldset class="managementFieldset">
-            <legend>Search By:</legend>
-            <form method="GET" action="manage.php">
-                <label for="jobReferenceSearch">Job reference:</label>
-                <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
-                <input type="submit" value="Search" >
-            </form>
-            <!-- Form to search by first/last name or both -->
-            <form>
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName">
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName">
-                <input type="submit" value="Search" >
-            </form>
-        </fieldset>
-
-        <!-- Form to delete EOI given job reference -->
-        <!-- <h2>Delete EOI by job reference</h2> -->
-        <fieldset>
-            <legend>Delete EOI</legend>
-            <form method="POST" action="manage.php">
-                <label for="deleteJobReference">Job Reference:</label>
-                <input type="text" id="deleteJobReference" name="deleteJobReference" required>
-                <input type="submit" value="Delete" >
-            </form>
-        </fieldset>
-
-        <!-- Form to change EOI status -->
-        <!-- <h2>Change EOI status</h2> -->
-        <fieldset>
-            <legend>Change EOI status:</legend>
-        <form method="POST" action="manage.php">
-            <label for="EOIUpdateStatusID">EOI ID:</label>
-            <input type="text" id="EOIUpdateStatusID" name="EOIUpdateStatusID" required>
-            <label for="status">Updated Status:</label>
-            <select size=1 name="status" id="status">
-                <option value="New">New</option>
-                <option value="Current">Current</option>
-                <option value="Final">Final</option>
-            </select>
-
-            <input type="submit" value="Update Value" >
-        </form>
-        </fieldset>
-        <!-- Form to select field to sort EOI table by -->
-        <!-- <h2>Sort by field</h2> -->
-
-        <fieldset>
+         <div class="grid">
+         <fieldset>
             <legend>Sort By:</legend>
         <form method="GET" action="manage.php">
             <label for="sortField">Sort entries by:</label>
@@ -177,7 +123,71 @@ $result = mysqli_query($dbconn, $sqlQuery);
             <input type="submit" value="Sort list" >
         </form>
         </fieldset>
+        
+        <fieldset>
+            <legend>Show all EOIs:</legend>
+            <form action="manage.php">
+                <label>Show all EOIs:</label>
+                <input type="submit" value="Show All">
+            </form>
+        </fieldset>
+       <!-- <h2>Search By:</h2> -->
 
+        <!-- Form to search by job reference -->
+        <fieldset class="managementFieldset">
+            <legend>Search By:</legend>
+            <div class="flex-form">
+            <form method="GET" action="manage.php" class="flex-form">
+                <label for="jobReferenceSearch">Job reference:</label>
+                <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
+                <input type="submit" value="Search" >
+            </form>
+            <!-- Form to search by first/last name or both -->
+            <form>
+                
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" id="firstName">
+                <br>
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" id="lastName">
+                <input type="submit" value="Search" >
+            </form>
+        </div>
+        </fieldset>
+
+        <!-- Form to delete EOI given job reference -->
+        <!-- <h2>Delete EOI by job reference</h2> -->
+        <fieldset>
+            <legend>Delete EOI</legend>
+            <form method="POST" action="manage.php">
+                <label for="deleteJobReference">Job Reference:</label>
+                <input type="text" id="deleteJobReference" name="deleteJobReference" required>
+                <input type="submit" value="Delete" >
+            </form>
+        </fieldset>
+
+        <!-- Form to change EOI status -->
+        <!-- <h2>Change EOI status</h2> -->
+        <fieldset>
+            <legend>Change EOI status:</legend>
+        <form method="POST" action="manage.php" class="flex-form">
+            <label for="EOIUpdateStatusID">EOI ID:</label>
+            
+            <input type="text" id="EOIUpdateStatusID" name="EOIUpdateStatusID" required>
+            <br><label for="status">Status:</label>
+            <select size=1 name="status" id="status">
+                <option value="New">New</option>
+                <option value="Current">Current</option>
+                <option value="Final">Final</option>
+            </select>
+
+            <input type="submit" value="Update Value" >
+        </form>
+        </fieldset>
+        <!-- Form to select field to sort EOI table by -->
+        <!-- <h2>Sort by field</h2> -->
+</div>
+        
 
 
         <?php

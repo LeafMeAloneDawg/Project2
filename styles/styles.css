@@ -1025,13 +1025,39 @@ section{
    MANAGE EOI PAGE STYLES - M.C
    ========================= */
 
+    
    #managePage fieldset input[type="text"] {
     border: 3px solid #d7e7ff;
     background-color: rgb(241, 238, 238);
+    width: auto;
    }
+
+   .flex-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   }
+
+   
+
+   /*Slightly less padding for buttons*/
    #managePage input[type="submit"]{
     padding:6px;
    }
+
+   #managePage table{
+    display: block;
+    overflow-x: auto;
+    width: 95%;
+   }
+
+   .grid{
+  display: grid;
+  grid-template-columns: auto auto;
+  max-width: 100%;
+  
+   }
+   
 
    /* =========================
    JOB SEARCH + LOGIN PAGE
