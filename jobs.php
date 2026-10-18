@@ -16,12 +16,10 @@ require_once("search.php");
 
 # Turns text with one item per line into <li> items. Each line is escaped before it is printed #
 function print_list_items($text) {
-    foreach (explode("
-", $text) as $line) {
+    foreach (explode("\n", $text) as $line) {
         $line = trim($line);
         if ($line !== "") {
-            echo "<li>" . htmlspecialchars($line) . "</li>
-";
+            echo "<li>" . htmlspecialchars($line) . "</li>\n";
         }
     }
 }
