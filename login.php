@@ -127,7 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="apply-page">
 
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- header (includes the skip link) -->
+    <?php include ("header.inc"); ?>
 
     <nav>
         <?php include ("nav.inc"); ?>
