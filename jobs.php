@@ -191,6 +191,15 @@ function print_list_items($text) {
             </aside>
 
         </div><!-- /.jobs-layout -->
+
+        <!-- Visible image credits (Part 1 feedback: credits should not only be in CSS comments) -->
+        <p class="image-credits">
+            Image credits: background photo by
+            <a href="https://www.pexels.com/photo/15639173/">Emir Bozkurt on Pexels</a>,
+            paper texture by
+            <a href="https://www.pexels.com/photo/white-crumpled-paper-11605087/">Tim Mossholder on Pexels</a>
+            (Pexels Licence).
+        </p>
     </main>
 
     <!-- Footer - consistent with the other pages -->
