@@ -400,8 +400,6 @@ thead{
 /* Jobs Background */
 
 .jobs-page {
-    min-height: 10;
-
     /*
        Background photo for the Jobs page (file: images/Job_page_background.jpg,
        a resized/compressed copy).
@@ -410,6 +408,9 @@ thead{
        Pexels Licence - attribution not required; credited per the assessment brief.
        A translucent light wash is layered over the photo so body text and
        the job cards keep enough contrast (accessibility guideline).
+
+       GenAI acknowledgement: the styles in this section were drafted with the assistance of GenAI, then
+       reviewed, tested and edited by Mohammad Aquib.
     */
     background-color: #eef3fb;
     background-image:
@@ -421,9 +422,16 @@ thead{
     background-attachment: fixed, fixed;
 }
 
-/* Page title - align its left edge with the intro text and the job cards below */
+/* Page title - align its left edge with the intro text and the job cards below.
+   The solid light box stops the title sitting directly on the background photo,
+   so its contrast no longer depends on the image (Part 1 accessibility feedback) */
 .jobs-page h1 {
+    display: inline-block;
     margin: 1em 2.2rem 0.5em;
+    padding: 0.15em 0.6em;
+    background-color: #cdd0d1;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 /* Intro panel - page summary + closing date in one box, sitting at the top
@@ -431,7 +439,7 @@ thead{
 .jobs-intro {
     margin-bottom: 1.5em;
     padding: 1.25em 1.5em;
-    background-color: #f3fcffde;
+    background-color: #f3fcff;   /* solid, so the photo never shows behind the text */
     border: 1px solid #3b82f6;
     border-left: 5px solid #09427e;
     border-radius: 6px;
@@ -472,10 +480,10 @@ thead{
     overflow: hidden;
     margin-bottom: 1.5em;
     padding: 1.25em 1.5em;
-    /* pale blue-white, slightly translucent so the background photo stays
-       faintly visible through the card. The crumpled-paper texture is
+    /* solid pale blue-white, so the background photo never shows behind the
+       text (Part 1 accessibility feedback). The crumpled-paper texture is
        added by ::before below. */
-    background-color: #f3fcffde;
+    background-color: #f3fcff;
     border: 1px solid #3b82f6;
     border-left: 5px solid #09427e;
     border-radius: 6px;
@@ -540,8 +548,8 @@ aside {
     position: sticky;
     top: 1em;
     overflow: hidden;
-    /* matches the job cards; texture added by ::before below */
-    background-color: #f3fcffde;
+    /* matches the job cards (solid); texture added by ::before below */
+    background-color: #f3fcff;
     border: 1px solid #6495ed;
     border-top: 5px solid #09427e;
     border-radius: 6px;
@@ -576,6 +584,22 @@ aside a {
     padding-top: 0.75em;
     font-size: 0.95em;
     border-top: 1px solid black;
+}
+
+/* Visible image credits under the job listings (Part 1 feedback asked for a
+   visible credits line, not only credits in CSS comments) */
+.image-credits {
+    width: fit-content;
+    max-width: calc(100% - 4.4rem);
+    margin: 0 2.2rem 2em;
+    padding: 0.5em 1em;
+    font-size: 0.85em;
+    background-color: #f3fcff;
+    border-radius: 6px;
+}
+
+.image-credits a {
+    color: #09427e;
 }
 
 /* Crumpled-paper texture for the job cards and the aside.
@@ -1199,8 +1223,10 @@ section{
         width: auto;
     }
 
+    /* relative (not static): turns off sticky on small screens but keeps the
+       paper texture (aside::before) inside the aside instead of covering the page */
     aside {
-        position: static;
+        position: relative;
     }
 
     h1,
