@@ -140,8 +140,9 @@ $result = $stmt->get_result();
              drafted with the assistance of GenAI, then reviewed and tested by Mohammad Aquib. -->
         <p><a href="logout.php">Log out (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></p>
 
-        <!-- Button to list all EOIs -->
-        <div class="grid">
+        <!-- Form to select field to sort EOI table by -->
+        <div class="EOIManageForm">
+            <div>
             <fieldset>
                 <legend>Sort By:</legend>
                 <form method="GET" action="manage.php">
@@ -170,7 +171,7 @@ $result = $stmt->get_result();
                     <input type="submit" value="Sort list">
                 </form>
             </fieldset>
-
+            <!-- Button to show all EOIs -->
             <fieldset>
                 <legend>Show all EOIs:</legend>
                 <form action="manage.php">
@@ -178,32 +179,12 @@ $result = $stmt->get_result();
                     <input type="submit" value="Show All">
                 </form>
             </fieldset>
-            <!-- <h2>Search By:</h2> -->
+            </div>
+            
 
-            <!-- Form to search by job reference -->
-            <fieldset class="managementFieldset">
-                <legend>Search By:</legend>
-                <div class="flex-form">
-                    <form method="GET" action="manage.php" class="flex-form">
-                        <label for="jobReferenceSearch">Job reference:</label>
-                        <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
-                        <input type="submit" value="Search">
-                    </form>
-                    <!-- Form to search by first/last name or both -->
-                    <form>
-
-                        <label for="firstName">First Name:</label>
-                        <input type="text" name="firstName" id="firstName">
-                        <br>
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" name="lastName" id="lastName">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
-            </fieldset>
-
+            
+            <div>
             <!-- Form to delete EOI given job reference -->
-            <!-- <h2>Delete EOI by job reference</h2> -->
             <fieldset>
                 <legend>Delete EOI</legend>
                 <form method="POST" action="manage.php">
@@ -214,7 +195,6 @@ $result = $stmt->get_result();
             </fieldset>
 
             <!-- Form to change EOI status -->
-            <!-- <h2>Change EOI status</h2> -->
             <fieldset>
                 <legend>Change EOI status:</legend>
                 <form method="POST" action="manage.php" class="flex-form">
@@ -231,9 +211,30 @@ $result = $stmt->get_result();
                     <input type="submit" value="Update Value">
                 </form>
             </fieldset>
-            <!-- Form to select field to sort EOI table by -->
-            <!-- <h2>Sort by field</h2> -->
+            </div>
+             <!-- Form to search by job reference -->
+            <fieldset class="managementFieldset">
+                <legend>Search By:</legend>
+                <div class="flex-form">
+                    <form method="GET" action="manage.php" class="flex-form">
+                        <label for="jobReferenceSearch">Job reference:</label>
+                        <input type="text" name="jobReferenceSearch" id="jobReferenceSearch">
+                        <input type="submit" value="Search">
+                    </form>
+                    <!-- Form to search by first/last name or both -->
+                    <form class="flex-form">
+
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="firstName" id="firstName">
+                        <br>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" name="lastName" id="lastName">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </fieldset>
         </div>
+        
 
 
 

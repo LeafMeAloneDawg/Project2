@@ -1035,6 +1035,11 @@ section{
     display: flex;
     flex-direction: row;
     align-items: center;
+    
+   }
+
+   #managePage fieldset{
+    max-width: fit-content;
    }
 
    
@@ -1042,20 +1047,28 @@ section{
    /*Slightly less padding for buttons*/
    #managePage input[type="submit"]{
     padding:6px;
+    margin-right: 6px;
    }
 
    #managePage table{
     display: block;
     overflow-x: auto;
-    width: 95%;
+    max-width: 95%;
    }
 
-   .grid{
-  display: grid;
-  grid-template-columns: auto auto;
-  max-width: 100%;
-  
-   }
+   #managePage .EOIManageForm{
+  display: flex;
+  max-width: 95%;
+  flex-direction: column;
+  margin: 0 4%;
+}
+
+#managePage .EOIManageForm > div{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
    
 
    /* =========================
