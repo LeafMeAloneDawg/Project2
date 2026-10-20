@@ -35,16 +35,19 @@
         Please ensure all required information is entered correctly before submitting your application.</p> 
 </div>
 
+<!-- This shows the required note. -->
+<p class="required_note">Fields marked with <span class="required">*</span> are required.</p>
+
 <!-- This is the form for the job application page. -->
 <form action="process_eoi.php" method="post">
 
 <!-- Job Reference Number fieldset. -->
 <fieldset>
-    <legend>Job Code</legend>
+    <legend>Job Reference Number</legend>
 
     <div id="reference_number_form">
 
-        <label for="job_reference_number">Job Reference Number:</label>
+        <label for="job_reference_number">Job Reference Number:<span class="required">*</span></label>
         <input type="text" id="job_reference_number" name="job_reference_number" 
         placeholder="ABC123" pattern="[A-Za-z0-9]{6}" required>
     </div>
@@ -59,21 +62,21 @@
     <div id="personal_details_form"> 
         
         <div class="details">
-            <label for="first_name">First Name:</label>
+            <label for="first_name">First Name: <span class="required">*</span></label>
             <input type="text" id="first_name" name="first_name" autocomplete="given-name" placeholder="John" 
             pattern="[A-Za-z]{1,20}" maxlength="20" required>
         </div>
 
 <!-- Last Name. -->
         <div class="details">
-            <label for="last_name">Last Name:</label>
+            <label for="last_name">Last Name: <span class="required">*</span></label>
             <input type="text" id="last_name" name="last_name" autocomplete="family-name" placeholder="Doe" 
             pattern="[A-Za-z]{1,20}" maxlength="20" required>
         </div>
 
 <!-- Date of Birth. -->
         <div class="details">
-            <label for="date_of_birth">Date of Birth:</label>
+            <label for="date_of_birth">Date of Birth: <span class="required">*</span></label>
             <input type="text" id="date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy" 
             pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}" required>
         </div>
@@ -82,7 +85,7 @@
 
 <!-- Gender fieldset. -->
 <fieldset>
-    <legend>Gender</legend>
+    <legend>Gender <span class="required">*</span></legend>
 
     <div id="gender_form">
 
@@ -115,19 +118,19 @@
     <div id="address_form">
 
     <div class="address">
-        <label for="street_address">Street Address:</label>
+        <label for="street_address">Street Address: <span class="required">*</span></label>
         <input type="text" id="street_address" name="street_address" autocomplete="address-line1" 
         placeholder="123 Main St" pattern=".{1,40}" maxlength="40" required>
     </div>
   
     <div class="address">
-        <label for="suburb">Suburb/Town:</label>
+        <label for="suburb">Suburb/Town: <span class="required">*</span></label>
         <input type="text" id="suburb" name="suburb" autocomplete="address-level2" placeholder="Anytown"
         pattern=".{1,40}" maxlength="40" required>
     </div>
 
     <div class="address">
-        <label for="state">State:</label>
+        <label for="state">State: <span class="required">*</span></label>
             <select id="state" name="state" autocomplete="address-level1" required>
                 <option value="">Select a state</option>
                 <option value="victoria">VIC</option>
@@ -142,7 +145,7 @@
     </div>
   
     <div class="address">
-        <label for="postcode">Postcode:</label>
+        <label for="postcode">Postcode: <span class="required">*</span></label>
         <input type="text" id="postcode" name="postcode" autocomplete="postal-code" placeholder="3034" 
         pattern="[0-9]{4}" required>
     </div>
@@ -156,13 +159,13 @@
     <div id="contact_form">
 
         <div class="contact">
-            <label for="email">Email:</label>
+            <label for="email">Email: <span class="required">*</span></label>
             <input type="email" id="email" name="email" autocomplete="email" placeholder="your.email@example.com"
             required>
         </div>
 
         <div class="contact">
-            <label for="phone">Phone Number:</label>
+            <label for="phone">Phone Number: <span class="required">*</span></label>
             <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="0412345678"
             pattern="[0-9]{8,12}" required>
         </div>
@@ -171,7 +174,7 @@
 
 <!-- Skills fieldset. -->
 <fieldset>
-    <legend>Skills</legend>
+    <legend>Skills <span class="required">*</span></legend>
 
 <div id="skills_form">
 
