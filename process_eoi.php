@@ -270,17 +270,22 @@ if (count($errors) > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Xander Rode-Bramanis">
+    <meta name="description" content="Job application error">
     <title>Application Error</title>
+
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body class="apply-page">
 
+    <?php include("header.inc"); ?>
+
     <nav>
         <?php include("nav.inc"); ?>
     </nav>
 
-    <main class="apply-main">
+    <main id="main-content" class="apply-main" tabindex="-1">
 
         <div class="apply_intro_box">
 
@@ -292,7 +297,7 @@ if (count($errors) > 0) {
 
                 <?php
                 foreach ($errors as $error) {
-                    echo "<li>$error</li>";
+                    echo "<li>" . htmlspecialchars($error) . "</li>";
                 }
                 ?>
 
@@ -378,6 +383,9 @@ if ($insert_result) {
 
 } else {
 
+    mysqli_stmt_close($insert_stmt);
+    mysqli_close($dbconn);
+
     die("<p>There was an error submitting your application.</p>");
 }
 
@@ -401,11 +409,13 @@ mysqli_close($dbconn);
 
 <body class="apply-page">
 
+    <?php include("header.inc"); ?>
+
     <nav>
         <?php include("nav.inc"); ?>
     </nav>
 
-    <main class="apply-main">
+    <main id="main-content" class="apply-main" tabindex="-1">
 
         <div class="apply_intro_box">
 
