@@ -15,12 +15,7 @@ function clean_input($data) {
 }
 
 # Connect to database #
-require_once("settings.php");
-$dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
-
-if (!$dbconn) {
-    die("<p>Unable to connect to the database.</p>");
-}
+require_once("db_connect.php");
 
 # Create the eoi table if it does not already exist #
 # It's the same info requested on the form #

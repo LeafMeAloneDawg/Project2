@@ -45,7 +45,7 @@
 
     <div id="reference_number_form">
 
-        <label for="job_reference_number">Job Reference Number:<span class="required">*</span></label>
+        <label for="job_reference_number">Job Reference Number: <span class="required">*</span></label>
         <input type="text" id="job_reference_number" name="job_reference_number" 
         placeholder="ABC123" pattern="[A-Za-z0-9]{6}" required>
     </div>
