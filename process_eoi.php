@@ -49,7 +49,8 @@ if (!$table_result) {
 }
 
 # Get and clean form data #
-$job_reference_number = clean_input($_POST["job_reference_number"] ?? "");
+$job_reference_number = strtoupper(
+    clean_input($_POST["job_reference_number"] ?? ""));
 $first_name = clean_input($_POST["first_name"] ?? "");
 $last_name = clean_input($_POST["last_name"] ?? "");
 $date_of_birth = clean_input($_POST["date_of_birth"] ?? "");
