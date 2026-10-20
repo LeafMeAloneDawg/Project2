@@ -74,7 +74,7 @@
 
 <!-- Date of Birth. -->
         <div class="details">
-            <label for="date_of_birth">Date of Birth: <span class="required">*</span></label>
+            <label for="date_of_birth">Date of Birth:&nbsp;<span class="required">*</span></label>
             <input type="text" id="date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy" 
             pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}" required>
         </div>
@@ -116,7 +116,7 @@
     <div id="address_form">
 
     <div class="address">
-        <label for="street_address">Street Address: <span class="required">*</span></label>
+        <label for="street_address">Street Address:&nbsp;<span class="required">*</span></label>
         <input type="text" id="street_address" name="street_address" autocomplete="address-line1" 
         placeholder="123 Main St" pattern=".{1,40}" maxlength="40" required>
     </div>
