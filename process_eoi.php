@@ -187,15 +187,25 @@ $valid_skills = array(
     "time-management"
 );
 
-if (isset($_POST["skills"]) && is_array($_POST["skills"])) {
+if (!isset($_POST["skills"]) || !is_array($_POST["skills"])) {
+
+    $errors[] = "Please select at least one skill.";
+
+} else {
+
     $selected_skills = array();
 
     foreach ($_POST["skills"] as $skill) {
+
         $skill = clean_input($skill);
 
         if (in_array($skill, $valid_skills)) {
             $selected_skills[] = $skill;
         }
+    }
+
+    if (count($selected_skills) == 0) {
+        $errors[] = "Please select at least one skill.";
     }
 
     $skills = implode(", ", $selected_skills);
