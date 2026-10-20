@@ -794,7 +794,7 @@ textarea:focus {
 
 .details {
     display: grid;
-    grid-template-columns: 100px 170px;
+    grid-template-columns: minmax(100px, 1fr) minmax(0, 1.5fr);
     gap: 10px;
     align-items: center;
 }
