@@ -78,6 +78,34 @@ if (empty($job_reference_number)) {
     $errors[] = "Job reference number must be exactly 6 letters or numbers.";
 }
 
+# Check that the job reference exists in the jobs table #
+
+if (empty($errors)) {
+
+    $job_check = mysqli_prepare(
+        $dbconn,
+        "SELECT job_reference_number
+         FROM jobs
+         WHERE job_reference_number = ?"
+    );
+
+    mysqli_stmt_bind_param(
+        $job_check,
+        "s",
+        $job_reference_number
+    );
+
+    mysqli_stmt_execute($job_check);
+
+    mysqli_stmt_store_result($job_check);
+
+    if (mysqli_stmt_num_rows($job_check) == 0) {
+        $errors[] = "The job reference number does not exist.";
+    }
+
+    mysqli_stmt_close($job_check);
+}
+
 # Validate first name #
 if (empty($first_name)) {
     $errors[] = "First name is required.";
