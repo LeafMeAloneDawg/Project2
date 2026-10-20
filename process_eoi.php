@@ -6,11 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit();
 }
 
-# Clean form input (trim, stripslashes, htmlspecialchars) #
+# Clean form input #
 function clean_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data);
     return $data;
 }
 
@@ -40,7 +39,6 @@ $other_skills = clean_input($_POST["other_skills"] ?? "");
 # Validations #
 #             #
 
-# Store validation errors #
 $errors = array();
 
 
@@ -75,7 +73,6 @@ if (
     );
 
     mysqli_stmt_execute($job_check);
-
     mysqli_stmt_store_result($job_check);
 
     if (mysqli_stmt_num_rows($job_check) == 0) {
@@ -333,23 +330,7 @@ $database_date =
     . $date_parts[0];
 
 
-# Make data values safe for the SQL query #
-$job_reference_number = mysqli_real_escape_string($dbconn, $job_reference_number);
-$first_name = mysqli_real_escape_string($dbconn, $first_name);
-$last_name = mysqli_real_escape_string($dbconn, $last_name);
-$database_date = mysqli_real_escape_string($dbconn, $database_date);
-$gender = mysqli_real_escape_string($dbconn, $gender);
-$street_address = mysqli_real_escape_string($dbconn, $street_address);
-$suburb = mysqli_real_escape_string($dbconn, $suburb);
-$state = mysqli_real_escape_string($dbconn, $state);
-$postcode = mysqli_real_escape_string($dbconn, $postcode);
-$email = mysqli_real_escape_string($dbconn, $email);
-$phone = mysqli_real_escape_string($dbconn, $phone);
-$skills = mysqli_real_escape_string($dbconn, $skills);
-$other_skills = mysqli_real_escape_string($dbconn, $other_skills);
-
-
-# Add application to the eoi table #
+# Add application to the eoi table using a prepared statement #
 $insert_query = "INSERT INTO eoi (
     job_reference_number,
     first_name,
@@ -365,23 +346,29 @@ $insert_query = "INSERT INTO eoi (
     skills,
     other_skills
 )
-VALUES (
-    '$job_reference_number',
-    '$first_name',
-    '$last_name',
-    '$database_date',
-    '$gender',
-    '$street_address',
-    '$suburb',
-    '$state',
-    '$postcode',
-    '$email',
-    '$phone',
-    '$skills',
-    '$other_skills'
-)";
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-$insert_result = mysqli_query($dbconn, $insert_query);
+$insert_stmt = mysqli_prepare($dbconn, $insert_query);
+
+mysqli_stmt_bind_param(
+    $insert_stmt,
+    "sssssssssssss",
+    $job_reference_number,
+    $first_name,
+    $last_name,
+    $database_date,
+    $gender,
+    $street_address,
+    $suburb,
+    $state,
+    $postcode,
+    $email,
+    $phone,
+    $skills,
+    $other_skills
+);
+
+$insert_result = mysqli_stmt_execute($insert_stmt);
 
 
 # Check whether application was saved #
@@ -394,7 +381,7 @@ if ($insert_result) {
     die("<p>There was an error submitting your application.</p>");
 }
 
-
+mysqli_stmt_close($insert_stmt);
 mysqli_close($dbconn);
 
 ?>
