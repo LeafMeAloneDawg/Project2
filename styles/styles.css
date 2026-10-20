@@ -2,7 +2,7 @@
 filename: [style.css]
 author: [Group03]
 created: [01/09/2026]
-last modified: [09/09/2026]
+last modified: [21/10/2026]
 description: [styles.html CSS file]
 */
 
@@ -741,12 +741,6 @@ legend {
     font-weight: bold;
 }
 
-.required-note {
-    width: 95%;
-    max-width: 800px;
-    margin: 0 auto 15px;
-}
-
 /* Form Layout */
 
 /* Input, Select, and Textarea Styles */
@@ -824,32 +818,33 @@ textarea:focus {
 
 .address {
     display: grid;
-    grid-template-columns: 110px 180px;
+    grid-template-columns: minmax(110px, 1fr) minmax(0, 1.5fr);
     align-items: center;
     gap: 10px;
 }
 
 .address input,
 .address select {
-    width: 180px;
+    width: 100%;
     box-sizing: border-box;
 }
-
 /* Contact Details Styles */
 
 #contact_form {
-    display: flex;
-    gap: 75px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 
 .contact {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
 }
 
 .contact input {
-    width: 180px;
+    width: 100%;
 }
 
 /* Skills Styles */
@@ -1327,9 +1322,9 @@ section{
 
     /* Contact */
     #contact_form {
-        flex-direction: column;
-        gap: 15px;
-    }
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
 
     .contact {
         width: 100%;
