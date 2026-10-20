@@ -35,8 +35,6 @@
         Please ensure all required information is entered correctly before submitting your application.</p> 
 </div>
 
-<!-- This shows the required note. -->
-<p class="required_note">Fields marked with <span class="required">*</span> are required.</p>
 
 <!-- This is the form for the job application page. -->
 <form action="process_eoi.php" method="post">
