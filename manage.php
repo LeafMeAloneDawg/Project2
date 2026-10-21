@@ -2,24 +2,7 @@
 <!DOCTYPE HTML>
 <?php
 require_once("db_connect.php");
-$create_table_query = "CREATE TABLE IF NOT EXISTS eoi (
-    EOInumber INT AUTO_INCREMENT PRIMARY KEY,
-    job_reference_number VARCHAR(6) NOT NULL,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(20) NOT NULL,
-    date_of_birth DATE NOT NULL,
-    gender VARCHAR(20) NOT NULL,
-    street_address VARCHAR(40) NOT NULL,
-    suburb VARCHAR(40) NOT NULL,
-    state VARCHAR(30) NOT NULL,
-    postcode CHAR(4) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone VARCHAR(12) NOT NULL,
-    skills VARCHAR(255),
-    other_skills TEXT,
-    status ENUM('New', 'Current', 'Final') NOT NULL DEFAULT 'New'
-)";
-mysqli_query($dbconn, $create_table_query);
+require_once("db_setup.php");
 
 if (isset($_GET['jobReferenceSearch']) && trim($_GET['jobReferenceSearch']) != '') {
     $jobRef = $_GET['jobReferenceSearch'];
@@ -129,6 +112,7 @@ $result = $stmt->get_result();
 </head>
 
 <body class="apply-page">
+    <?php include("header.inc"); ?>
     <nav>
         <?php include("nav.inc"); ?>
     </nav>
