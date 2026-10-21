@@ -238,6 +238,12 @@ thead{
     max-width: 1600px;
     
 }
+
+.content-background-and-border  h1{
+    color: #09427e;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 /*  Styling for index company logo and heading
     Add a border and background to the logo and heading
     Sets the width to be consistent with other elements
@@ -327,12 +333,13 @@ thead{
 }
 
 #description-image-text img{
-    width: 40%;
-    min-width: 30%;
     height: auto;
-    margin-left: 10px;
+    width: 100%;
     border: 2px solid;
     border-radius: 6px;
+}
+.company-description{
+    font-size: larger;
 }
 /*  Styling for company slogan container
        Align text in center and make it larger
@@ -349,15 +356,24 @@ thead{
     border-radius: 6px;
 
 }
+
+.qoute-above-img{
+    display: flex;
+    flex-direction: column;
+    width:40%;
+}
+
 /* Set program schedule div to use flexbox colum display and add margin between it and element above */
 #programSchedule-layout{
     text-align: center;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    font-size: larger;
 }
 #programSchedule-layout h2{
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    color: #09427e;
 }
 
 #programSchedule{
@@ -368,7 +384,6 @@ thead{
     margin: 0 auto 10px auto;
 
 }
-
 /* Acknowledgment of country styling
     Set display to flexbox to allow for image to the left of text.
     Add margin between it and element above
@@ -387,7 +402,6 @@ thead{
     margin-right: 10px;
     border-radius: 16px;
 }
-
 
 
 
@@ -1381,7 +1395,8 @@ section{
 
     #description-image-text img{
         width: 90%;
-        margin:auto auto;
+        height: auto;
+        margin: auto auto;
     }
     /*  Make table font size smaller on small screens   */
     #programSchedule{
@@ -1390,6 +1405,10 @@ section{
     /*  Make company slogan smaller on small screens */
     .company-slogan{
         font-size: small;
+    }
+
+    .qoute-above-img{
+        width: 100%;
     }
 
 }

@@ -31,19 +31,16 @@
     <main id="index-content" tabindex="-1">
         <!--    Container for company description and visual content -->
         <div id="index-description" class="content-background-and-border">
-            <q class="company-slogan"><b>No young person has to face life alone</b></q>
+            <h1>Company Description</h1>
+            
             <div id="description-image-text">
-                <div>
+                <div class="company-description">
 
                     <p>Melbourne Youth Support aims to improve young lives through youth
-                        outreach, volunteer organisation and fundraising. We firmly believe
-                        in connecting with vulnerable youths and
-                        providing them personalised support. </p>
+                        outreach, volunteer organisation and fundraising.</p>
 
                     <p>Early intervention in a troubled young person's life can make a huge
-                        change in their quality of life in the future, and prevent youth
-                        ending up on the streets or turning to harmful methods of coping
-                        with their situation.</p>
+                        change in their quality of life in the future.</p>
 
                     <p>Melbourne youth support employs trained youth outreach workers who
                         build rapport with young people facing vulnerability or
@@ -64,54 +61,59 @@
                         people and their communities. Providing support early in someone's
                         life is critical.</p>
 
-                    <p>A critical aspect of our program is to hold regular mentoring, sports
-                        and recreation sessions, to provide youth free, regular events where
-                        they may enjoy themselves and connect with others.</p>
+                    
 
                 </div>
+                <div class="qoute-above-img">
+                <q class="company-slogan"><b>No young person has to face life alone</b></q>
                 <!-- Image source: https://creativeyouthland.org/projects/ -->
+
                 <img src="styles/images/indexGraphic.jpg" alt="Youth Power Graphic">
+                </div>
             </div>
 
         </div>
         <!--    Container for program schedule table    -->
         <div id="programSchedule-layout" class="content-background-and-border">
             <h2>Program Schedule</h2>
+            <p>A critical aspect of our program is to hold regular mentoring, sports
+                        and recreation sessions, to provide youth free, regular events where
+                        they may enjoy themselves and connect with others.</p>
             <table id="programSchedule">
                 <thead>
                     <tr>
-                        <th>Day</th>
-                        <th>Session 1 - Morning</th>
-                        <th>Session 2 - Midday</th>
-                        <th>Session 3 - Afternoon</th>
-                        <th>Session 4 - Evening</th>
+                        <th scope="col">Day</th>
+                        <th scope="col">Session 1 - Morning</th>
+                        <th scope="col">Session 2 - Midday</th>
+                        <th scope="col">Session 3 - Afternoon</th>
+                        <th scope="col">Session 4 - Evening</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><b>Mon</b></td>
+                        <th scope="row">Mon</th>
                         <td><b>—</b></td>
                         <td>Mentoring</td>
                         <td colspan="2">Basketball</td>
                     </tr>
                     <tr>
-                        <td><b>Tue</b></td>
+                        <th scope="row">Tue</th>
                         <td>Study Support</td>
                         <td>Job Skills</td>
                         <td colspan="2">Computer Lab</td>
                     </tr>
                     <tr>
-                        <td><b>Wed</b></td>
+                        <th scope="row">Wed</th>
                         <td>Mentoring</td>
                         <td colspan="3">Fitness / Gym</td>
                     </tr>
                     <tr>
-                        <td><b>Thu</b></td>
+                        <th scope="row">Thu</th>
                         <td colspan="2">Music Making / Recording</td>
                         <td colspan="2">Visual Arts</td>
                     </tr>
                     <tr>
-                        <td><b>Fri</b></td>
+                        <th scope="row">Fri</th>
                         <td>Mentoring</td>
                         <td>Job Skills</td>
                         <td colspan="2">—</td>
