@@ -103,6 +103,9 @@ $result = $stmt->get_result();
 
 <head>
     <title>Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mason Curlis">
     <link rel="stylesheet" href="styles/styles.css">
     <style>
         label {
@@ -230,18 +233,18 @@ $result = $stmt->get_result();
             echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['EOInumber'] . "</td>";
-                echo "<td>" . $row['job_reference_number'] . "</td>";
-                echo "<td>" . $row['first_name'] . "</td>";
-                echo "<td>" . $row['last_name'] . "</td>";
-                echo "<td>" . $row['date_of_birth'] . "</td>";
-                echo "<td>" . $row['gender'] . "</td>";
-                echo "<td>" . $row['street_address'] . " " . $row['suburb'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['phone'] . "</td>";
-                echo "<td>" . $row['skills'] . "</td>";
-                echo "<td>" . $row['other_skills'] . "</td>";
-                echo "<td>" . $row['status'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['EOInumber']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['job_reference_number']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['date_of_birth']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['street_address']) . " " . $row['suburb'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['skills']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['other_skills']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
