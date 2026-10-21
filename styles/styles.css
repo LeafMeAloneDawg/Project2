@@ -1075,8 +1075,11 @@ section{
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+    flex-wrap:wrap;
+    justify-content: center;
+    column-gap: 5px;
    }
+
 
    #managePage fieldset{
     max-width: fit-content;
@@ -1107,6 +1110,7 @@ section{
   display: flex;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
    

@@ -124,9 +124,18 @@ $result = $stmt->get_result();
              drafted with the assistance of GenAI, then reviewed and tested by Mohammad Aquib. -->
         <p><a href="logout.php">Log out (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></p>
 
-        <!-- Form to select field to sort EOI table by -->
+        
         <div class="EOIManageForm">
             <div>
+            <!-- Button to show all EOIs -->
+            <fieldset>
+                <legend>Show all EOIs:</legend>
+                <form action="manage.php">
+                    <label>Show all EOIs:</label>
+                    <input type="submit" value="Show All">
+                </form>
+            </fieldset>
+            <!-- Form to select field to sort EOI table by -->
             <fieldset>
                 <legend>Sort By:</legend>
                 <form method="GET" action="manage.php">
@@ -153,14 +162,6 @@ $result = $stmt->get_result();
                         <option value="DESC">Descending order</option>
                     </select>
                     <input type="submit" value="Sort list">
-                </form>
-            </fieldset>
-            <!-- Button to show all EOIs -->
-            <fieldset>
-                <legend>Show all EOIs:</legend>
-                <form action="manage.php">
-                    <label>Show all EOIs:</label>
-                    <input type="submit" value="Show All">
                 </form>
             </fieldset>
             </div>
@@ -196,6 +197,7 @@ $result = $stmt->get_result();
                 </form>
             </fieldset>
             </div>
+            <div>
              <!-- Form to search by job reference -->
             <fieldset class="managementFieldset">
                 <legend>Search By:</legend>
@@ -217,6 +219,7 @@ $result = $stmt->get_result();
                     </form>
                 </div>
             </fieldset>
+            </div>
         </div>
         
 
