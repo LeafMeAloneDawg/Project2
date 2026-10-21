@@ -1,3 +1,12 @@
+<?php
+# Connect to the database #
+require_once("db_setup.php");
+
+# Get the available jobs for the dropdown #
+$job_query = "SELECT job_reference_number, title FROM jobs";
+$job_result = mysqli_query($dbconn, $job_query);
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -44,12 +53,28 @@
     <legend>Job Reference Number</legend>
 
     <div id="reference_number_form">
-
         <label for="job_reference_number">Job Reference Number: <span class="required">*</span></label>
-        <input type="text" id="job_reference_number" name="job_reference_number" 
-        placeholder="ABC123" pattern="[A-Za-z0-9]{6}" required>
-    </div>
-</fieldset>
+        <select id="job_reference_number" name="job_reference_number" required>
+        <option value="">Select a job</option>
+
+        <?php
+            while ($job = mysqli_fetch_assoc($job_result)) {
+
+            echo '<option value="'
+            . htmlspecialchars($job["job_reference_number"])
+            . '">'
+            . htmlspecialchars($job["job_reference_number"])
+            . ' - '
+            . htmlspecialchars($job["title"])
+            . '</option>';
+            }
+        ?>
+
+                </select>
+
+            </div>
+
+        </fieldset>
 
 <!-- Personal Details Fieldset-->
 
