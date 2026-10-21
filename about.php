@@ -77,7 +77,7 @@ $result = mysqli_query($dbconn,$query);
                     // Dynamic member list
                     if ($result && mysqli_num_rows($result) > 0) {
                         while ($member = mysqli_fetch_assoc($result)) {
-                            echo "<li>" . htmlspecialchars($member['name']) . " — <span class=\"member-id\">StudentID: <strong>" . htmlspecialchars($member['student_id']) . "</strong></span></li>";
+                            echo "<li>" . htmlspecialchars($member['name']) . " - <span class=\"member-id\">StudentID: <strong>" . htmlspecialchars($member['student_id']) . "</strong></span></li>";
                         }
                         // Reset cursor to loop over data again for the tables
                         mysqli_data_seek($result, 0); 
