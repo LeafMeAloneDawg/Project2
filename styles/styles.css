@@ -1094,11 +1094,31 @@ section{
     column-gap: 5px;
    }
 
-
+   
    #managePage fieldset{
     max-width: fit-content;
    }
 
+   /*
+   Styling for table feedback box - display none if no feedback provided from SQL DB.
+   */
+   #managePage .content-background-and-border{
+    width: fit-content;
+    padding: 0px 10px 0px 10px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+   }
+   #managePage .content-background-and-border p {
+    height: fit-content;
+   }
+
+   /*
+   Below selector was found at https://stackoverflow.com/questions/18313689/empty-selector-not-working-in-css
+   */
+   .content-background-and-border:not(:has(*)) {
+    display: none;
+}
+  
    
 
    /*Slightly less padding for buttons*/

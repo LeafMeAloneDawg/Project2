@@ -3,7 +3,7 @@
 <?php
 require_once("db_connect.php");
 require_once("db_setup.php");
-
+//Check if searching by job reference.
 if (isset($_GET['jobReferenceSearch']) && trim($_GET['jobReferenceSearch']) != '') {
     $jobRef = $_GET['jobReferenceSearch'];
     $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE job_reference_number = ?");
@@ -43,7 +43,7 @@ elseif (isset($_POST["deleteJobReference"]) && $_POST["deleteJobReference"] != '
     $stmt = $dbconn->prepare("SELECT * FROM eoi");
 
 }
-//If EOI ID is set, update status to selected value, ensuring the new status is a valid value.
+//If EOI ID is set, update status to selected value, ensuring the new status is a valid value. If invalid value, set $newStatus to null to avoid it being used later.
 elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) != '') {
     $EOI_ID = $_POST['EOIUpdateStatusID'];
     $newStatus = $_POST['status'];
@@ -54,7 +54,11 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
         $stmt->execute();
         $stmt = $dbconn->prepare("SELECT * FROM eoi");
     }
-    else{die("Updated status is invalid");}
+    else{
+        $EOI_ID = null;
+        $newStatus = null;
+    die("Updated status is invalid");
+    }
 
 
 } elseif (isset($_GET['sortField'])) {
@@ -83,8 +87,12 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
         $stmt = "SELECT * FROM eoi ORDER BY $sortField $sortOrder";
         $stmt = $dbconn->prepare($stmt);
 
-    } else {
+    } 
+    //If the sort field is not an allowed value, show all entries and set the values to null so they are not referenced later on.
+    else {
         $stmt = $dbconn->prepare("SELECT * FROM eoi");
+        $sortField = null;
+        $sortOrder = null;
     }
 
 }
@@ -113,7 +121,7 @@ $result = $stmt->get_result();
         }
     </style>
 </head>
-
+<!-- Reused apply page CSS -->
 <body class="apply-page">
     <?php include("header.inc"); ?>
     <nav>
@@ -226,9 +234,38 @@ $result = $stmt->get_result();
         </div>
         
 
+        <div class="content-background-and-border">
+            <?php
+            if(isset($deleteJobReference)){
+                echo '<p>' .  mysqli_affected_rows($dbconn) . ' rows deleted.</p>';
+            }
+            elseif(isset($sortField) && isset($sortOrder)){
 
+                echo '<p>Sorting by ' . $sortField . ' in '. $sortOrder . ' order.</p>';
+            }
+            elseif(isset($newStatus) && isset($EOI_ID)){
+                echo '<p>Updated EOI #' . $EOI_ID . ' to '. $newStatus . '.</p>';
+            }
+            elseif(isset($first_name) && isset($last_name)){
+                echo '<p>Searching for EOIs with applicant full name of ' . $first_name. ' '. $last_name . '.</p>';
+            }
+            elseif(isset($first_name)){
+                echo '<p>Searching for EOIs with applicant first name of ' . $first_name. '.</p>';
+            }
+            elseif(isset($last_name)){
+                echo '<p>Searching for EOIs with applicant last name of ' . $last_name . '.</p>';
+            }
+            elseif(isset($jobRef)){
+                echo '<p>Searching for EOIs for job reference ' . $jobRef . '.</p>';
+            }
+            
+            
+            ?>
+        </div>
 
         <?php
+
+        
         if ($result) {
             echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
