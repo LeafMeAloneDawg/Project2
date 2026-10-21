@@ -67,7 +67,8 @@ $result = mysqli_query($dbconn,$query);
                 <ul>
                     <li>Thursday 12:30pm - 2:30pm Class</li>
                     <li>Tutor: Nick</li>
-                    <li>Group: 3</li>
+                    <li>Group Name: Group 3</li>
+                    <li>Group: G03</li>
                 </ul>
             </li>
             <li>Members
