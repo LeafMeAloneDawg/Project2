@@ -382,6 +382,7 @@ thead{
 }
 #acknowledgment-of-country img{
     margin: auto auto;
+    margin-left: 0.5rem;
     max-height: 180px;
     margin-right: 10px;
     border-radius: 16px;
