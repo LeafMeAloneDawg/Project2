@@ -1,37 +1,7 @@
 <?php
-// Database Connection 
-require_once "settings.php"; 
-$dbconn = @mysqli_connect($host, $user, $password, $sql_db);
-
-if (!$dbconn) {
-    die("<p>Database connection failed: " . mysqli_connect_error() . "</p>");
-}
 // Database Connection
  require_once("db_connect.php");
-// Check if table exists already and create it if not 
-$create_table_query = "CREATE TABLE IF NOT EXISTS members (
-  `student_id` varchar(10) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `fun_fact_1` text NOT NULL,
-  `fun_fact_2` text NOT NULL,
-  `fun_fact_3` text NOT NULL,
-  `quote` text NOT NULL,
-  `quote_translated` text NOT NULL,
-  PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-
-mysqli_query($dbconn,$create_table_query);
-
-$create_contrib_table = "CREATE TABLE IF NOT EXISTS `member_contributions` (
-  `contribution_id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(10) NOT NULL,
-  `project_part` varchar(25) NOT NULL,
-  `task_description` text NOT NULL,
-  PRIMARY KEY (`contribution_id`),
-  KEY `foreign_key_member` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-
-mysqli_query($dbconn,$create_contrib_table);
+ require_once("db_setup.php");
 
 // Fetch members data sorted by name
 $query = "SELECT * FROM members ORDER BY name ASC;";
@@ -146,7 +116,7 @@ $result = mysqli_query($dbconn,$query);
                 }
                 
                 // Print each task with its project part clearly visible for the marker
-                echo "<li><strong>Part: " . htmlspecialchars($row['project_part']) . ":</strong> " . htmlspecialchars($row['task_description']) . "</li>";
+                echo "<li><strong>Part " . htmlspecialchars($row['project_part']) . ":</strong> " . htmlspecialchars($row['task_description']) . "</li>";
             }
     
             // Close the tags for the very last person after the loop finishes

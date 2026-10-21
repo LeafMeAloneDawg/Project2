@@ -236,3 +236,133 @@ if (!$admin_exists) {
     mysqli_stmt_execute($insert_admin);
     mysqli_stmt_close($insert_admin);
 }
+
+#                #
+# members table  #
+#                #
+$create_members_query = "CREATE TABLE IF NOT EXISTS members (
+    student_id VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    fun_fact_1 TEXT NOT NULL,
+    fun_fact_2 TEXT NOT NULL,
+    fun_fact_3 TEXT NOT NULL,
+    quote TEXT NOT NULL,
+    quote_translated TEXT NOT NULL
+) DEFAULT CHARSET=utf8mb4";
+
+if (!mysqli_query($dbconn, $create_members_query)) {
+    die("<p>Unable to create the members table.</p>");
+}
+
+$count_members = mysqli_query($dbconn, "SELECT COUNT(*) AS total FROM members");
+$row_members = mysqli_fetch_assoc($count_members);
+
+if ($row_members['total'] == 0) {
+    $starting_members = [
+        ['103839016', 'Xander', 'Enjoys building custom mechanical keyboards.', 'Passionate about retro gaming and emulation.', 'Spends weekends working on project cars.', 'Stay curious and keep building.', 'Stay curious and keep building.'],
+        ['105641802', 'Aquib', 'Avid fan of tactical strategy video games.', 'Enjoys exploring advanced web development frameworks.', 'Always ready with a fresh cup of coffee.', 'Code with purpose.', 'Code with purpose.'],
+        ['106893099', 'Ryan', 'Modifies Japanese import sedans in spare time.', 'Enjoys 3D printing custom automotive parts.', 'Studies computer science at Swinburne.', 'Measure twice, cut once.', 'Measure twice, cut once.'],
+        ['103990515', 'Mason', 'Passionate about clean and efficient software design.', 'Enjoys solving complex algorithmic problems.', 'Active participant in coding hackathons.', 'Simplicity is prerequisite for reliability.', 'Simplicity is prerequisite for reliability.']
+    ];
+
+    $insert_member = mysqli_prepare($dbconn, "INSERT INTO members (student_id, name, fun_fact_1, fun_fact_2, fun_fact_3, quote, quote_translated) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($insert_member, "sssssss", $m_id, $m_name, $m_f1, $m_f2, $m_f3, $m_q, $m_qt);
+
+    foreach ($starting_members as $m) {
+        list($m_id, $m_name, $m_f1, $m_f2, $m_f3, $m_q, $m_qt) = $m;
+        mysqli_stmt_execute($insert_member);
+    }
+    mysqli_stmt_close($insert_member);
+}
+
+
+#                            #
+# member_contributions table #
+#                            #
+$create_contrib_table = "CREATE TABLE IF NOT EXISTS member_contributions (
+    contribution_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id VARCHAR(10) NOT NULL,
+    project_part VARCHAR(25) NOT NULL,
+    task_description TEXT NOT NULL,
+    CONSTRAINT foreign_key_member FOREIGN KEY (student_id) REFERENCES members (student_id) ON DELETE CASCADE ON UPDATE CASCADE
+) DEFAULT CHARSET=utf8mb4";
+
+if (!mysqli_query($dbconn, $create_contrib_table)) {
+    die("<p>Unable to create the member_contributions table.</p>");
+}
+
+$count_contrib = mysqli_query($dbconn, "SELECT COUNT(*) AS total FROM member_contributions");
+$row_contrib = mysqli_fetch_assoc($count_contrib);
+
+if ($row_contrib['total'] == 0) {
+    $starting_contribs = [
+        ['103839016', '1', 'Job Page Html'],
+        ['103839016', '1', 'Job Page CSS'],
+        ['103839016', '1', 'Shared responsibility on Jira'],
+        ['103839016', '1 & 2', 'Shared responsibility making regular commits to Github'],
+        ['103839016', '1 & 2', 'Shared responsibility joining group meetings, in class and online'],
+        ['103839016', '1 & 2', 'Shared responsibility communicating in timely manner to group chats'],
+        ['103839016', '1', 'Shared responsibility combining CSS sheets into one style.css'],
+        ['105641802', '1', 'Home Page Html'],
+        ['105641802', '1', 'Home Page CSS'],
+        ['105641802', '1', 'Shared responsibility on Jira'],
+        ['105641802', '1 & 2', 'Shared responsibility making regular commits to Github'],
+        ['105641802', '1 & 2', 'Shared responsibility joining group meetings, in class and online'],
+        ['105641802', '1 & 2', 'Shared responsibility communicating in timely manner to group chats'],
+        ['105641802', '1', 'Shared responsibility combining CSS sheets into one style.css'],
+        ['106893099', '1', 'About Page Html'],
+        ['106893099', '1', 'About Page CSS'],
+        ['106893099', '1', 'Shared responsibility on Jira'],
+        ['106893099', '1 & 2', 'Shared responsibility making regular commits to Github'],
+        ['106893099', '1 & 2', 'Shared responsibility joining group meetings, in class and online'],
+        ['106893099', '1 & 2', 'Shared responsibility communicating in timely manner to group chats'],
+        ['106893099', '1', 'Shared responsibility combining CSS sheets into one style.css'],
+        ['106893099', '2', 'Converted pages to .php rather than .html'],
+        ['103990515', '1', 'Apply Page Html'],
+        ['103990515', '1', 'Apply Page CSS'],
+        ['103990515', '1', 'Shared responsibility on Jira'],
+        ['103990515', '1 & 2', 'Shared responsibility making regular commits to Github'],
+        ['103990515', '1 & 2', 'Shared responsibility joining group meetings, in class and online'],
+        ['103990515', '1 & 2', 'Shared responsibility communicating in timely manner to group chats'],
+        ['103990515', '1', 'Shared responsibility combining CSS sheets into one style.css'],
+        ['103839016', '2', 'Create jobs table'],
+        ['103839016', '2', 'Created login page'],
+        ['103839016', '2', 'Created search.php'],
+        ['103839016', '2', 'Populate jobs table from database'],
+        ['103839016', '2', 'Implement jobs table creation if not exit'],
+        ['103839016', '2', 'Implemented secure session setup and login'],
+        ['103839016', '2', 'Implemented redirection of logged in users'],
+        ['103839016', '2', 'Implemented login attempt limit'],
+        ['103839016', '2', 'Implemented login link in footer'],
+        ['103839016', '2', 'Implemented search.php into jobs.php'],
+        ['105641802', '2', 'Duplicated project from part 1'],
+        ['105641802', '2', 'Created db_connect.php'],
+        ['105641802', '2', 'Created manage.php'],
+        ['105641802', '2', 'Implement manage.php sorting functions'],
+        ['105641802', '2', 'Implemented manage.php searching functions'],
+        ['105641802', '2', 'Styled and formatted manage.php page'],
+        ['106893099', '2', 'Created members table'],
+        ['106893099', '2', 'Created member_contribution table'],
+        ['106893099', '2', 'Cleaned up header.inc, nav.inc and footer.inc files'],
+        ['106893099', '2', 'Fixed skip link for all pages'],
+        ['106893099', '2', 'Fixed photo caption size in about.php'],
+        ['106893099', '2', 'Fixed navigation bar underline for current page'],
+        ['103990515', '2', 'Created settings.php'],
+        ['103990515', '2', 'Created EOI.php'],
+        ['103990515', '2', 'Created EOI table'],
+        ['103990515', '2', 'Implemented form validation error handling'],
+        ['103990515', '2', 'Sanitized form input data to ensure secure database insertion and prevent SQL injection']
+    ];
+
+    $insert_contrib = mysqli_prepare($dbconn, "INSERT INTO member_contributions (student_id, project_part, task_description) VALUES (?, ?, ?)");
+    mysqli_stmt_bind_param($insert_contrib, "sss", $c_sid, $c_part, $c_desc);
+
+    foreach ($starting_contribs as $c) {
+        $c_sid = $c[0];
+        $c_part = $c[1];
+        $c_desc = $c[2];
+        mysqli_stmt_execute($insert_contrib);
+    }
+    mysqli_stmt_close($insert_contrib);
+}
+?>
