@@ -70,11 +70,9 @@ $job_result = mysqli_query($dbconn, $job_query);
             }
         ?>
 
-                </select>
-
-            </div>
-
-        </fieldset>
+        </select>
+    </div>
+</fieldset>
 
 <!-- Personal Details Fieldset-->
 
