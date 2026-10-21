@@ -903,6 +903,16 @@ textarea:focus {
    ABOUT PAGE
    ========================= */
 
+/* formatting member id to be distinct */
+.member-id {
+    color: #2563eb;
+    padding: 2px 6px;
+    border: 1px solid #2563eb;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 /* formatting group photo/banner */
 .banner_text{
     position: relative;
