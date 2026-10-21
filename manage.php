@@ -241,22 +241,22 @@ $result = $stmt->get_result();
             }
             elseif(isset($sortField) && isset($sortOrder)){
 
-                echo '<p>Sorting by ' . $sortField . ' in '. $sortOrder . ' order.</p>';
+                echo '<p>Sorting by ' . htmlspecialchars($sortField) . ' in '. htmlspecialchars($sortOrder) . ' order.</p>';
             }
             elseif(isset($newStatus) && isset($EOI_ID)){
-                echo '<p>Updated EOI #' . $EOI_ID . ' to '. $newStatus . '.</p>';
+                echo '<p>Updated EOI #' . htmlspecialchars($EOI_ID) . ' to '. htmlspecialchars($newStatus) . '.</p>';
             }
             elseif(isset($first_name) && isset($last_name)){
-                echo '<p>Searching for EOIs with applicant full name of ' . $first_name. ' '. $last_name . '.</p>';
+                echo '<p>Searching for EOIs with applicant full name of ' . htmlspecialchars($first_name). ' '. htmlspecialchars($last_name) . '.</p>';
             }
             elseif(isset($first_name)){
-                echo '<p>Searching for EOIs with applicant first name of ' . $first_name. '.</p>';
+                echo '<p>Searching for EOIs with applicant first name of ' . htmlspecialchars($first_name). '.</p>';
             }
             elseif(isset($last_name)){
-                echo '<p>Searching for EOIs with applicant last name of ' . $last_name . '.</p>';
+                echo '<p>Searching for EOIs with applicant last name of ' . htmlspecialchars($last_name) . '.</p>';
             }
             elseif(isset($jobRef)){
-                echo '<p>Searching for EOIs for job reference ' . $jobRef . '.</p>';
+                echo '<p>Searching for EOIs for job reference ' . htmlspecialchars($jobRef) . '.</p>';
             }
             
             
@@ -276,7 +276,7 @@ $result = $stmt->get_result();
                 echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['date_of_birth']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['street_address']) . " " . $row['suburb'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['street_address']) . " " . htmlspecialchars($row['suburb']) . " " . htmlspecialchars($row['state']) . " " . htmlspecialchars($row['postcode']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['skills']) . "</td>";
