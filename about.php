@@ -1,12 +1,13 @@
 <?php
 // Database Connection 
 require_once "settings.php"; 
-$dbconn = @mysqli_connect($host,$user, $password,$sql_db);
+$dbconn = @mysqli_connect($host, $user, $password, $sql_db);
 
 if (!$dbconn) {
     die("<p>Database connection failed: " . mysqli_connect_error() . "</p>");
 }
-
+// Database Connection
+ require_once("db_connect.php");
 // Check if table exists already and create it if not 
 $create_table_query = "CREATE TABLE IF NOT EXISTS members (
   `student_id` varchar(10) NOT NULL,
@@ -123,10 +124,10 @@ $result = mysqli_query($dbconn,$query);
     <dl class="group_contributions">
         <?php
         // Query contributions joined with members 
-        $contrib_query = "SELECT m.name, c.task_description 
+        $contrib_query = "SELECT m.name, c.project_part, c.task_description 
                           FROM member_contributions c 
                           JOIN members m ON c.student_id = m.student_id 
-                          ORDER BY m.name ASC, c.contribution_id ASC;";
+                          ORDER BY m.name ASC, c.project_part ASC, c.contribution_id ASC;";
         
         $contrib_result = mysqli_query($dbconn, $contrib_query);
 
@@ -144,8 +145,8 @@ $result = mysqli_query($dbconn,$query);
                     echo "<dd><ol>";
                 }
                 
-                // Print each task under the current member
-                echo "<li>" . htmlspecialchars($row['task_description']) . "</li>";
+                // Print each task with its project part clearly visible for the marker
+                echo "<li><strong>Part: " . htmlspecialchars($row['project_part']) . ":</strong> " . htmlspecialchars($row['task_description']) . "</li>";
             }
     
             // Close the tags for the very last person after the loop finishes
@@ -157,7 +158,7 @@ $result = mysqli_query($dbconn,$query);
         }
         ?>
     </dl> 
-</section> 
+</section>
   
 <section class="about_layout">
     <h2>Group Members</h2>
