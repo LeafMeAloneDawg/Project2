@@ -3,7 +3,7 @@
 $current_page = basename($_SERVER['PHP_SELF']); 
 ?>
 <div class="nav_logo">
-    <a href="index.php"><img src="styles/images/grp_3.png" alt="MYSN Logo"></a>
+    <a href="index.php"><img src="images/grp_3.png" alt="MYSN Logo"></a>
 </div>
 <ul class="nav_links">
     <li><a href="index.php" <?php echo ($current_page == 'index.php') ? 'aria-current="page"' : ''; ?>>Home</a></li>
