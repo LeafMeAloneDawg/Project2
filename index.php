@@ -28,7 +28,7 @@
                 <img src="images/grp_3.png" id="company_logo" alt="Company Logo">
                 <h1 id="index_logo_text_overlay">Melbourne Youth <br> Support Network</h1>
         </div>
-    <main id="index-content" tabindex="-1">
+    <main id="main-content" tabindex="-1">
         <!--    Container for company description and visual content -->
         <div id="index-description" class="content-background-and-border">
             <h1>Company Description</h1>
