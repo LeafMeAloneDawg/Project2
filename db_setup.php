@@ -260,7 +260,7 @@ $row_members = mysqli_fetch_assoc($count_members);
 if ($row_members['total'] == 0) {
     $starting_members = [
         ['103839016', 'Aquib', 'Avid fan of tactical strategy video games.', 'Enjoys exploring advanced web development frameworks.', 'Always ready with a fresh cup of coffee.', 'Code with purpose.', 'Code with purpose.'],    
-        ['105641802', 'Mason', 'Passionate about clean and efficient software design.', 'Enjoys solving complex algorithmic problems.', 'Active participant in coding hackathons.', 'Simplicity is prerequisite for reliability.', 'Simplicity is prerequisite for reliability.']
+        ['105641802', 'Mason', 'Passionate about clean and efficient software design.', 'Enjoys solving complex algorithmic problems.', 'Active participant in coding hackathons.', 'Simplicity is prerequisite for reliability.', 'Simplicity is prerequisite for reliability.'],
         ['106893099', 'Ryan', 'Modifies Japanese import sedans in spare time.', 'Enjoys 3D printing custom automotive parts.', 'Studies computer science at Swinburne.', 'Measure twice, cut once.', 'Measure twice, cut once.'],
         ['103990515', 'Xander', 'Enjoys building custom mechanical keyboards.', 'Passionate about retro gaming and emulation.', 'Spends weekends working on project cars.', 'Stay curious and keep building.', 'Stay curious and keep building.']
     ];
