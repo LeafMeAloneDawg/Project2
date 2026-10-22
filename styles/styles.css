@@ -294,8 +294,9 @@ thead{
     background-repeat: repeat-y;
     background-attachment: fixed;
 }
-/* Set main element of index.html to use flexbox column display, aligning items in the center of the page */
-#index-content {
+/* Set main element of index.php to use flexbox column display, aligning items in the center of the page.
+   Scoped to .index-page because every page's main now shares id="main-content" (the skip link target) */
+.index-page #main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
