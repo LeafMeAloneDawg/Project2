@@ -6,7 +6,8 @@ require_once("db_setup.php");
 //Regular expressions checked using https://www.phpliveregex.com/
 $nameRegexCheck = "/^[A-Za-z]*$/";
 $jobRefRegexCheck = "/^[A-Za-z]{3}[0-9]{3}$/";
-//Check if searching by job reference.
+
+//Check job reference search field is not empty, and matches regex.
 if (isset($_GET['jobReferenceSearch']) && trim($_GET['jobReferenceSearch']) != '') {
     $jobRef = trim($_GET['jobReferenceSearch']);
     if (preg_match($jobRefRegexCheck, $jobRef)) {
@@ -78,6 +79,8 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
         $stmt = $dbconn->prepare("UPDATE eoi SET status = ? WHERE EOInumber = ?");
         $stmt->bind_param("ss", $newStatus, $EOI_ID);
         $stmt->execute();
+        $eoiUpdatedBool = false;
+        if(mysqli_affected_rows($dbconn)>0){$eoiUpdatedBool=true;}
         $stmt = $dbconn->prepare("SELECT * FROM eoi");
     } else {
         $EOI_ID = null;
@@ -273,7 +276,12 @@ $result = $stmt->get_result();
 
                 echo '<p>Sorting by ' . htmlspecialchars($sortField) . ' in ' . htmlspecialchars($sortOrder) . ' order.</p>';
             } elseif (isset($newStatus) && isset($EOI_ID)) {
-                echo '<p>Updated EOI #' . htmlspecialchars($EOI_ID) . ' to ' . htmlspecialchars($newStatus) . '.</p>';
+                if($eoiUpdatedBool){
+                    echo '<p>Updated EOI #' . htmlspecialchars($EOI_ID) . ' to ' . htmlspecialchars($newStatus) . '.</p>';
+                }
+                else{
+                    echo '<p>That EOI ID does not exist / Already has that status.</p>';
+                }
             } elseif (isset($first_name) && isset($last_name)) {
                 echo '<p>Searching for EOIs with applicant full name of ' . htmlspecialchars($first_name) . ' ' . htmlspecialchars($last_name) . '.</p>';
             } elseif (isset($first_name)) {
