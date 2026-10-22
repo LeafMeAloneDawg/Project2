@@ -3,6 +3,9 @@
 <?php
 require_once("db_connect.php");
 require_once("db_setup.php");
+//Regular expressions checked using https://www.phpliveregex.com/
+$nameRegexCheck = "/^[A-Za-z]*$/";
+$jobRefRegexCheck = "/^[A-Za-z]{3}[0-9]{3}$/";
 //Check if searching by job reference.
 if (isset($_GET['jobReferenceSearch']) && trim($_GET['jobReferenceSearch']) != '') {
     $jobRef = $_GET['jobReferenceSearch'];
@@ -21,16 +24,26 @@ elseif ((isset($_GET['firstName']) || isset($_GET['lastName'])) && ((trim($_GET[
     }
     //If both first and last name are set, query both.
     if (isset($first_name) && isset($last_name)) {
-        $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE first_name = ? AND last_name = ?");
-        $stmt->bind_param("ss", $first_name, $last_name);
+        if(preg_match($nameRegexCheck, $first_name) && preg_match($nameRegexCheck, $last_name)){
+            $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE first_name = ? AND last_name = ?");
+            $stmt->bind_param("ss", $first_name, $last_name);
+        }
+        else{$errorString = "Name must contain only letters.";}
+        
     }
     //Else, find which is set and set appropriate query.
     elseif (isset($first_name)) {
-        $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE first_name = ?");
-        $stmt->bind_param("s", $first_name);
+        if(preg_match($nameRegexCheck, $first_name)){
+            $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE first_name = ?");
+            $stmt->bind_param("s", $first_name);
+        }
+        else{$errorString = "Name must contain only letters.";}
     } elseif (isset($last_name)) {
+        if(preg_match($nameRegexCheck, $last_name)){
         $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE last_name = ?");
         $stmt->bind_param("s", $last_name);
+        }
+        else{$errorString = "Name must contain only letters.";}
     }
 }
 //If deleteJobReference field is set, deletes rows from SQL with matching Job Reference and redisplay table.
@@ -98,6 +111,9 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
 }
 //Default query - display all EOIs
 else {
+    $stmt = $dbconn->prepare("SELECT * FROM eoi");
+}
+if(isset($errorString)){
     $stmt = $dbconn->prepare("SELECT * FROM eoi");
 }
 if (!$stmt) {
@@ -236,7 +252,10 @@ $result = $stmt->get_result();
 
         <div class="content-background-and-border">
             <?php
-            if(isset($deleteJobReference)){
+            if(isset($errorString)){
+                echo '<p>' .  $errorString . '</p>';
+            }
+            elseif(isset($deleteJobReference)){
                 echo '<p>' .  mysqli_affected_rows($dbconn) . ' rows deleted.</p>';
             }
             elseif(isset($sortField) && isset($sortOrder)){
