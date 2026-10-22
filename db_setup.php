@@ -1,14 +1,18 @@
 <?php
 /*
 filename: db_setup.php
-author: Mohammad Aquib
+author: Mohammad Aquib (jobs and users tables)
+contributors: Xander Rode-Bramanis (eoi table), Ryan M (members and member_contributions tables)
 created: 13/10/2026
-last modified: 14/10/2026
-description: Creates the jobs and users tables if they do not exist yet and fills them
-             with starting data. Included by search.php (for jobs.php) and login.php.
+last modified: 23/10/2026
+description: Shared database setup. Creates the jobs, eoi, users, members and
+             member_contributions tables if they do not exist yet, and fills jobs, users,
+             members and member_contributions with starting data. Included by search.php
+             (for jobs.php), apply.php, process_eoi.php, login.php, manage.php and about.php.
 
-GenAI acknowledgement: the structure of this file (prepared statements, password hashing)
-was drafted with the assistance of GenAI, then reviewed, tested and edited by Mohammad Aquib.
+GenAI acknowledgement: the jobs and users sections of this file (prepared statements,
+password hashing) were drafted with the assistance of GenAI, then reviewed, tested and
+edited by Mohammad Aquib.
 */
 
 # Connect to the database (credentials live in settings.php, connection code in db_connect.php) #
