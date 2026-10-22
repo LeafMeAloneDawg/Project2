@@ -5,7 +5,7 @@
 
 // Fetch members data sorted by name
 $query = "SELECT * FROM members ORDER BY name ASC;";
-$result = mysqli_query($dbconn,$query);
+$member_result = mysqli_query($dbconn,$query);
 ?>
 
 <!DOCTYPE html>
@@ -75,12 +75,12 @@ $result = mysqli_query($dbconn,$query);
                 <ul>
                     <?php 
                     // Dynamic member list
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($member = mysqli_fetch_assoc($result)) {
+                    if ($member_result && mysqli_num_rows($member_result) > 0) {
+                        while ($member = mysqli_fetch_assoc($member_result)) {
                             echo "<li>" . htmlspecialchars($member['name']) . " - <span class=\"member-id\">StudentID: <strong>" . htmlspecialchars($member['student_id']) . "</strong></span></li>";
                         }
                         // Reset cursor to loop over data again for the tables
-                        mysqli_data_seek($result, 0); 
+                        mysqli_data_seek($member_result, 0); 
                     }
                     ?>
                 </ul>
@@ -146,8 +146,8 @@ $result = mysqli_query($dbconn,$query);
         </thead>
         <tbody>
                 <?php
-                if ($result && mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
+                if ($member_result && mysqli_num_rows($member_result) > 0) {
+                    while ($row = mysqli_fetch_assoc($member_result)) {
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['fun_fact_1']) . "</td>";
@@ -156,7 +156,7 @@ $result = mysqli_query($dbconn,$query);
                         echo "</tr>";
                     }
                     // Reset internal pointer so we can re-read rows for table 2
-                    mysqli_data_seek($result, 0); 
+                    mysqli_data_seek($member_result, 0); 
                 } else {
                     echo "<tr><td colspan='4'>No member records found.</td></tr>";
                 }
@@ -176,8 +176,8 @@ $result = mysqli_query($dbconn,$query);
         </thead>
         <tbody>
                 <?php
-                if ($result && mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
+                if ($member_result && mysqli_num_rows($member_result) > 0) {
+                    while ($row = mysqli_fetch_assoc($member_result)) {
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['quote']) . "</td>";
