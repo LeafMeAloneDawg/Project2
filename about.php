@@ -44,7 +44,7 @@ $member_result = mysqli_query($dbconn, $member_query);
 
     <!-- group photo / banner with text on top -->
 <figure class="banner_text">
-    <img src="styles/images/group_photo.png" id="group_banner" alt="Team Group Photo" class="group_banner">
+    <img src="images/group_photo.png" id="group_banner" alt="Team Group Photo" class="group_banner">
     <figcaption class="text_overlay">Xander, Aquib, Ryan, Mason</figcaption>
 </figure>
 
