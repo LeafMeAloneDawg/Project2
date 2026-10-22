@@ -290,25 +290,45 @@ $result = $stmt->get_result();
             } elseif (isset($sortField) && isset($sortOrder)) {
                 //Clean up output for sort field. (Instead of date_of_birth, print Date of Birth, etc.)
                 
-                
-                if($sortField == "EOInumber"){
-                    $sortFieldOut = "EOI number";
-                }
-                elseif($sortField == "job_reference_number"){
-                    $sortFieldOut = "Job Reference Number";
-                }
-                elseif($sortField == "first_name"){
-                    $sortFieldOut = "First Name";
-                }
-                elseif($sortField == "last_name"){
-                    $sortFieldOut = "Last Name";
-                }
-                elseif($sortField == "date_of_birth"){
-                    $sortFieldOut = "Date of Birth";
-                }
-                
-                else{$sortFieldOut = $sortField;}
+                switch($sortField){
+                    case "EOInumber":
+                        $sortFieldOut = "EOI number";
+                        break;
+                    case "job_reference_number":
+                        $sortFieldOut = "Job Reference Number";
+                        break;
+                    case "first_name":
+                        $sortFieldOut = "First Name";
+                        break;
+                    case "last_name":
+                        $sortFieldOut = "Last Name";
+                        break;
+                    case "date_of_birth":
+                        $sortFieldOut = "Date of Birth";
+                        break;
+                    case "gender":
+                        $sortFieldOut = "Gender";
+                        break;
+                    case "email":
+                        $sortFieldOut = "Email";
+                        break;
+                    case "phone":
+                        $sortFieldOut = "Phone Number";
+                        break;
+                    case "skills":
+                        $sortFieldOut = "Skills";
+                        break;
+                    case "other_skills":
+                        $sortFieldOut = "Other Skills";
+                        break;
+                    case "status":
+                        $sortFieldOut = "Status";
+                        break;
+                    default:
+                        $sortFieldOut = $sortField;
+                        break;
 
+                }
                 //Clean up output for sort order
                 if($sortOrder == "ASC"){$sortOrderOut = "Ascending";}
                 else{$sortOrderOut = 'Descending';}
