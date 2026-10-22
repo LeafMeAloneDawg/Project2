@@ -288,7 +288,7 @@ thead{
 }
 /* Sets a repeating background image for index.html - copied directly from apply-page class */
 .index-page {
-    background-image: url("../images/Lightblue.jpeg");
+    background-image: url("images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
@@ -416,7 +416,7 @@ thead{
 
 .jobs-page {
     /*
-       Background photo for the Jobs page (file: images/Job_page_background.jpg,
+       Background photo for the Jobs page (file: styles/images/Job_page_background.jpg,
        a resized/compressed copy).
        Image: "Silhouette of a group of young people at a railing" by Emir Bozkurt, Pexels.
        https://www.pexels.com/photo/15639173/
@@ -430,7 +430,7 @@ thead{
     background-color: #eef3fb;
     background-image:
         linear-gradient(rgba(238, 243, 251, 0.55), rgba(238, 243, 251, 0.72)),
-        url("../images/Job_page_background.jpg");
+        url("images/Job_page_background.jpg");
     background-repeat: no-repeat, no-repeat;
     background-position: center top, center top;
     background-size: cover, cover;
@@ -618,7 +618,7 @@ aside a {
 }
 
 /* Crumpled-paper texture for the job cards and the aside.
-   A photo (images/crumpled-paper.jpg, a resized/compressed copy) sits in a
+   A photo (styles/images/crumpled-paper.jpg, a resized/compressed copy) sits in a
    ::before layer, lightened with a cream veil so only the creases show as
    soft shading. Adjust with `opacity`. Falls back to the plain card
    background if the image is missing.
@@ -643,7 +643,7 @@ aside::before {
        re-composite this layer on every scroll frame and made the page lag. */
     background-image:
         linear-gradient(rgba(252, 250, 245, 0.55), rgba(252, 250, 245, 0.55)),
-        url("../images/crumpled-paper.jpg");
+        url("images/crumpled-paper.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -680,7 +680,7 @@ aside>* {
 }
 
 .apply-page {
-    background-image: url("../images/Lightblue.jpeg");
+    background-image: url("images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
@@ -1117,7 +1117,7 @@ section{
    ========================= */
 
    .manage-page{
-    background-image: url("../images/Lightblue.jpeg");
+    background-image: url("images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
