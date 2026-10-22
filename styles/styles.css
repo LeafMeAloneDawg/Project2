@@ -288,7 +288,7 @@ thead{
 }
 /* Sets a repeating background image for index.html - copied directly from apply-page class */
 .index-page {
-    background-image: url("images/Lightblue.jpeg");
+    background-image: url("../images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
@@ -430,7 +430,7 @@ thead{
     background-color: #eef3fb;
     background-image:
         linear-gradient(rgba(238, 243, 251, 0.55), rgba(238, 243, 251, 0.72)),
-        url("images/Job_page_background.jpg");
+        url("../images/Job_page_background.jpg");
     background-repeat: no-repeat, no-repeat;
     background-position: center top, center top;
     background-size: cover, cover;
@@ -643,7 +643,7 @@ aside::before {
        re-composite this layer on every scroll frame and made the page lag. */
     background-image:
         linear-gradient(rgba(252, 250, 245, 0.55), rgba(252, 250, 245, 0.55)),
-        url("images/crumpled-paper.jpg");
+        url("../images/crumpled-paper.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -680,7 +680,7 @@ aside>* {
 }
 
 .apply-page {
-    background-image: url("images/Lightblue.jpeg");
+    background-image: url("../images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
@@ -1117,7 +1117,7 @@ section{
    ========================= */
 
    .manage-page{
-    background-image: url("images/Lightblue.jpeg");
+    background-image: url("../images/Lightblue.jpeg");
     background-size: 100% auto;
     background-position: center top;
     background-repeat: repeat-y;
@@ -1147,6 +1147,8 @@ section{
    .manage-page .apply_intro_box{
     margin-bottom: 5px;
    }
+
+   
 
    /*
    Styling for table feedback box - display none if no feedback provided from SQL DB.

@@ -25,7 +25,7 @@
 </nav>
      <!-- Company logo / banner with text on top -->
         <div id="index_banner">
-                <img src="styles/images/grp_3.png" id="company_logo" alt="Company Logo">
+                <img src="images/grp_3.png" id="company_logo" alt="Company Logo">
                 <h1 id="index_logo_text_overlay">Melbourne Youth <br> Support Network</h1>
         </div>
     <main id="index-content" tabindex="-1">
@@ -68,7 +68,7 @@
                 <q class="company-slogan"><b>No young person has to face life alone</b></q>
                 <!-- Image source: https://creativeyouthland.org/projects/ -->
 
-                <img src="styles/images/indexGraphic.jpg" alt="Youth Power Graphic">
+                <img src="images/indexGraphic.jpg" alt="Youth Power Graphic">
                 </div>
             </div>
 
@@ -124,7 +124,7 @@
         <!--    Container for acknowledgment of country and Australian Indigenous flag  -->
         <div id="acknowledgment-of-country" class="content-background-and-border">
             <!-- Image source https://wall.alphacoders.com/big.php?i=785129 -->
-            <img src="styles/images/Aboriginal-flag.jpg" alt="Image of Indigenous Australian Flag">
+            <img src="images/Aboriginal-flag.jpg" alt="Image of Indigenous Australian Flag">
             <!-- This div ensures that the text remains in column layout, while maintaining indiviudal styling for the bold sentence at the end 
                     Example of inline styling to add padding to the text.
             -->
