@@ -259,10 +259,10 @@ $row_members = mysqli_fetch_assoc($count_members);
 
 if ($row_members['total'] == 0) {
     $starting_members = [
-        ['103839016', 'Aquib', 'Avid fan of tactical strategy video games.', 'Enjoys exploring advanced web development frameworks.', 'Always ready with a fresh cup of coffee.', 'Code with purpose.', 'Code with purpose.'],    
-        ['105641802', 'Mason', 'Passionate about clean and efficient software design.', 'Enjoys solving complex algorithmic problems.', 'Active participant in coding hackathons.', 'Simplicity is prerequisite for reliability.', 'Simplicity is prerequisite for reliability.'],
-        ['106893099', 'Ryan', 'Modifies Japanese import sedans in spare time.', 'Enjoys 3D printing custom automotive parts.', 'Studies computer science at Swinburne.', 'Measure twice, cut once.', 'Measure twice, cut once.'],
-        ['103990515', 'Xander', 'Enjoys building custom mechanical keyboards.', 'Passionate about retro gaming and emulation.', 'Spends weekends working on project cars.', 'Stay curious and keep building.', 'Stay curious and keep building.']
+        ['103839016', 'Aquib', 'Plays guitar.', 'Enjoys live rock/metal concerts.', 'Loves to collect band official merchandise.', 'কখনো হাল ছাড়বে না', 'Never give up '],    
+        ['105641802', 'Mason', 'My bedroom was a 1940s double-decker bus as a teen.', 'I live with my best friend from year 7.', 'I learnt to weld to fix my the love of my life (A 1984 Celica), blew her up three times and then sold it.', 'पेड़ मेरे पसंदीदा जानवर हैं।', 'Trees are my favorite animal.'],
+        ['106893099', 'Ryan', 'Has a pet dog named Fuji.', 'Has an interest in old Toyotas.', 'Enjoys CAD design and 3d printing.', '胸を張って生きろ。己の弱さや不甲斐なさにどれだけ打ちのめされようと、心を燃やせ。', 'Go ahead and live with your head held high! No matter how devastated you may be by your own weakness or uselessness, set your heart ablaze!'],
+        ['103990515', 'Xander', 'Lived in Thailand for a year.', 'Collects physical media.', 'Enjoys surfing.', 'ผมรักแม่ของผม', 'I love my mum']
     ];
 
     $insert_member = mysqli_prepare($dbconn, "INSERT INTO members (student_id, name, fun_fact_1, fun_fact_2, fun_fact_3, quote, quote_translated) VALUES (?, ?, ?, ?, ?, ?, ?)");
