@@ -291,19 +291,17 @@ if (count($errors) > 0) {
 
             <h1>Application Error</h1>
 
-            <p>Please fix the following problems:</p>
+            <p class="error-intro">Please fix the following problems:</p>
 
-            <ul>
-
-                <?php
-                foreach ($errors as $error) {
-                    echo "<li>" . htmlspecialchars($error) . "</li>";
-                }
-                ?>
-
+            <ul class="error-list">
+            <?php
+            foreach ($errors as $error) {
+            echo "<li>" . htmlspecialchars($error) . "</li>";
+            }
+            ?>
             </ul>
 
-            <p>
+            <p class="error-return">
                 <a href="apply.php">Return to the application form</a>
             </p>
 

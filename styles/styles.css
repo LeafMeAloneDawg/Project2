@@ -914,6 +914,39 @@ textarea:focus {
     border-color: #09427e;
 }
 
+/* Application error page */
+
+.error-intro {
+    margin-bottom: 20px;
+}
+
+.error-list {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 25px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.error-list li {
+    margin: 5px 0;
+    padding-left: 2px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.error-return {
+    margin-top: 20px;
+}
+
+.error-return a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+
 /* =========================
    ABOUT PAGE
    ========================= */
