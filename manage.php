@@ -267,10 +267,10 @@ $result = $stmt->get_result();
 
         
         if ($result) {
-            echo "<table> <tr> <th>EOI ID</th> <th>Job Ref</th> <th>First Name</th> <th>Last Name</th> <th>DOB</th> <th>Gender</th> <th>Address</th> <th>Email</th> <th>Phone Number</th> <th>Skills</th> <th>Other Skills</th> <th>Status</th> </tr>";
+            echo "<table> <tr> <th scope='col'>EOI ID</th> <th scope='col'>Job Ref</th> <th scope='col'>First Name</th> <th scope='col'>Last Name</th> <th scope='col'>DOB</th> <th scope='col'>Gender</th> <th scope='col'>Address</th> <th scope='col'>Email</th> <th scope='col'>Phone Number</th> <th scope='col'>Skills</th> <th scope='col'>Other Skills</th> <th scope='col'>Status</th> </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['EOInumber']) . "</td>";
+                echo "<th scope='row'>" . htmlspecialchars($row['EOInumber']) . "</th>";
                 echo "<td>" . htmlspecialchars($row['job_reference_number']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
