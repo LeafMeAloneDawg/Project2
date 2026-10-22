@@ -1078,8 +1078,15 @@ section{
    MANAGE EOI PAGE STYLES - M.C
    ========================= */
 
+   .manage-page{
+    background-image: url("images/Lightblue.jpeg");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+   }
     
-   #managePage fieldset input[type="text"] {
+   .manage-page #main-content fieldset input[type="text"] {
     border: 3px solid #d7e7ff;
     background-color: rgb(241, 238, 238);
     width: auto;
@@ -1095,20 +1102,20 @@ section{
    }
 
    
-   #managePage fieldset{
+   .manage-page #main-content fieldset{
     max-width: fit-content;
    }
 
    /*
    Styling for table feedback box - display none if no feedback provided from SQL DB.
    */
-   #managePage .content-background-and-border{
+   .manage-page #main-content .content-background-and-border{
     width: fit-content;
     padding: 0px 10px 0px 10px;
     border-radius: 4px;
     margin-bottom: 2px;
    }
-   #managePage .content-background-and-border p {
+   .manage-page #main-content .content-background-and-border p {
     height: fit-content;
    }
 
@@ -1122,25 +1129,25 @@ section{
    
 
    /*Slightly less padding for buttons*/
-   #managePage input[type="submit"]{
+   .manage-page #main-content input[type="submit"]{
     padding:6px;
     margin-right: 6px;
    }
 
-   #managePage table{
+   .manage-page #main-content table{
     display: block;
     overflow-x: auto;
     max-width: 95%;
    }
 
-   #managePage .EOIManageForm{
+   .manage-page #main-content .EOIManageForm{
   display: flex;
   max-width: 95%;
   flex-direction: column;
   margin: 0 4%;
 }
 
-#managePage .EOIManageForm > div{
+.manage-page #main-content .EOIManageForm > div{
   display: flex;
   justify-content: center;
   flex-direction: row;

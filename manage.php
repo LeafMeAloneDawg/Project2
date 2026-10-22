@@ -122,12 +122,12 @@ $result = $stmt->get_result();
     </style>
 </head>
 <!-- Reused apply page CSS -->
-<body class="apply-page">
+<body class="manage-page">
     <?php include("header.inc"); ?>
     <nav>
         <?php include("nav.inc"); ?>
     </nav>
-    <main id="managePage" class="apply-main">
+    <main id="main-content" class="apply-main">
         <div class="apply_intro_box">
             <h1>Job application management page</h1>
         </div>
