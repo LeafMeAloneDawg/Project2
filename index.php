@@ -10,6 +10,7 @@
     <meta name="description" content="index page for Melbourne Youth Support Network job application webpage">
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Melbourne Youth Support Network</title>
+    <!-- GenAI acknowledgement: some parts of this page were modified with the help of GenAI. -->
     <!-- Embedded CSS for company slogan qoute-->
     <style>
         q {color:#09427e;}
@@ -31,37 +32,34 @@
     <main id="main-content" tabindex="-1">
         <!--    Container for company description and visual content -->
         <div id="index-description" class="content-background-and-border">
-            <h1>Company Description</h1>
-            
+            <!-- h2, not h1: the banner above already holds the page's h1 -->
+            <h2>Who We Are</h2>
+
             <div id="description-image-text">
+                <!-- Shorter blocks and a list of roles so the description is easy to scan (Part 1 feedback) -->
                 <div class="company-description">
 
-                    <p>Melbourne Youth Support aims to improve young lives through youth
-                        outreach, volunteer organisation and fundraising.</p>
+                    <p class="description-lead">Melbourne Youth Support Network improves young lives
+                        through youth outreach, volunteer organisation and fundraising. Early
+                        intervention can make a huge difference to a young person's future.</p>
 
-                    <p>Early intervention in a troubled young person's life can make a huge
-                        change in their quality of life in the future.</p>
+                    <h3>Our team</h3>
+                    <ul class="team-roles">
+                        <li><strong>Youth Outreach Workers</strong> build rapport with young people
+                            facing vulnerability or disadvantage, offering support, advice and a
+                            responsible adult to confide in.</li>
+                        <li><strong>Volunteer Coordinators</strong> organise outreach events such as
+                            food banks and information sessions, and train and coordinate our
+                            amazing volunteers.</li>
+                        <li><strong>Community Support Officers</strong> track individual cases and
+                            give our outreach and volunteer teams the support each case needs.</li>
+                    </ul>
 
-                    <p>Melbourne youth support employs trained youth outreach workers who
-                        build rapport with young people facing vulnerability or
-                        disadvantage, providing support, advice and a responsible adult to
-                        confide in.</p>
+                    <p>Together, we build strong connections between young people and their
+                        communities.</p>
 
-                    <p>Our volunteer coordinators organise youth outreach events such as
-                        food banks and information sessions as well as source, train and
-                        coordinate our amazing volunteers - ordinary folk who want to make a
-                        difference in a young person's life.</p>
-
-                    <p>Our hard working community support officers handle the office work
-                        involved in youth outreach, tracking individual cases, assisting our
-                        outreach officers and volunteer coordinators to provide the
-                        personalised support needed for each case.</p>
-
-                    <p>Together, our team works to create strong connections between young
-                        people and their communities. Providing support early in someone's
-                        life is critical.</p>
-
-                    
+                    <!-- Link to the vacancies from the home page (Part 1 feedback) -->
+                    <p class="vacancies-link"><a href="jobs.php">See our current job vacancies</a></p>
 
                 </div>
                 <div class="qoute-above-img">
@@ -128,23 +126,18 @@
             <!-- This div ensures that the text remains in column layout, while maintaining indiviudal styling for the bold sentence at the end 
                     Example of inline styling to add padding to the text.
             -->
-            <div style="padding-right:10px;">
-                <p>Melbourne Youth Support Network would like to acknowledge the Wurundjeri People of the Kulin Nation,
-                    and pay our respects to their Elders, past present and emerging. The Wurundjeri peoples were the
-                    first practicing
-                    scientists in this area, many thousands of years before colonisation. 
-                    <br>
-                    We thank them for their dedicated and ongoing care for the land that we are lucky to call home.
-                    <br>
-                    MYSN recognises that Aboriginal and Torres-Strait Islander peoples still experience significant
-                    disadvantages across many areas, such as child protection, justice, health, housing and education.
-                    <br>
-                    We aim to include First Nations Peoples in our decision making processes regarding youth support, as
-                    their knowledge is invaluable
-                    in providing adequate support for all youths.
-                </p>
-                <p><b >MYSN does not tolerate racism or any other form of discrimination.</b>
-                </p>
+            <div class="acknowledgment-text" style="padding-right:10px;">
+                <h2>Acknowledgement of Country</h2>
+                <!-- Separate paragraphs instead of <br> line breaks, so each idea reads as its own block -->
+                <p>Melbourne Youth Support Network acknowledges the Wurundjeri People of the Kulin Nation,
+                    and pays respect to their Elders past, present and emerging. The Wurundjeri peoples were
+                    the first practising scientists in this area, many thousands of years before colonisation.</p>
+                <p>We thank them for their dedicated and ongoing care for the land that we are lucky to call home.</p>
+                <p>MYSN recognises that Aboriginal and Torres Strait Islander peoples still experience significant
+                    disadvantage in areas such as child protection, justice, health, housing and education. We
+                    aim to include First Nations peoples in our decision making about youth support, as their knowledge
+                    is invaluable in providing the right support for all young people.</p>
+                <p class="no-discrimination"><b>MYSN does not tolerate racism or any other form of discrimination.</b></p>
             </div>
         </div>
     </main>

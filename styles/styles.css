@@ -229,6 +229,8 @@ thead{
    Index PAGE
    ========================= */
 
+/* GenAI acknowledgement: some parts of this section were modified with the help of GenAI. */
+
 /* Class to add rounded border and background to elements */
 .content-background-and-border{
     background-color: #eaf2ff;
@@ -318,8 +320,63 @@ thead{
         Add spacing between each paragraph vertically        
 */
 #index-description p{
-    margin: 4px 0 0 0;
+    margin: 0 0 0.8em;
     font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* "Who We Are" heading - h2 so the banner keeps the only h1 on the page */
+#index-description h2 {
+    margin: 5px 0 15px;
+    color: #09427e;
+}
+
+/* Short opening summary, slightly larger so it reads as the introduction */
+#index-description .description-lead {
+    font-size: 1.25em;
+    color: #09427e;
+}
+
+#index-description h3 {
+    margin: 0.4em 0 0.5em;
+    color: #09427e;
+}
+
+/* The three team roles as a list with a coloured left edge - easier to scan than long paragraphs */
+.team-roles {
+    margin: 0 0 1em;
+    padding: 0;
+    list-style: none;
+}
+
+.team-roles li {
+    margin-bottom: 0.7em;
+    padding: 0.4em 0 0.4em 0.9em;
+    font-size: 1.05em;
+    line-height: 1.5;
+    border-left: 4px solid #3b82f6;
+}
+
+.team-roles strong {
+    color: #09427e;
+}
+
+/* Button-style link from the home page to the vacancies */
+.vacancies-link a {
+    display: inline-block;
+    padding: 0.6em 1.2em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background-color: #09427e;
+    border: 2px solid #09427e;
+    border-radius: 6px;
+}
+
+.vacancies-link a:hover,
+.vacancies-link a:focus {
+    color: #09427e;
+    background-color: white;
 }
 
 /*  Styling for description and visual content
@@ -331,6 +388,8 @@ thead{
 #description-image-text{
     display: flex;
     align-items: center;
+    gap: 2rem;
+    width: 100%;
 }
 
 #description-image-text img{
@@ -339,8 +398,10 @@ thead{
     border: 2px solid;
     border-radius: 6px;
 }
+/* Text column: left-aligned, takes about 60% of the row (the quote and image take the rest) */
 .company-description{
-    font-size: larger;
+    flex: 1 1 60%;
+    text-align: left;
 }
 /*  Styling for company slogan container
        Align text in center and make it larger
@@ -358,10 +419,11 @@ thead{
 
 }
 
+/* Quote + image column: grows with the text column so the row has no empty space on the right */
 .qoute-above-img{
     display: flex;
     flex-direction: column;
-    width:40%;
+    flex: 1 1 40%;
 }
 
 /* Set program schedule div to use flexbox colum display and add margin between it and element above */
@@ -393,15 +455,38 @@ thead{
 
 #acknowledgment-of-country{
     display: flex;
+    align-items: center;
+    gap: 1.5rem;
     margin-top: 10px;
-    text-align: center;
+    margin-bottom: 20px;
+    padding: 1.25em 1.5em;
+    box-sizing: border-box;
+    text-align: left;
 }
+/* Smaller flag that keeps its shape, so the text gets most of the width */
 #acknowledgment-of-country img{
-    margin: auto auto;
-    margin-left: 0.5rem;
-    max-height: 180px;
-    margin-right: 10px;
-    border-radius: 16px;
+    flex-shrink: 0;
+    width: 180px;
+    height: auto;
+    border-radius: 8px;
+}
+
+#acknowledgment-of-country h2 {
+    margin: 0 0 0.5em;
+    color: #09427e;
+}
+
+.acknowledgment-text p {
+    margin: 0 0 0.7em;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+/* The closing statement is set apart with a divider so it stands out */
+.acknowledgment-text .no-discrimination {
+    margin-bottom: 0;
+    padding-top: 0.7em;
+    border-top: 1px solid #3b82f6;
 }
 
 
@@ -1470,13 +1555,13 @@ Scoped to #main-content so the nav and footer links keep the shared site colours
     }
     #acknowledgment-of-country img{
         margin: auto auto;
+        width: 140px;
     }
 
     #description-image-text{
         flex-direction: column;
         text-align: center;
     }
-
     #description-image-text img{
         width: 90%;
         height: auto;
