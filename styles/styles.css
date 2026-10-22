@@ -1144,6 +1144,10 @@ section{
     max-width: fit-content;
    }
 
+   .manage-page .apply_intro_box{
+    margin-bottom: 5px;
+   }
+
    /*
    Styling for table feedback box - display none if no feedback provided from SQL DB.
    */

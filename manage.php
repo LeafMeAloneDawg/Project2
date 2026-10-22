@@ -76,11 +76,25 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
     $newStatus = $_POST['status'];
     $allowedStatus = array("New", "Current", "Final");
     if (in_array($newStatus, $allowedStatus)) {
-        $stmt = $dbconn->prepare("UPDATE eoi SET status = ? WHERE EOInumber = ?");
-        $stmt->bind_param("ss", $newStatus, $EOI_ID);
+        $stmt = $dbconn->prepare("SELECT * FROM eoi WHERE EOInumber = ?");
+        $stmt->bind_param("s", $EOI_ID);
         $stmt->execute();
+        $result = $stmt->get_result();
         $eoiUpdatedBool = false;
-        if(mysqli_affected_rows($dbconn)>0){$eoiUpdatedBool=true;}
+        if(mysqli_affected_rows($dbconn)>0){
+            $eoiUpdatedBool=true;
+            $stmt = $dbconn->prepare("UPDATE eoi SET status = ? WHERE EOInumber = ?");
+            $stmt->bind_param("ss", $newStatus, $EOI_ID);
+            $stmt->execute();
+            if(!mysqli_affected_rows($dbconn)>0){
+                $errorString = "That EOI already has that status.";
+            }
+            }
+        else{
+            $errorString = "An EOI with that number does not exist.";
+            $eoiUpdatedBool = false;
+        }
+        
         $stmt = $dbconn->prepare("SELECT * FROM eoi");
     } else {
         $EOI_ID = null;
