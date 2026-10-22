@@ -946,6 +946,11 @@ textarea:focus {
     font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
+.error-return a:hover,
+.error-return a:focus {
+    background-color: #09427e;
+    color: white;
+}
 
 /* =========================
    ABOUT PAGE
