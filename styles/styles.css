@@ -1197,7 +1197,17 @@ section{
   flex-direction: row;
   flex-wrap: wrap;
 }
-
+/*
+Remove underlining from links.
+*/
+.manage-page a {
+    text-decoration: none;
+    color: #633fa0;
+}
+.manage-page a:visited{
+    text-decoration: none;
+    color: #633fa0;
+}
    
 
    /* =========================
