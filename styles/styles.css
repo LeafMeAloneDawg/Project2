@@ -1182,6 +1182,7 @@ section{
     display: block;
     overflow-x: auto;
     max-width: 95%;
+    margin-top:5px;
    }
 
    .manage-page #main-content .EOIManageForm{

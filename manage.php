@@ -199,12 +199,7 @@ $result = $stmt->get_result();
                         <label for="sortField">Sort entries by:</label>
                         <select size=1 name="sortField" id="sortField">
                             <option value="EOInumber">EOI ID</option>
-                            <option value="job_reference_number">Job Reference Number</op
-else {
-    $stmt = $dbconn->prepare("SELECT * FROM eoi");
-}
-if (isset($errorString)) {
-    $stmt = $dbconn->prepare("SELECT * FROM eoi");tion>
+                            <option value="job_reference_number">Job Reference Number</option>
                             <option value="first_name">First Name</option>
                             <option value="last_name">Last Name</option>
                             <option value="date_of_birth">DOB</option>
