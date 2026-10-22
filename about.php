@@ -4,8 +4,8 @@
  require_once("db_setup.php");
 
 // Fetch members data sorted by name
-$query = "SELECT * FROM members ORDER BY name ASC;";
-$member_result = mysqli_query($dbconn,$query);
+$member_query = "SELECT * FROM members ORDER BY name ASC;";
+$member_result = mysqli_query($dbconn, $member_query);
 ?>
 
 <!DOCTYPE html>
