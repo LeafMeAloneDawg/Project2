@@ -282,19 +282,41 @@ $result = $stmt->get_result();
 
         <div class="content-background-and-border">
             <?php
+            //Give feedback on queries
             if (isset($errorString)) {
                 echo '<p>' . $errorString . '</p>';
             } elseif (isset($deleteJobReference)) {
                 echo '<p>' . mysqli_affected_rows($dbconn) . ' rows deleted.</p>';
             } elseif (isset($sortField) && isset($sortOrder)) {
+                //Clean up output for sort field. (Instead of date_of_birth, print Date of Birth, etc.)
+                
+                
+                if($sortField == "EOInumber"){
+                    $sortFieldOut = "EOI number";
+                }
+                elseif($sortField == "job_reference_number"){
+                    $sortFieldOut = "Job Reference Number";
+                }
+                elseif($sortField == "first_name"){
+                    $sortFieldOut = "First Name";
+                }
+                elseif($sortField == "last_name"){
+                    $sortFieldOut = "Last Name";
+                }
+                elseif($sortField == "date_of_birth"){
+                    $sortFieldOut = "Date of Birth";
+                }
+                
+                else{$sortFieldOut = $sortField;}
 
-                echo '<p>Sorting by ' . htmlspecialchars($sortField) . ' in ' . htmlspecialchars($sortOrder) . ' order.</p>';
+                //Clean up output for sort order
+                if($sortOrder == "ASC"){$sortOrderOut = "Ascending";}
+                else{$sortOrderOut = 'Descending';}
+
+                echo '<p>Sorting by ' . htmlspecialchars($sortFieldOut) . ' in ' . htmlspecialchars($sortOrderOut) . ' order.</p>';
             } elseif (isset($newStatus) && isset($EOI_ID)) {
                 if($eoiUpdatedBool){
                     echo '<p>Updated EOI #' . htmlspecialchars($EOI_ID) . ' to ' . htmlspecialchars($newStatus) . '.</p>';
-                }
-                else{
-                    echo '<p>That EOI ID does not exist / Already has that status.</p>';
                 }
             } elseif (isset($first_name) && isset($last_name)) {
                 echo '<p>Searching for EOIs with applicant full name of ' . htmlspecialchars($first_name) . ' ' . htmlspecialchars($last_name) . '.</p>';
