@@ -62,6 +62,8 @@ elseif (isset($_POST["deleteJobReference"]) && trim($_POST["deleteJobReference"]
         $stmt = $dbconn->prepare("DELETE FROM eoi WHERE job_reference_number = ? ");
         $stmt->bind_param("s", $deleteJobReference);
         $stmt->execute();
+        //Save the number of deleted rows now, before the SELECT below replaces the affected row count.
+        $deletedCount = $stmt->affected_rows;
         $stmt = $dbconn->prepare("SELECT * FROM eoi");
     }
     else{
@@ -285,8 +287,8 @@ $result = $stmt->get_result();
             //Give feedback on queries
             if (isset($errorString)) {
                 echo '<p>' . $errorString . '</p>';
-            } elseif (isset($deleteJobReference)) {
-                echo '<p>' . mysqli_affected_rows($dbconn) . ' rows deleted.</p>';
+            } elseif (isset($deletedCount)) {
+                echo '<p>' . $deletedCount . ($deletedCount == 1 ? ' row' : ' rows') . ' deleted for job reference ' . htmlspecialchars(strtoupper($deleteJobReference)) . '.</p>';
             } elseif (isset($sortField) && isset($sortOrder)) {
                 //Clean up output for sort field. (Instead of date_of_birth, print Date of Birth, etc.)
                 
