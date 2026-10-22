@@ -1201,12 +1201,13 @@ section{
 }
 /*
 Remove underlining from links.
+Scoped to #main-content so the nav and footer links keep the shared site colours.
 */
-.manage-page a {
+.manage-page #main-content a {
     text-decoration: none;
     color: #633fa0;
 }
-.manage-page a:visited{
+.manage-page #main-content a:visited{
     text-decoration: none;
     color: #633fa0;
 }
