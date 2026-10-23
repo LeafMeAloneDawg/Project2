@@ -363,51 +363,64 @@ $result = $stmt->get_result();
                 $sortField = 'none';
                 $sortOrder = 'none';
             }
+            //This code changes the column heading link depending on if that column is currently being used for sorting, 
+            // displaying an indicator arrow and reversing the sort direction if clicked again.
+            // Uses shorthand if() else(if() else()) statements.
             echo ($sortField == "EOInumber" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=EOInumber&sortOrder=DESC'>EOI ID</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=EOInumber&sortOrder=ASC'>EOI ID</a></th>";
+            "<th scope='col'> <a href='manage.php?sortField=EOInumber&sortOrder=DESC'>EOI ID &#129169;</a></th>":
+            (($sortField == "EOInumber" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=EOInumber&sortOrder=ASC'>EOI ID &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=EOInumber&sortOrder=ASC'>EOI ID</a></th>");
 
-            echo ($sortField == "job_reference_number" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=job_reference_number&sortOrder=DESC'>Job Ref</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=job_reference_number&sortOrder=ASC'>Job Ref</a></th>";
+            echo ($sortField == "job_reference_number" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=job_reference_number&sortOrder=DESC'>Job Ref <br> &#129169;</a></th>":
+            (($sortField == "job_reference_number" && $sortOrder == 'DESC')? "<th scope='col'> <a href='manage.php?sortField=job_reference_number&sortOrder=ASC'>Job Ref <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=job_reference_number&sortOrder=ASC'>Job Ref</a></th>");
+            
+            
 
-            echo ($sortField == "first_name" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=first_name&sortOrder=DESC'>First Name</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=first_name&sortOrder=ASC'>First Name</a></th>";
+            echo ($sortField == "first_name" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=first_name&sortOrder=DESC'>First Name <br> &#129169;</a></th>":
+            (($sortField == "first_name" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=first_name&sortOrder=ASC'>First Name <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=first_name&sortOrder=ASC'>First Name</a></th>");
+            
 
-            echo ($sortField == "last_name" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=last_name&sortOrder=DESC'>Last Name</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=last_name&sortOrder=ASC'>Last Name</a></th>";
+            echo ($sortField == "last_name" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=last_name&sortOrder=DESC'>Last Name <br> &#129169;</a></th>" :
+            (($sortField == "last_name" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=last_name&sortOrder=ASC'>Last Name <br> &#129171;</a></th>": 
+            "<th scope='col'> <a href='manage.php?sortField=last_name&sortOrder=ASC'>Last Name</a></th>");
 
-            echo ($sortField == "date_of_birth" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=date_of_birth&sortOrder=DESC'>DOB</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=date_of_birth&sortOrder=ASC'>DOB</a></th>";
+            echo ($sortField == "date_of_birth" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=date_of_birth&sortOrder=DESC'>DOB <br> &#129169;</a></th>":
+            (($sortField == "date_of_birth" && $sortOrder == 'DESC')? "<th scope='col'> <a href='manage.php?sortField=date_of_birth&sortOrder=ASC'>DOB <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=date_of_birth&sortOrder=ASC'>DOB</a></th>");
+            
 
-            echo ($sortField == "gender" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=gender&sortOrder=DESC'>Gender</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=gender&sortOrder=ASC'>Gender</a></th>";
+            echo ($sortField == "gender" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=gender&sortOrder=DESC'>Gender <br> &#129169;</a></th>" :
+            (($sortField == "gender" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=gender&sortOrder=ASC'>Gender <br> &#129171;</a></th>": 
+            "<th scope='col'> <a href='manage.php?sortField=gender&sortOrder=ASC'>Gender</a></th>");
 
             echo "<th scope='col'>Address</th>";
 
-            echo ($sortField == "email" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=email&sortOrder=DESC'>Email</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=email&sortOrder=ASC'>Email</a></th>";
+            echo ($sortField == "email" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=email&sortOrder=DESC'>Email <br> &#129169;</a></th>":
+            (($sortField == "email" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=email&sortOrder=ASC'>Email <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=email&sortOrder=ASC'>Email</a></th>");
+            
+            
 
-            echo ($sortField == "phone" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=phone&sortOrder=DESC'>Phone Number</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=phone&sortOrder=ASC'>Phone Number</a></th>";
+            echo ($sortField == "phone" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=phone&sortOrder=DESC'>Phone Number <br> &#129169;</a></th>":
+            (($sortField == "phone" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=phone&sortOrder=ASC'>Phone Number <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=phone&sortOrder=ASC'>Phone Number</a></th>");
+            
 
-            echo ($sortField == "skills" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=skills&sortOrder=DESC'>Skills</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=skills&sortOrder=ASC'>Skills</a></th>";
+            echo ($sortField == "skills" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=skills&sortOrder=DESC'>Skills <br> &#129169;</a></th>":
+            (($sortField == "skills" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=skills&sortOrder=ASC'>Skills <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=skills&sortOrder=ASC'>Skills</a></th>");
 
-            echo ($sortField == "other_skills" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=other_skills&sortOrder=DESC'>Other Skills</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=other_skills&sortOrder=ASC'>Other Skills</a></th>";
+            echo ($sortField == "other_skills" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=other_skills&sortOrder=DESC'>Other Skills <br> &#129169;</a></th>":
+            (($sortField == "other_skills" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=other_skills&sortOrder=ASC'>Other Skills <br> &#129171;</a></th>":
+            "<th scope='col'> <a href='manage.php?sortField=other_skills&sortOrder=ASC'>Other Skills</a></th>");
+            
 
-            echo ($sortField == "status" && $sortOrder == 'ASC') ? 
-            "<th scope='col'> <a href='manage.php?sortField=status&sortOrder=DESC'>Status</a></th>":
-            "<th scope='col'> <a href='manage.php?sortField=status&sortOrder=ASC'>Status</a></th>";
+            echo ($sortField == "status" && $sortOrder == 'ASC') ? "<th scope='col'> <a href='manage.php?sortField=status&sortOrder=DESC'>Status <br> &#129169;</a></th>":
+            (($sortField == "status" && $sortOrder == 'DESC') ? "<th scope='col'> <a href='manage.php?sortField=status&sortOrder=ASC'>Status &#129171;</a></th>" :
+            "<th scope='col'> <a href='manage.php?sortField=status&sortOrder=ASC'>Status</a></th>");
+            
             echo "</tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
