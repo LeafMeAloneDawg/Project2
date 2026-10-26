@@ -20,7 +20,7 @@ if (isset($_GET['jobReferenceSearch']) && trim($_GET['jobReferenceSearch']) != '
 }
 
 //Check if firstName OR lastName is set and not empty.
-elseif ((isset($_GET['firstName']) || isset($_GET['lastName'])) && ((trim($_GET['firstName']) != '') || trim($_GET['lastName']) != '')) {
+elseif ((isset($_GET['firstName']) || isset($_GET['lastName'])) && ((trim($_GET['firstName'] ?? '') != '') || trim($_GET['lastName'] ?? '') != '')) {
     //Determines if first, last or both names are queried and non-empty.
     if (isset($_GET['firstName']) && (trim($_GET['firstName']) != '')) {
         $first_name = trim($_GET['firstName']);
@@ -107,7 +107,7 @@ elseif (isset($_POST['EOIUpdateStatusID']) && trim($_POST['EOIUpdateStatusID']) 
 
 } elseif (isset($_GET['sortField'])) {
     $sortField = $_GET['sortField'];
-    $sortOrder = $_GET['sortOrder'];
+    $sortOrder = $_GET['sortOrder'] ?? '';
     //Array of allowed values to sort by.
     $allowedSortFields = array(
         "EOInumber",

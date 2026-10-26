@@ -21,6 +21,14 @@ SET time_zone = "+00:00";
 -- Database: `project2_db`
 --
 
+CREATE DATABASE IF NOT EXISTS `project2_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `project2_db`;
+
+-- Drop existing tables so the import can be re-run cleanly
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `member_contributions`, `members`, `eoi`, `jobs`, `users`;
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +51,7 @@ CREATE TABLE `eoi` (
   `skills` varchar(255) DEFAULT NULL,
   `other_skills` text DEFAULT NULL,
   `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `eoi`
@@ -71,16 +79,16 @@ CREATE TABLE `jobs` (
   `essential_requirements` text NOT NULL,
   `preferable_requirements` text NOT NULL,
   `closing_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
 INSERT INTO `jobs` (`job_reference_number`, `title`, `short_description`, `salary`, `reports_to`, `responsibilities`, `essential_requirements`, `preferable_requirements`, `closing_date`) VALUES
-('CSW214', 'Community Support Worker', 'Provide direct, practical support to young people and families accessing our community programs, helping them connect with local services and build long-term wellbeing.', '$68,000 – $74,000 per annum (pro rata for part-time)', 'Community Programs Manager', 'Complete intake interviews and assess each client\'s needs.\nDevelop and review individual support plans with clients.\nCoordinate referrals to housing, health and education services.\nMaintain accurate, confidential case notes and records.\nAttend weekly team case-review meetings.', 'Diploma of Community Services or a related qualification.\nCurrent Working with Children Check and National Police Check.\nAt least one year of experience in a frontline support role.\nCurrent Victorian driver\'s licence.', 'Experience supporting culturally and linguistically diverse communities.\nCurrent First Aid and CPR certificate.\nKnowledge of Melbourne\'s youth and family service system.', '2026-10-25'),
-('VEC091', 'Volunteer Engagement Coordinator', 'Recruit, train and support our volunteer network so that volunteers are well matched to programs and feel valued in their contribution to the community.', '$72,000 – $80,000 per annum', 'Operations Manager', 'Recruit and onboard new volunteers across all programs.\nPlan and deliver regular volunteer induction and training sessions.\nBuild volunteer rosters for community events and outreach.\nCheck in with volunteers and resolve issues as they arise.\nOrganise volunteer recognition and appreciation events.', 'Experience coordinating volunteers, teams or community groups.\nStrong written and verbal communication skills.\nCurrent Working with Children Check.\nConfident using rostering or database software.', 'Qualification in community development, human resources or event management.\nExperience with volunteer-management platforms such as Better Impact.\nAvailability for occasional evening and weekend events.', '2026-10-25'),
-('YOW338', 'Youth Outreach Worker', 'Work alongside young people aged 12–25 in their own communities, running outreach activities and mentoring that build confidence, connection and trust.', '$65,000 – $70,000 per annum (pro rata for part-time)', 'Youth Services Team Leader', 'Deliver after-school, school-holiday and drop-in youth programs.\nBuild trusted relationships with young people and their families.\nRecognise early signs of disengagement and respond appropriately.\nRefer young people to specialist support services when needed.\nRecord session attendance and program outcomes.', 'Certificate IV in Youth Work or a related qualification.\nCurrent Working with Children Check and National Police Check.\nAvailability for after-school, evening and some weekend shifts.\nCurrent Victorian driver\'s licence.', 'Lived experience of, or a strong connection to, the local community.\nExperience facilitating group activities or workshops.\nTraining in Youth Mental Health First Aid.', '2026-10-25');
+('CSW214', 'Community Support Worker', 'Provide direct, practical support to young people and families accessing our community programs, helping them connect with local services and build long-term wellbeing.', '$68,000 – $74,000 per annum (pro rata for part-time)', 'Community Programs Manager', 'Complete intake interviews and assess each client\'s needs.\nDevelop and review individual support plans with clients.\nCoordinate referrals to housing, health and education services.\nMaintain accurate, confidential case notes and records.\nAttend weekly team case-review meetings.', 'Diploma of Community Services or a related qualification.\nCurrent Working with Children Check and National Police Check.\nAt least one year of experience in a frontline support role.\nCurrent Victorian driver\'s licence.', 'Experience supporting culturally and linguistically diverse communities.\nCurrent First Aid and CPR certificate.\nKnowledge of Melbourne\'s youth and family service system.', '2026-12-31'),
+('VEC091', 'Volunteer Engagement Coordinator', 'Recruit, train and support our volunteer network so that volunteers are well matched to programs and feel valued in their contribution to the community.', '$72,000 – $80,000 per annum', 'Operations Manager', 'Recruit and onboard new volunteers across all programs.\nPlan and deliver regular volunteer induction and training sessions.\nBuild volunteer rosters for community events and outreach.\nCheck in with volunteers and resolve issues as they arise.\nOrganise volunteer recognition and appreciation events.', 'Experience coordinating volunteers, teams or community groups.\nStrong written and verbal communication skills.\nCurrent Working with Children Check.\nConfident using rostering or database software.', 'Qualification in community development, human resources or event management.\nExperience with volunteer-management platforms such as Better Impact.\nAvailability for occasional evening and weekend events.', '2026-12-31'),
+('YOW338', 'Youth Outreach Worker', 'Work alongside young people aged 12–25 in their own communities, running outreach activities and mentoring that build confidence, connection and trust.', '$65,000 – $70,000 per annum (pro rata for part-time)', 'Youth Services Team Leader', 'Deliver after-school, school-holiday and drop-in youth programs.\nBuild trusted relationships with young people and their families.\nRecognise early signs of disengagement and respond appropriately.\nRefer young people to specialist support services when needed.\nRecord session attendance and program outcomes.', 'Certificate IV in Youth Work or a related qualification.\nCurrent Working with Children Check and National Police Check.\nAvailability for after-school, evening and some weekend shifts.\nCurrent Victorian driver\'s licence.', 'Lived experience of, or a strong connection to, the local community.\nExperience facilitating group activities or workshops.\nTraining in Youth Mental Health First Aid.', '2026-12-31');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ CREATE TABLE `members` (
   `fun_fact_3` text NOT NULL,
   `quote` text NOT NULL,
   `quote_translated` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `members`
@@ -119,7 +127,7 @@ CREATE TABLE `member_contributions` (
   `student_id` varchar(10) NOT NULL,
   `project_part` varchar(25) NOT NULL,
   `task_description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `member_contributions`
@@ -195,7 +203,7 @@ CREATE TABLE `users` (
   `password_hash` varchar(255) NOT NULL,
   `failed_attempts` int(11) NOT NULL DEFAULT 0,
   `locked_until` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`

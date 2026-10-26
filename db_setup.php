@@ -54,8 +54,8 @@ if (!mysqli_query($dbconn, $create_jobs_query)) {
     die("<p>Unable to create the jobs table.</p>");
 }
 
-# Older jobs tables have no closing date yet: add it and give existing rows the Part 1 date #
-add_column_if_missing($dbconn, "jobs", "closing_date", "DATE NOT NULL DEFAULT '2026-10-25'");
+# Older jobs tables have no closing date yet: add it and give existing rows the default closing date #
+add_column_if_missing($dbconn, "jobs", "closing_date", "DATE NOT NULL DEFAULT '2026-12-31'");
 
 # Columns read by jobs.php and search.php, kept in one place so both pages stay the same #
 $job_columns = "job_reference_number, title, short_description, salary, reports_to,
@@ -75,7 +75,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Provide direct, practical support to young people and families accessing our community programs, helping them connect with local services and build long-term wellbeing.',
             'salary' => '$68,000 – $74,000 per annum (pro rata for part-time)',
             'reports_to' => 'Community Programs Manager',
-            'closing_date' => '2026-10-25',
+            'closing_date' => '2026-12-31',
             'responsibilities' => [
                 'Complete intake interviews and assess each client\'s needs.',
                 'Develop and review individual support plans with clients.',
@@ -101,7 +101,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Recruit, train and support our volunteer network so that volunteers are well matched to programs and feel valued in their contribution to the community.',
             'salary' => '$72,000 – $80,000 per annum',
             'reports_to' => 'Operations Manager',
-            'closing_date' => '2026-10-25',
+            'closing_date' => '2026-12-31',
             'responsibilities' => [
                 'Recruit and onboard new volunteers across all programs.',
                 'Plan and deliver regular volunteer induction and training sessions.',
@@ -127,7 +127,7 @@ if ($count_row['total'] == 0) {
             'description' => 'Work alongside young people aged 12–25 in their own communities, running outreach activities and mentoring that build confidence, connection and trust.',
             'salary' => '$65,000 – $70,000 per annum (pro rata for part-time)',
             'reports_to' => 'Youth Services Team Leader',
-            'closing_date' => '2026-10-25',
+            'closing_date' => '2026-12-31',
             'responsibilities' => [
                 'Deliver after-school, school-holiday and drop-in youth programs.',
                 'Build trusted relationships with young people and their families.',

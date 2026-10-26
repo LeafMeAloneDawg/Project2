@@ -129,7 +129,7 @@ function print_list_items($text) {
                             <dt>Reports to</dt>
                             <dd><?php echo htmlspecialchars($job['reports_to']); ?></dd>
                             <dt>Applications close</dt>
-                            <?php # The database stores 2026-10-25; date() turns it into "Sunday 25 October 2026" # ?>
+                            <?php # The database stores 2026-12-31; date() turns it into "Thursday 31 December 2026" # ?>
                             <dd><time datetime="<?php echo htmlspecialchars($job['closing_date']); ?>"><?php echo date("l j F Y", strtotime($job['closing_date'])); ?></time></dd>
                         </dl>
 
